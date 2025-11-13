@@ -4109,5 +4109,82 @@ Emily Rodriguez,Sales,88000,2</code></pre>
         if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', openMobileSidebar);
         if (mobileSidebarOverlay) mobileSidebarOverlay.addEventListener('click', e => { if (e.target === mobileSidebarOverlay) closeMobileSidebar(); });
     </script>
+
+    <!-- Firebase Auth & Progress Tracking -->
+    <script type="module">
+        import { onAuthChange, getCurrentUser } from './auth.js';
+        import { getCourseEnrollment, saveLastLesson, completLesson, updateProgress } from './database.js';
+
+        const courseId = 'prompt-engineering';
+        let currentEnrollment = null;
+
+        // Check authentication and redirect if not logged in
+        onAuthChange(async (user) => {
+            if (!user) {
+                // Redirect to login with return URL
+                window.location.href = `auth.html?redirect=${encodeURIComponent(window.location.pathname)}`;
+                return;
+            }
+
+            // Load user's enrollment and progress
+            const enrollment = await getCourseEnrollment(user.uid, courseId);
+            if (enrollment.success) {
+                currentEnrollment = enrollment.data;
+                
+                // Mark completed lessons
+                if (currentEnrollment.completedLessons) {
+                    currentEnrollment.completedLessons.forEach(lessonId => {
+                        const lessonLinks = document.querySelectorAll('.lesson-link');
+                        lessonLinks.forEach(link => {
+                            if (link.textContent.includes(lessonId.replace('Lesson ', ''))) {
+                                link.innerHTML = '<i class="fas fa-check-circle text-green-400 mr-2"></i>' + link.textContent;
+                            }
+                        });
+                    });
+                }
+
+                // Load last accessed lesson
+                if (currentEnrollment.lastLessonId) {
+                    const lastLessonLink = Array.from(document.querySelectorAll('.lesson-link'))
+                        .find(link => link.getAttribute('onclick').includes(currentEnrollment.lastLessonId));
+                    if (lastLessonLink) {
+                        lastLessonLink.click();
+                    }
+                }
+            } else {
+                // Not enrolled, create enrollment
+                const { enrollInCourse } = await import('./database.js');
+                await enrollInCourse(user.uid, courseId);
+            }
+        });
+
+        // Override loadLesson to save progress
+        const originalLoadLesson = window.loadLesson;
+        window.loadLesson = async function(event, lessonKey) {
+            originalLoadLesson(event, lessonKey);
+            
+            const user = getCurrentUser();
+            if (user && currentEnrollment) {
+                // Save last accessed lesson
+                await saveLastLesson(user.uid, courseId, lessonKey);
+                
+                // Mark lesson as complete after 30 seconds
+                setTimeout(async () => {
+                    if (!currentEnrollment.completedLessons.includes(lessonKey)) {
+                        await completLesson(user.uid, courseId, lessonKey);
+                        
+                        // Update progress percentage
+                        const totalLessons = 25; // Update if you add/remove lessons
+                        const completedCount = currentEnrollment.completedLessons.length + 1;
+                        const progressPercent = Math.round((completedCount / totalLessons) * 100);
+                        await updateProgress(user.uid, courseId, progressPercent);
+                        
+                        // Add checkmark to completed lesson
+                        event.target.innerHTML = '<i class="fas fa-check-circle text-green-400 mr-2"></i>' + event.target.textContent;
+                    }
+                }, 30000); // 30 seconds
+            }
+        };
+    </script>
 </body>
 </html>

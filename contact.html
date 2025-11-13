@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact - Genius Academy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    :root{ --accent-teal:#00BFA5; --primary-blue:#0A3D62 }
+    body{ font-family:'Inter',sans-serif }
+    .bg-hero{ background:linear-gradient(135deg,#0A3D62 0%,#176B87 100%) }
+    input,textarea{ outline:none }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center text-xl font-extrabold text-blue-800 tracking-tight">
+        <i class="fas fa-brain text-2xl mr-2 text-[var(--accent-teal)]"></i> Genius Academy
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="index.html#featured" class="text-gray-600 hover:text-[var(--accent-teal)]">Courses</a>
+        <a href="about.html" class="text-gray-600 hover:text-[var(--accent-teal)]">About</a>
+        <a href="contact.html" class="text-gray-900 font-semibold">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-hero text-white py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Contact Us</h1>
+      <p class="text-lg text-white/90 max-w-3xl">Have a question, partnership idea, or feedback? We’d love to hear from you.</p>
+    </div>
+  </section>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid md:grid-cols-2 gap-10">
+    <!-- Contact Details -->
+    <section class="space-y-5">
+      <div class="bg-white rounded-xl shadow p-6 border border-gray-100">
+        <h2 class="text-xl font-bold mb-4">Reach Us Directly</h2>
+        <div class="space-y-3 text-gray-700">
+          <p class="flex items-center gap-3"><i class="fas fa-envelope text-[var(--accent-teal)]"></i> <a class="hover:text-[var(--accent-teal)]" href="mailto:hello@geniusacademy.example">hello@geniusacademy.example</a></p>
+          <p class="flex items-center gap-3"><i class="fas fa-globe text-[var(--accent-teal)]"></i> <a class="hover:text-[var(--accent-teal)]" href="https://coolschool6.github.io/Online-cources/" target="_blank" rel="noopener">Website</a></p>
+        </div>
+        <div class="mt-5">
+          <a href="mailto:hello@geniusacademy.example?subject=Genius%20Academy%20Inquiry" class="inline-flex items-center gap-2 px-5 py-3 bg-[var(--accent-teal)] hover:bg-teal-600 text-white font-semibold rounded-lg transition"><i class="fas fa-paper-plane"></i> Send an Email</a>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">Note: The form on this page is a simple front‑end demo (no backend). Use the email button for guaranteed delivery.</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6 border border-gray-100">
+        <h3 class="font-semibold text-gray-900 mb-2">Response Time</h3>
+        <p class="text-gray-700 text-sm">We typically reply within 2–3 business days.</p>
+      </div>
+    </section>
+
+    <!-- Simple Contact Form (Front-end only) -->
+    <section class="bg-white rounded-xl shadow p-6 border border-gray-100">
+      <h2 class="text-xl font-bold mb-4">Send a Message</h2>
+      <form onsubmit="event.preventDefault(); document.getElementById('formAlert').classList.remove('hidden');">
+        <div class="grid grid-cols-1 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+            <input type="text" required class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-500" placeholder="Your name" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input type="email" required class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-500" placeholder="you@example.com" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+            <textarea required rows="5" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-500" placeholder="How can we help?" ></textarea>
+          </div>
+          <button type="submit" class="mt-2 inline-flex items-center gap-2 px-5 py-3 bg-[var(--accent-teal)] hover:bg-teal-600 text-white font-semibold rounded-lg transition">
+            <i class="fas fa-paper-plane"></i> Submit
+          </button>
+          <div id="formAlert" class="hidden text-sm text-green-700 bg-green-50 border border-green-200 rounded p-3">
+            This is a demo form. Please use the email button for real inquiries.
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-10 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <a href="index.html" class="text-xl font-extrabold text-[var(--accent-teal)] tracking-tight flex items-center mb-4"><i class="fas fa-brain text-2xl mr-2"></i> Genius Academy</a>
+        <p class="text-gray-400 text-sm">High‑density, actionable education for modern innovators.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Explore</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="index.html#featured" class="hover:text-[var(--accent-teal)] transition">All Courses</a></li>
+          <li><a href="about.html" class="hover:text-[var(--accent-teal)] transition">About Us</a></li>
+          <li><a href="contact.html" class="hover:text-[var(--accent-teal)] transition">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Support</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="faq.html" class="hover:text-[var(--accent-teal)] transition">FAQ</a></li>
+          <li><a href="terms.html" class="hover:text-[var(--accent-teal)] transition">Terms of Service</a></li>
+          <li><a href="privacy.html" class="hover:text-[var(--accent-teal)] transition">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Connect</h4>
+        <div class="flex space-x-4 text-xl text-gray-300">
+          <a href="#" class="hover:text-[var(--accent-teal)]"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-[var(--accent-teal)]"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="hover:text-[var(--accent-teal)]"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-800 text-center text-sm text-gray-500">&copy; 2025 Genius Academy. All rights reserved.</div>
+  </footer>
+</body>
+</html>

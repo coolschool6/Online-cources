@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Genius Academy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    :root{ --accent-teal:#00BFA5; --primary-blue:#0A3D62 }
+    body{ font-family:'Inter',sans-serif }
+    .bg-hero{ background:linear-gradient(135deg,#0A3D62 0%,#176B87 100%) }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center text-xl font-extrabold text-blue-800 tracking-tight">
+        <i class="fas fa-brain text-2xl mr-2 text-[var(--accent-teal)]"></i> Genius Academy
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="index.html#featured" class="text-gray-600 hover:text-[var(--accent-teal)]">Courses</a>
+        <a href="about.html" class="text-gray-900 font-semibold">About</a>
+        <a href="contact.html" class="text-gray-600 hover:text-[var(--accent-teal)]">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-hero text-white py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">About Genius Academy</h1>
+      <p class="text-lg text-white/90 max-w-3xl">We're on a mission to make world‑class, practical education accessible to everyone. High-density lessons, zero fluff, immediate impact.</p>
+    </div>
+  </section>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+    <!-- Mission -->
+    <section class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="text-2xl font-bold mb-3 text-gray-900">Our Mission</h2>
+        <p class="text-gray-700 leading-relaxed">Genius Academy empowers learners to master modern, in‑demand skills through concise, expertly designed lessons and projects. We focus on real‑world outcomes: better thinking, faster output, and professional‑grade results.</p>
+        <ul class="mt-4 list-disc pl-5 text-gray-700 space-y-2">
+          <li>Accessible: free flagship courses with no friction to start</li>
+          <li>Actionable: frameworks, templates, and mini exercises</li>
+          <li>Up‑to‑date: content aligned with today’s tools and best practices</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6 border border-gray-100">
+        <h3 class="font-semibold text-gray-900 mb-3">What Sets Us Apart</h3>
+        <ul class="space-y-2 text-gray-700 text-sm">
+          <li class="flex items-start gap-3"><i class="fas fa-bolt text-[var(--accent-teal)] mt-1"></i><span>High‑signal teaching—no filler or jargon.</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-diagram-project text-[var(--accent-teal)] mt-1"></i><span>Project‑first approach with immediate application.</span></li>
+          <li class="flex items-start gap-3"><i class="fas fa-certificate text-[var(--accent-teal)] mt-1"></i><span>Certificates to showcase your progress.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section>
+      <h2 class="text-2xl font-bold mb-6 text-gray-900">Our Values</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl p-6 shadow border border-gray-100">
+          <i class="fas fa-heart text-2xl text-[var(--accent-teal)]"></i>
+          <h3 class="font-semibold mt-3 mb-2">Student‑First</h3>
+          <p class="text-gray-700 text-sm">We design every lesson for clarity, momentum, and confidence.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow border border-gray-100">
+          <i class="fas fa-lightbulb text-2xl text-[var(--accent-teal)]"></i>
+          <h3 class="font-semibold mt-3 mb-2">Practical Innovation</h3>
+          <p class="text-gray-700 text-sm">We teach what works today and evolves with tomorrow.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow border border-gray-100">
+          <i class="fas fa-users text-2xl text-[var(--accent-teal)]"></i>
+          <h3 class="font-semibold mt-3 mb-2">Inclusive Access</h3>
+          <p class="text-gray-700 text-sm">Quality education should be open, friendly, and welcoming.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Placeholder -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Who We Are</h2>
+      <p class="text-gray-700">We’re a small team of educators, designers, and engineers who love building clear, empowering learning experiences. Want to partner or contribute? Reach out—We’d love to hear from you.</p>
+      <a href="contact.html" class="inline-flex items-center gap-2 mt-4 px-5 py-3 bg-[var(--accent-teal)] hover:bg-teal-600 text-white font-semibold rounded-lg transition"><i class="fas fa-paper-plane"></i> Contact Us</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-10 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <a href="index.html" class="text-xl font-extrabold text-[var(--accent-teal)] tracking-tight flex items-center mb-4"><i class="fas fa-brain text-2xl mr-2"></i> Genius Academy</a>
+        <p class="text-gray-400 text-sm">High‑density, actionable education for modern innovators.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Explore</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="index.html#featured" class="hover:text-[var(--accent-teal)] transition">All Courses</a></li>
+          <li><a href="about.html" class="hover:text-[var(--accent-teal)] transition">About Us</a></li>
+          <li><a href="contact.html" class="hover:text-[var(--accent-teal)] transition">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Support</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="faq.html" class="hover:text-[var(--accent-teal)] transition">FAQ</a></li>
+          <li><a href="terms.html" class="hover:text-[var(--accent-teal)] transition">Terms of Service</a></li>
+          <li><a href="privacy.html" class="hover:text-[var(--accent-teal)] transition">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Connect</h4>
+        <div class="flex space-x-4 text-xl text-gray-300">
+          <a href="#" class="hover:text-[var(--accent-teal)]"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-[var(--accent-teal)]"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="hover:text-[var(--accent-teal)]"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-800 text-center text-sm text-gray-500">&copy; 2025 Genius Academy. All rights reserved.</div>
+  </footer>
+</body>
+</html>

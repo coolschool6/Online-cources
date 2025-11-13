@@ -78,11 +78,26 @@
             <!-- Desktop Links -->
             <nav class="hidden lg:flex space-x-8 items-center">
                 <a href="#featured" class="text-gray-600 hover:text-accent-teal font-medium transition duration-150">Courses</a>
-                <a href="#" class="text-gray-600 hover:text-accent-teal font-medium transition duration-150" onclick="showPaidModal(event)">About Us</a>
-                <a href="#" class="text-gray-600 hover:text-accent-teal font-medium transition duration-150" onclick="showPaidModal(event)">Contact</a>
-                <button onclick="showPaidModal(event)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 shadow-md">
-                    Login / Sign Up
-                </button>
+                <a href="about.html" class="text-gray-600 hover:text-accent-teal font-medium transition duration-150">About Us</a>
+                <a href="contact.html" class="text-gray-600 hover:text-accent-teal font-medium transition duration-150">Contact</a>
+                
+                <!-- Auth Buttons (show/hide based on auth state) -->
+                <div id="authButtons">
+                    <a href="auth.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 shadow-md">
+                        Login / Sign Up
+                    </a>
+                </div>
+                <div id="userMenu" class="hidden relative">
+                    <button onclick="toggleUserDropdown()" class="flex items-center gap-2 text-gray-700 hover:text-accent-teal font-medium">
+                        <i class="fas fa-user-circle text-2xl"></i>
+                        <span id="userName">User</span>
+                        <i class="fas fa-chevron-down text-sm"></i>
+                    </button>
+                    <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+                        <a href="access.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"><i class="fas fa-book mr-2"></i>My Courses</a>
+                        <button onclick="handleLogout()" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"><i class="fas fa-sign-out-alt mr-2"></i>Logout</button>
+                    </div>
+                </div>
             </nav>
 
             <!-- Mobile Menu Button -->
@@ -96,8 +111,8 @@
     <div id="mobile-menu-overlay" class="fixed top-0 left-0 w-full h-full bg-white z-40 hidden transition-opacity duration-300 opacity-0">
         <div class="p-8 flex flex-col space-y-6 pt-24">
             <a href="#featured" class="text-2xl font-semibold text-gray-800 hover:text-accent-teal transition duration-150" onclick="closeMobileMenu()">Courses</a>
-            <a href="#" class="text-2xl font-semibold text-gray-800 hover:text-accent-teal transition duration-150" onclick="showPaidModal(event); closeMobileMenu()">About Us</a>
-            <a href="#" class="text-2xl font-semibold text-gray-800 hover:text-accent-teal transition duration-150" onclick="showPaidModal(event); closeMobileMenu()">Contact</a>
+            <a href="about.html" class="text-2xl font-semibold text-gray-800 hover:text-accent-teal transition duration-150" onclick="closeMobileMenu()">About Us</a>
+            <a href="contact.html" class="text-2xl font-semibold text-gray-800 hover:text-accent-teal transition duration-150" onclick="closeMobileMenu()">Contact</a>
             <button onclick="showPaidModal(event); closeMobileMenu()" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-xl">
                 Login / Sign Up
             </button>
@@ -423,17 +438,17 @@
                 <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
                 <ul class="space-y-2 text-sm text-gray-400">
                     <li><a href="#featured" class="hover:text-accent-teal transition duration-150">All Courses</a></li>
-                    <li><a href="#" onclick="showPaidModal(event)" class="hover:text-accent-teal transition duration-150">About Us</a></li>
-                    <li><a href="#" onclick="showPaidModal(event)" class="hover:text-accent-teal transition duration-150">Contact</a></li>
+                    <li><a href="about.html" class="hover:text-accent-teal transition duration-150">About Us</a></li>
+                    <li><a href="contact.html" class="hover:text-accent-teal transition duration-150">Contact</a></li>
                 </ul>
             </div>
             <!-- Col 3: Support & Legal -->
             <div>
                 <h4 class="font-semibold text-lg mb-4">Support</h4>
                 <ul class="space-y-2 text-sm text-gray-400">
-                    <li><a href="#" onclick="showPaidModal(event)" class="hover:text-accent-teal transition duration-150">FAQ</a></li>
-                    <li><a href="#" onclick="showPaidModal(event)" class="hover:text-accent-teal transition duration-150">Terms of Service</a></li>
-                    <li><a href="#" onclick="showPaidModal(event)" class="hover:text-accent-teal transition duration-150">Privacy Policy</a></li>
+                    <li><a href="faq.html" class="hover:text-accent-teal transition duration-150">FAQ</a></li>
+                    <li><a href="terms.html" class="hover:text-accent-teal transition duration-150">Terms of Service</a></li>
+                    <li><a href="privacy.html" class="hover:text-accent-teal transition duration-150">Privacy Policy</a></li>
                 </ul>
             </div>
             <!-- Col 4: Connect -->
@@ -532,6 +547,52 @@
             courseList.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         });
 
+    </script>
+
+    <!-- Firebase Auth Integration -->
+    <script type="module">
+        import { onAuthChange, logOut, getCurrentUser } from './auth.js';
+
+        // Toggle user dropdown
+        window.toggleUserDropdown = function() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Handle logout
+        window.handleLogout = async function() {
+            const result = await logOut();
+            if (result.success) {
+                window.location.reload();
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            const userMenu = document.getElementById('userMenu');
+            const dropdown = document.getElementById('userDropdown');
+            if (userMenu && !userMenu.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        // Listen to auth state changes
+        onAuthChange((user) => {
+            const authButtons = document.getElementById('authButtons');
+            const userMenu = document.getElementById('userMenu');
+            const userName = document.getElementById('userName');
+
+            if (user) {
+                // User is signed in
+                authButtons.classList.add('hidden');
+                userMenu.classList.remove('hidden');
+                userName.textContent = user.displayName || user.email.split('@')[0];
+            } else {
+                // User is signed out
+                authButtons.classList.remove('hidden');
+                userMenu.classList.add('hidden');
+            }
+        });
     </script>
 </body>
 </html>
