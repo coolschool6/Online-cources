@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genius Academy - Unlock Your Potential</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0A3D62; /* Deep Blue */
+            --accent-teal: #00BFA5; /* Bright Teal */
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0A3D62 0%, #176B87 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        /* Styling for the decorative SVG wave */
+        .wave-svg { position: absolute; bottom: 0; left: 0; width: 100%; }
+        .nav-scrolled { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); }
+        .course-card { transition: all 0.3s ease; }
+        .course-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); }
+
+        /* Custom Modal Styling */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 450px;
+            animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        /* Course Card Gradients */
+        .gradient-ai { background: linear-gradient(145deg, #8E2DE2, #4A00E0); }
+        .gradient-dev { background: linear-gradient(145deg, #FF6F61, #FF9A8B); }
+        .gradient-art { background: linear-gradient(145deg, #00C9FF, #92FE9D); }
+        .gradient-finance { background: linear-gradient(145deg, #FDB813, #E6A700); }
+        .gradient-data { background: linear-gradient(145deg, #30E3CA, #00A389); }
+        .gradient-biz { background: linear-gradient(145deg, #FF512F, #DD2476); }
+        .gradient-comm { background: linear-gradient(145deg, #833AB4, #FD1D1D); }
+        .gradient-mobile { background: linear-gradient(145deg, #0072FF, #00C6FF); }
+        .gradient-leader { background: linear-gradient(145deg, #FF7E5F, #FEB47B); }
+    </style>
+    <style>
+      .text-accent-teal{ color: var(--accent-teal) }
+      .bg-accent-teal{ background-color: var(--accent-teal) }
+      .hover\:bg-teal-400:hover{ background-color: #2dd4bf }
+      .hover\:bg-teal-600:hover{ background-color: #0d9488 }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navbar -->
+    <header id="main-nav" class="fixed top-0 left-0 w-full z-50 bg-white transition-shadow duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center text-xl font-extrabold text-blue-800 tracking-tight">
+                <i class="fas fa-brain text-accent-teal text-2xl mr-2"></i> Genius Academy
+            </a>
+            
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex space-x-8 items-center">
+                <a href="#featured" class="text-gray-600 hover:text-accent-teal font-medium transition duration-150">Courses</a>
+                <a href="#" class="text-gray-600 hover:text-accent-teal font-medium transition duration-150" onclick="showPaidModal(event)">About Us</a>
+                <a href="#" class="text-gray-600 hover:text-accent-teal font-medium transition duration-150" onclick="showPaidModal(event)">Contact</a>
+                <button onclick="showPaidModal(event)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 shadow-md">
+                    Login / Sign Up
+                </button>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-full text-gray-700 hover:bg-gray-100 transition duration-150">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay (Hidden by default) -->
+    <div id="mobile-menu-overlay" class="fixed top-0 left-0 w-full h-full bg-white z-40 hidden transition-opacity duration-300 opacity-0">
+        <div class="p-8 flex flex-col space-y-6 pt-24">
+            <a href="#featured" class="text-2xl font-semibold text-gray-800 hover:text-accent-teal transition duration-150" onclick="closeMobileMenu()">Courses</a>
+            <a href="#" class="text-2xl font-semibold text-gray-800 hover:text-accent-teal transition duration-150" onclick="showPaidModal(event); closeMobileMenu()">About Us</a>
+            <a href="#" class="text-2xl font-semibold text-gray-800 hover:text-accent-teal transition duration-150" onclick="showPaidModal(event); closeMobileMenu()">Contact</a>
+            <button onclick="showPaidModal(event); closeMobileMenu()" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-xl">
+                Login / Sign Up
+            </button>
+        </div>
+        <button id="close-mobile-menu" class="absolute top-6 right-6 p-2 rounded-full text-gray-700 hover:bg-gray-100 transition duration-150">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-gradient pt-32 pb-48 text-white relative overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight animate-pulse">
+                    Unlock Your Potential. <br class="hidden sm:inline">Master New Skills.
+                </h1>
+                <p class="text-xl sm:text-2xl font-light max-w-3xl mx-auto mb-10">
+                    Access world-class courses designed for the future of innovation. Start mastering AI communication today with our flagship free course.
+                </p>
+                <a href="#featured" class="inline-block bg-accent-teal hover:bg-teal-400 text-white text-lg font-bold py-4 px-10 rounded-full transition duration-300 shadow-2xl transform hover:scale-105">
+                    Explore All Courses
+                </a>
+            </div>
+            <!-- SVG Wave Pattern -->
+            <svg class="wave-svg text-gray-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="currentColor" fill-opacity="1" d="M0,160L48,165.3C96,171,192,181,288,181.3C384,181,480,171,576,170.7C672,171,768,181,864,186.7C960,192,1056,192,1152,165.3C1248,139,1344,85,1392,58.7L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </section>
+
+        <!-- Categories Section -->
+        <section id="categories" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Your Learning Path Starts Here</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <!-- Category Card 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-[1.03] transition duration-300 border border-gray-100">
+                        <i class="fas fa-microchip text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Innovation & AI</h3>
+                        <p class="text-gray-500 text-sm">Future-proof your skills.</p>
+                    </div>
+                    <!-- Category Card 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-[1.03] transition duration-300 border border-gray-100">
+                        <i class="fas fa-code text-4xl text-green-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Development</h3>
+                        <p class="text-gray-500 text-sm">Build real-world applications.</p>
+                    </div>
+                    <!-- Category Card 3 -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-[1.03] transition duration-300 border border-gray-100">
+                        <i class="fas fa-palette text-4xl text-purple-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Creative Skills</h3>
+                        <p class="text-gray-500 text-sm">Design and create.</p>
+                    </div>
+                    <!-- Category Card 4 -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-[1.03] transition duration-300 border border-gray-100">
+                        <i class="fas fa-chart-line text-4xl text-red-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Career & Finance</h3>
+                        <p class="text-gray-500 text-sm">Boost your professional life.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Courses Section (The Carousel) -->
+        <section id="featured" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center mb-12">
+                    <h2 class="text-4xl font-extrabold text-gray-800">Our Featured Courses</h2>
+                    <div class="hidden md:flex space-x-3">
+                        <button id="prev-btn" class="p-3 rounded-full bg-gray-200 hover:bg-accent-teal hover:text-white transition duration-200"><i class="fas fa-arrow-left"></i></button>
+                        <button id="next-btn" class="p-3 rounded-full bg-gray-200 hover:bg-accent-teal hover:text-white transition duration-200"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div id="course-list" class="flex overflow-x-hidden space-x-6 pb-4">
+                    <!-- Course Cards (All 9 courses) -->
+                    <!-- 1. FREE FLAGSHIP AI COURSE -->
+                    <div class="course-card min-w-[300px] w-full sm:w-1/2 lg:w-1/3 p-4">
+                        <div class="gradient-ai text-white rounded-xl overflow-hidden shadow-xl h-full flex flex-col justify-between">
+                            <div class="p-6">
+                                <span class="bg-white text-gray-900 text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">FREE FLAGSHIP</span>
+                                <h3 class="text-2xl font-bold mt-2">The Genius of the Prompt</h3>
+                                <p class="mt-2 text-gray-200">Mastering AI Communication for expert-level output and efficiency.</p>
+                                <div class="flex items-center mt-4 text-yellow-300">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    <span class="ml-2 text-sm text-gray-200">(1,240 Reviews)</span>
+                                </div>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <a href="course-sales.html" class="block w-full text-center bg-white text-purple-700 font-bold py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+                                    Enroll Now - FREE
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. PAID Placeholder -->
+                    <div class="course-card min-w-[300px] w-full sm:w-1/2 lg:w-1/3 p-4">
+                        <div class="gradient-dev text-white rounded-xl overflow-hidden shadow-xl h-full flex flex-col justify-between">
+                            <div class="p-6">
+                                <span class="bg-white text-gray-900 text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">Development</span>
+                                <h3 class="text-2xl font-bold mt-2">Web Development From Scratch</h3>
+                                <p class="mt-2 text-gray-200">Build responsive, modern websites using HTML, CSS, and JavaScript.</p>
+                                <div class="flex items-center mt-4 text-yellow-300">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                    <span class="ml-2 text-sm text-gray-200">($149)</span>
+                                </div>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <button onclick="showPaidModal(event)" class="block w-full text-center bg-white text-red-700 font-bold py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+                                    Coming Soon
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. PAID Placeholder -->
+                    <div class="course-card min-w-[300px] w-full sm:w-1/2 lg:w-1/3 p-4">
+                        <div class="gradient-art text-white rounded-xl overflow-hidden shadow-xl h-full flex flex-col justify-between">
+                            <div class="p-6">
+                                <span class="bg-white text-gray-900 text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">Creative Skills</span>
+                                <h3 class="text-2xl font-bold mt-2">Mastering Digital Art</h3>
+                                <p class="mt-2 text-gray-200">From concept to completion: professional digital painting techniques.</p>
+                                <div class="flex items-center mt-4 text-yellow-300">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    <span class="ml-2 text-sm text-gray-200">($99)</span>
+                                </div>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <button onclick="showPaidModal(event)" class="block w-full text-center bg-white text-cyan-700 font-bold py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+                                    Coming Soon
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. PAID Placeholder -->
+                    <div class="course-card min-w-[300px] w-full sm:w-1/2 lg:w-1/3 p-4">
+                        <div class="gradient-finance text-white rounded-xl overflow-hidden shadow-xl h-full flex flex-col justify-between">
+                            <div class="p-6">
+                                <span class="bg-white text-gray-900 text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">Finance</span>
+                                <h3 class="text-2xl font-bold mt-2">Financial Literacy for Beginners</h3>
+                                <p class="mt-2 text-gray-200">Budgeting, investing, and retirement planning made simple.</p>
+                                <div class="flex items-center mt-4 text-yellow-300">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                                    <span class="ml-2 text-sm text-gray-200">($79)</span>
+                                </div>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <button onclick="showPaidModal(event)" class="block w-full text-center bg-white text-yellow-700 font-bold py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+                                    Coming Soon
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. PAID Placeholder -->
+                    <div class="course-card min-w-[300px] w-full sm:w-1/2 lg:w-1/3 p-4">
+                        <div class="gradient-data text-white rounded-xl overflow-hidden shadow-xl h-full flex flex-col justify-between">
+                            <div class="p-6">
+                                <span class="bg-white text-gray-900 text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">Data Science</span>
+                                <h3 class="text-2xl font-bold mt-2">Data Science Fundamentals</h3>
+                                <p class="mt-2 text-gray-200">Introduction to Python, statistics, and machine learning basics.</p>
+                                <div class="flex items-center mt-4 text-yellow-300">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                    <span class="ml-2 text-sm text-gray-200">($199)</span>
+                                </div>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <button onclick="showPaidModal(event)" class="block w-full text-center bg-white text-green-700 font-bold py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+                                    Coming Soon
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. PAID Placeholder -->
+                    <div class="course-card min-w-[300px] w-full sm:w-1/2 lg:w-1/3 p-4">
+                        <div class="gradient-biz text-white rounded-xl overflow-hidden shadow-xl h-full flex flex-col justify-between">
+                            <div class="p-6">
+                                <span class="bg-white text-gray-900 text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">Business</span>
+                                <h3 class="text-2xl font-bold mt-2">Business Strategy & Growth</h3>
+                                <p class="mt-2 text-gray-200">Developing and executing scalable growth strategies.</p>
+                                <div class="flex items-center mt-4 text-yellow-300">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    <span class="ml-2 text-sm text-gray-200">($129)</span>
+                                </div>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <button onclick="showPaidModal(event)" class="block w-full text-center bg-white text-pink-700 font-bold py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+                                    Coming Soon
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- 7. PAID Placeholder -->
+                    <div class="course-card min-w-[300px] w-full sm:w-1/2 lg:w-1/3 p-4">
+                        <div class="gradient-comm text-white rounded-xl overflow-hidden shadow-xl h-full flex flex-col justify-between">
+                            <div class="p-6">
+                                <span class="bg-white text-gray-900 text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">Soft Skills</span>
+                                <h3 class="text-2xl font-bold mt-2">Effective Communication Skills</h3>
+                                <p class="mt-2 text-gray-200">Mastering clarity, persuasion, and emotional intelligence.</p>
+                                <div class="flex items-center mt-4 text-yellow-300">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                                    <span class="ml-2 text-sm text-gray-200">($49)</span>
+                                </div>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <button onclick="showPaidModal(event)" class="block w-full text-center bg-white text-indigo-700 font-bold py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+                                    Coming Soon
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- 8. PAID Placeholder -->
+                    <div class="course-card min-w-[300px] w-full sm:w-1/2 lg:w-1/3 p-4">
+                        <div class="gradient-mobile text-white rounded-xl overflow-hidden shadow-xl h-full flex flex-col justify-between">
+                            <div class="p-6">
+                                <span class="bg-white text-gray-900 text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">Development</span>
+                                <h3 class="text-2xl font-bold mt-2">Mobile App Development (React Native)</h3>
+                                <p class="mt-2 text-gray-200">Build native mobile apps for iOS and Android with a single codebase.</p>
+                                <div class="flex items-center mt-4 text-yellow-300">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    <span class="ml-2 text-sm text-gray-200">($229)</span>
+                                </div>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <button onclick="showPaidModal(event)" class="block w-full text-center bg-white text-blue-700 font-bold py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+                                    Coming Soon
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 9. PAID Placeholder -->
+                    <div class="course-card min-w-[300px] w-full sm:w-1/2 lg:w-1/3 p-4">
+                        <div class="gradient-leader text-white rounded-xl overflow-hidden shadow-xl h-full flex flex-col justify-between">
+                            <div class="p-6">
+                                <span class="bg-white text-gray-900 text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block">Management</span>
+                                <h3 class="text-2xl font-bold mt-2">Advanced Leadership for Executives</h3>
+                                <p class="mt-2 text-gray-200">Transformative leadership frameworks for modern enterprise.</p>
+                                <div class="flex items-center mt-4 text-yellow-300">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    <span class="ml-2 text-sm text-gray-200">($299)</span>
+                                </div>
+                            </div>
+                            <div class="p-6 pt-0">
+                                <button onclick="showPaidModal(event)" class="block w-full text-center bg-white text-orange-700 font-bold py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+                                    Coming Soon
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold mb-12 text-gray-800">What Our Students Say</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-accent-teal">
+                        <p class="italic text-gray-600 mb-4">"The AI Prompt course changed how I work. My output is 5x faster and the quality is professional-grade. Best free course online, period."</p>
+                        <div class="flex items-center justify-center">
+                            <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center font-bold text-blue-700 mr-4">A.W.</div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Alex W.</p>
+                                <p class="text-sm text-gray-500">Marketing Strategist</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-blue-600">
+                        <p class="italic text-gray-600 mb-4">"I took the Development course preview and was blown away by the clarity. Definitely signing up for the full paid version when it drops!"</p>
+                        <div class="flex items-center justify-center">
+                            <div class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center font-bold text-green-700 mr-4">J.L.</div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Jamie L.</p>
+                                <p class="text-sm text-gray-500">Aspiring Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-purple-600">
+                        <p class="italic text-gray-600 mb-4">"The instructors are truly knowledgeable. This academy focuses on practical, applicable skills—not just theory."</p>
+                        <div class="flex items-center justify-center">
+                            <div class="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center font-bold text-purple-700 mr-4">E.C.</div>
+                            <div>
+                                <p class="font-semibold text-gray-900">Emily C.</p>
+                                <p class="text-sm text-gray-500">Design Freelancer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="bg-blue-700/90 py-16 text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold mb-4">Ready to Start Your Transformation?</h2>
+                <p class="text-xl mb-8 font-light">Join thousands of students mastering the skills of tomorrow, completely free.</p>
+                <a href="course-sales.html" class="inline-block bg-accent-teal hover:bg-teal-400 text-white text-lg font-bold py-4 px-12 rounded-full transition duration-300 shadow-xl transform hover:scale-105">
+                    Start The Free AI Course Now
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <!-- Col 1: Logo & Mission -->
+            <div>
+                <a href="index.html" class="text-xl font-extrabold text-accent-teal tracking-tight flex items-center mb-4">
+                    <i class="fas fa-brain text-2xl mr-2"></i> Genius Academy
+                </a>
+                <p class="text-gray-400 text-sm">Empowering the next generation of innovators with cutting-edge, accessible education.</p>
+            </div>
+            <!-- Col 2: Quick Links -->
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#featured" class="hover:text-accent-teal transition duration-150">All Courses</a></li>
+                    <li><a href="#" onclick="showPaidModal(event)" class="hover:text-accent-teal transition duration-150">About Us</a></li>
+                    <li><a href="#" onclick="showPaidModal(event)" class="hover:text-accent-teal transition duration-150">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Col 3: Support & Legal -->
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Support</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#" onclick="showPaidModal(event)" class="hover:text-accent-teal transition duration-150">FAQ</a></li>
+                    <li><a href="#" onclick="showPaidModal(event)" class="hover:text-accent-teal transition duration-150">Terms of Service</a></li>
+                    <li><a href="#" onclick="showPaidModal(event)" class="hover:text-accent-teal transition duration-150">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <!-- Col 4: Connect -->
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Connect</h4>
+                <div class="flex space-x-4 text-xl">
+                    <a href="#" class="hover:text-accent-teal transition duration-150"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-accent-teal transition duration-150"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-accent-teal transition duration-150"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 pt-6 border-t border-gray-800 text-center text-sm text-gray-500">
+            &copy; 2025 Genius Academy. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Custom Modal for Paid Course Placeholder (Replaces alert()) -->
+    <div id="paidModal" class="custom-modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-bold text-blue-800">Coming Soon!</h3>
+                <button onclick="closePaidModal()" class="text-gray-500 hover:text-gray-800 text-2xl"><i class="fas fa-times"></i></button>
+            </div>
+            <p class="text-gray-700 mb-6">Thank you for your interest! This course is part of our premium catalog and will be available for enrollment shortly. Check back soon for launch details!</p>
+            <button onclick="closePaidModal()" class="w-full bg-accent-teal hover:bg-teal-600 text-white font-bold py-3 rounded-lg transition duration-300">
+                Got It
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- Custom Modal Logic (for paid course alerts) ---
+        const paidModal = document.getElementById('paidModal');
+
+        function showPaidModal(event) {
+            event.preventDefault(); // Stop navigation
+            paidModal.style.display = 'block';
+            setTimeout(() => paidModal.style.opacity = 1, 10);
+        }
+
+        function closePaidModal() {
+            paidModal.style.opacity = 0;
+            setTimeout(() => paidModal.style.display = 'none', 300);
+        }
+
+        window.onclick = function(event) {
+            if (event.target == paidModal) {
+                closePaidModal();
+            }
+        }
+
+        // --- Navbar Scroll Effect ---
+        const header = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('nav-scrolled');
+            } else {
+                header.classList.remove('nav-scrolled');
+            }
+        });
+
+        // --- Mobile Menu Logic ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+        function openMobileMenu() {
+            mobileMenuOverlay.style.display = 'block';
+            setTimeout(() => mobileMenuOverlay.classList.remove('opacity-0'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenuOverlay.classList.add('opacity-0');
+            setTimeout(() => mobileMenuOverlay.style.display = 'none', 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+
+        // --- Carousel / Horizontal Scroll Logic ---
+        const courseList = document.getElementById('course-list');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+
+        // Simple scroll to next/prev set of cards
+        nextBtn.addEventListener('click', () => {
+            const scrollAmount = courseList.clientWidth * 0.7; // Scroll 70% of view
+            courseList.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            const scrollAmount = courseList.clientWidth * 0.7; // Scroll 70% of view
+            courseList.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+    </script>
+</body>
+</html>
