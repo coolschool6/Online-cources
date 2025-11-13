@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EmailJS Test - Genius Academy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body class="bg-gray-50 p-8">
+  <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
+    <h1 class="text-3xl font-bold mb-6 text-blue-800">📧 EmailJS Test Page</h1>
+    
+    <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded">
+      <h2 class="font-bold mb-2">Current Configuration:</h2>
+      <p><strong>Public Key:</strong> <code id="publicKeyDisplay" class="bg-gray-100 px-2 py-1 rounded"></code></p>
+      <p><strong>Service ID:</strong> <code id="serviceIdDisplay" class="bg-gray-100 px-2 py-1 rounded"></code></p>
+      <p><strong>Template:</strong> <code class="bg-gray-100 px-2 py-1 rounded">template_welcome</code></p>
+    </div>
+
+    <div class="mb-6">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Your Name:</label>
+      <input type="text" id="testName" value="Test User" class="w-full border border-gray-300 rounded-lg px-3 py-2">
+    </div>
+
+    <div class="mb-6">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Your Email:</label>
+      <input type="email" id="testEmail" value="" placeholder="your@email.com" class="w-full border border-gray-300 rounded-lg px-3 py-2">
+    </div>
+
+    <button onclick="testEmail()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition">
+      Send Test Email
+    </button>
+
+    <div id="status" class="mt-6 p-4 rounded hidden"></div>
+
+    <div id="logs" class="mt-6 bg-gray-900 text-green-400 p-4 rounded font-mono text-sm max-h-96 overflow-y-auto"></div>
+  </div>
+
+  <script>
+    // Load config from email-service.js
+    const CONFIG = {
+      publicKey: 'Bc96UGs_w_Tn4JOy9',
+      serviceId: 'service_t52m0im',
+      templateId: 'template_welcome'
+    };
+
+    document.getElementById('publicKeyDisplay').textContent = CONFIG.publicKey;
+    document.getElementById('serviceIdDisplay').textContent = CONFIG.serviceId;
+
+    function log(message, type = 'info') {
+      const logsDiv = document.getElementById('logs');
+      const timestamp = new Date().toLocaleTimeString();
+      const color = type === 'error' ? 'text-red-400' : type === 'success' ? 'text-green-400' : 'text-blue-400';
+      logsDiv.innerHTML += `<div class="${color}">[${timestamp}] ${message}</div>`;
+      logsDiv.scrollTop = logsDiv.scrollHeight;
+      console.log(message);
+    }
+
+    // Initialize EmailJS
+    log('Initializing EmailJS...', 'info');
+    try {
+      emailjs.init(CONFIG.publicKey);
+      log('✅ EmailJS initialized successfully!', 'success');
+    } catch (error) {
+      log('❌ Error initializing EmailJS: ' + error.message, 'error');
+    }
+
+    async function testEmail() {
+      const statusDiv = document.getElementById('status');
+      const name = document.getElementById('testName').value;
+      const email = document.getElementById('testEmail').value;
+
+      if (!email) {
+        statusDiv.className = 'mt-6 p-4 rounded bg-red-50 border border-red-200 text-red-700';
+        statusDiv.textContent = '❌ Please enter your email address';
+        statusDiv.classList.remove('hidden');
+        return;
+      }
+
+      statusDiv.className = 'mt-6 p-4 rounded bg-blue-50 border border-blue-200 text-blue-700';
+      statusDiv.textContent = '⏳ Sending email...';
+      statusDiv.classList.remove('hidden');
+
+      log('Starting email send...', 'info');
+      log(`To: ${email}`, 'info');
+      log(`Name: ${name}`, 'info');
+
+      try {
+        log('Preparing template parameters...', 'info');
+        const templateParams = {
+          to_name: name,
+          to_email: email,
+          from_name: 'Genius Academy',
+          reply_to: 'support@geniusacademy.com',
+          message: 'This is a test email from the EmailJS test page. If you receive this, your email system is working correctly!'
+        };
+
+        log('Template params: ' + JSON.stringify(templateParams), 'info');
+        log(`Sending to service: ${CONFIG.serviceId}`, 'info');
+        log(`Using template: ${CONFIG.templateId}`, 'info');
+
+        const response = await emailjs.send(
+          CONFIG.serviceId,
+          CONFIG.templateId,
+          templateParams
+        );
+
+        log('✅ Email sent successfully!', 'success');
+        log('Response: ' + JSON.stringify(response), 'success');
+
+        statusDiv.className = 'mt-6 p-4 rounded bg-green-50 border border-green-200 text-green-700';
+        statusDiv.innerHTML = `
+          <div class="font-bold mb-2">✅ Email Sent Successfully!</div>
+          <div class="text-sm">Check your inbox (and spam folder) for the test email.</div>
+          <div class="text-sm mt-2">Status: ${response.status} - ${response.text}</div>
+        `;
+      } catch (error) {
+        log('❌ Error sending email: ' + error.text || error.message, 'error');
+        log('Full error: ' + JSON.stringify(error), 'error');
+
+        statusDiv.className = 'mt-6 p-4 rounded bg-red-50 border border-red-200 text-red-700';
+        statusDiv.innerHTML = `
+          <div class="font-bold mb-2">❌ Error Sending Email</div>
+          <div class="text-sm mb-2">${error.text || error.message}</div>
+          <div class="text-xs bg-red-100 p-2 rounded mt-2">
+            <strong>Common issues:</strong><br>
+            • Template "template_welcome" doesn't exist in EmailJS<br>
+            • Template variables don't match (check {{to_name}}, {{to_email}}, etc.)<br>
+            • Service ID is incorrect<br>
+            • Public Key is incorrect<br>
+            • Email service not connected properly in EmailJS dashboard
+          </div>
+        `;
+      }
+    }
+
+    log('Test page loaded. Enter your email and click "Send Test Email"', 'info');
+  </script>
+</body>
+</html>
