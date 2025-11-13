@@ -7,6 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Firebase SDK (compat for browser) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics-compat.js"></script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #F8F9FA; }
         .sidebar { background-color: #1F2937; color: white; }
@@ -19,6 +24,11 @@
     </style>
 </head>
 <body>
+    <!-- Firebase config and auth scripts + Guard -->
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="database.js"></script>
+    <script src="guard.js"></script>
     <div class="flex h-screen overflow-hidden">
         <aside class="sidebar w-64 p-6 overflow-y-auto hidden md:block">
             <a href="index.html" class="flex items-center text-xl font-extrabold text-accent-teal tracking-tight mb-8">
@@ -4110,10 +4120,11 @@ Emily Rodriguez,Sales,88000,2</code></pre>
         if (mobileSidebarOverlay) mobileSidebarOverlay.addEventListener('click', e => { if (e.target === mobileSidebarOverlay) closeMobileSidebar(); });
     </script>
 
-    <!-- Firebase Auth & Progress Tracking -->
-    <script type="module">
-        import { onAuthChange, getCurrentUser } from './auth.js';
-        import { getCourseEnrollment, saveLastLesson, completLesson, updateProgress } from './database.js';
+    <!-- Firebase Auth & Progress Tracking (compat, globals) -->
+    <script>
+        // Using global functions from auth.js and database.js
+        const { onAuthChange, getCurrentUser } = window;
+        const { getCourseEnrollment, saveLastLesson, completLesson, updateProgress, enrollInCourse } = window;
 
         const courseId = 'prompt-engineering';
         let currentEnrollment = null;
@@ -4153,7 +4164,6 @@ Emily Rodriguez,Sales,88000,2</code></pre>
                 }
             } else {
                 // Not enrolled, create enrollment
-                const { enrollInCourse } = await import('./database.js');
                 await enrollInCourse(user.uid, courseId);
             }
         });

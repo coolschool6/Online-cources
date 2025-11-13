@@ -7,6 +7,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <!-- Firebase SDK (compat for browser) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <style>
     :root{ --accent-teal:#00BFA5; --primary-blue:#0A3D62 }
     body{ font-family:'Inter',sans-serif }
@@ -16,6 +19,9 @@
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
+  <!-- Firebase config + Guard -->
+  <script src="firebase-config.js"></script>
+  <script src="guard.js"></script>
   <!-- Header -->
   <header class="bg-white shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
