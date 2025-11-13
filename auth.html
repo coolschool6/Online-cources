@@ -140,6 +140,9 @@
   <script src="firebase-config.js"></script>
   <script src="auth.js"></script>
   <script src="database.js"></script>
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="email-service.js"></script>
   
   <script>
     // Show/hide tabs
@@ -220,6 +223,20 @@
 
         // Auto-enroll in free flagship course
         await enrollInCourse(result.user.uid, 'prompt-engineering');
+
+        // Send welcome email
+        sendWelcomeEmail(name, email).then(emailResult => {
+          if (emailResult.success) {
+            console.log('Welcome email sent successfully');
+          }
+        });
+
+        // Send enrollment confirmation for free course
+        sendEnrollmentEmail(name, email, 'The Genius of the Prompt').then(emailResult => {
+          if (emailResult.success) {
+            console.log('Enrollment email sent successfully');
+          }
+        });
 
         loading.classList.add('hidden');
         const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || 'index.html';

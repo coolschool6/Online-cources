@@ -28,6 +28,9 @@
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
     <script src="database.js"></script>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="email-service.js"></script>
     <script src="guard.js"></script>
     <div class="flex h-screen overflow-hidden">
         <aside class="sidebar w-64 p-6 overflow-y-auto hidden md:block">
@@ -4191,10 +4194,55 @@ Emily Rodriguez,Sales,88000,2</code></pre>
                         
                         // Add checkmark to completed lesson
                         event.target.innerHTML = '<i class="fas fa-check-circle text-green-400 mr-2"></i>' + event.target.textContent;
+
+                        // Check if course is 100% complete
+                        if (progressPercent === 100) {
+                            await handleCourseCompletion(user, courseId);
+                        }
                     }
                 }, 30000); // 30 seconds
             }
         };
+
+        // Handle course completion
+        async function handleCourseCompletion(user, courseId) {
+            try {
+                // Mark course as completed in enrollment
+                const enrollmentQuery = await db.collection('enrollments')
+                    .where('userId', '==', user.uid)
+                    .where('courseId', '==', courseId)
+                    .get();
+
+                if (!enrollmentQuery.empty) {
+                    const enrollmentDoc = enrollmentQuery.docs[0];
+                    await enrollmentDoc.ref.update({
+                        completedDate: firebase.firestore.Timestamp.now(),
+                        completed: true
+                    });
+                }
+
+                // Send certificate email
+                const certId = `GA-${user.uid.substring(0, 8).toUpperCase()}-${Date.now().toString(36).toUpperCase()}`;
+                const completionDate = new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+
+                await sendCertificateEmail(
+                    user.displayName || user.email,
+                    user.email,
+                    'The Genius of the Prompt',
+                    certId,
+                    completionDate
+                );
+
+                // Show completion message
+                alert('🎉 Congratulations! You\'ve completed "The Genius of the Prompt"!\n\nYour certificate is ready in your dashboard. Check your email for details!');
+            } catch (error) {
+                console.error('Error handling course completion:', error);
+            }
+        }
     </script>
 </body>
 </html>
