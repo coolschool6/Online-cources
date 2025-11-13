@@ -4352,7 +4352,8 @@ Emily Rodriguez,Sales,88000,2</code></pre>
                 `
             },
         };
-        function loadLesson(event, lessonKey) {
+        // Make loadLesson globally accessible for inline onclick attributes
+        window.loadLesson = function(event, lessonKey) {
             event.preventDefault();
             lessonLinks.forEach(link => link.classList.remove('active'));
             event.target.classList.add('active');
@@ -4362,19 +4363,21 @@ Emily Rodriguez,Sales,88000,2</code></pre>
             const welcome = document.getElementById('welcome-message');
             if (welcome) welcome.style.display = 'none';
         }
-        function toggleLessons(button, moduleId) {
+        // Make toggleLessons globally accessible for inline onclick attributes
+        window.toggleLessons = function(button, moduleId) {
             const lessonsDiv = document.getElementById(moduleId);
             const icon = button.querySelector('i');
             const wasHidden = lessonsDiv.classList.contains('hidden');
             lessonsDiv.classList.toggle('hidden');
             if (wasHidden) { icon.classList.add('rotate-90'); } else { icon.classList.remove('rotate-90'); }
         }
+        // Make mobile sidebar functions globally accessible for inline onclick attributes
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mobileSidebarOverlay = document.getElementById('mobile-sidebar-overlay');
-        function openMobileSidebar(){ mobileSidebarOverlay.classList.remove('hidden'); }
-        function closeMobileSidebar(){ mobileSidebarOverlay.classList.add('hidden'); }
-        if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', openMobileSidebar);
-        if (mobileSidebarOverlay) mobileSidebarOverlay.addEventListener('click', e => { if (e.target === mobileSidebarOverlay) closeMobileSidebar(); });
+        window.openMobileSidebar = function(){ mobileSidebarOverlay.classList.remove('hidden'); }
+        window.closeMobileSidebar = function(){ mobileSidebarOverlay.classList.add('hidden'); }
+        if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', window.openMobileSidebar);
+        if (mobileSidebarOverlay) mobileSidebarOverlay.addEventListener('click', e => { if (e.target === mobileSidebarOverlay) window.closeMobileSidebar(); });
     </script>
 
     <!-- Firebase Auth & Progress Tracking (compat, globals) -->
@@ -4503,18 +4506,27 @@ Emily Rodriguez,Sales,88000,2</code></pre>
         // ========================================
 
         // 1. DARK MODE TOGGLE
-        function toggleDarkMode() {
+        window.toggleDarkMode = function() {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
-            document.getElementById('darkModeText').textContent = isDark ? 'Light Mode' : 'Dark Mode';
-            document.querySelector('#darkModeText').previousElementSibling.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            const darkModeText = document.getElementById('darkModeText');
+            const icon = document.querySelector('button[onclick="toggleDarkMode()"] i');
+            
+            if (darkModeText) {
+                darkModeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            }
+            if (icon) {
+                icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            }
             localStorage.setItem('darkMode', isDark);
         }
 
-        // Load dark mode preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            toggleDarkMode();
-        }
+        // Load dark mode preference on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('darkMode') === 'true') {
+                window.toggleDarkMode();
+            }
+        });
 
         // 2. PROGRESS BAR
         function updateProgressBar() {
@@ -4685,7 +4697,7 @@ Emily Rodriguez,Sales,88000,2</code></pre>
             // Ctrl/Cmd + D: Toggle dark mode
             if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
                 e.preventDefault();
-                toggleDarkMode();
+                window.toggleDarkMode();
             }
             
             // Ctrl/Cmd + E: Toggle code editor
@@ -4728,8 +4740,8 @@ Emily Rodriguez,Sales,88000,2</code></pre>
             });
         }
 
-        // Toggle Code Editor
-        function toggleCodeEditor() {
+        // Toggle Code Editor - Make globally accessible for inline onclick attributes
+        window.toggleCodeEditor = function() {
             const panel = document.getElementById('codeEditorPanel');
             const toggleText = document.getElementById('editorToggleText');
             
@@ -4747,15 +4759,15 @@ Emily Rodriguez,Sales,88000,2</code></pre>
             }
         }
 
-        // Close if clicking outside
-        function closeCodeEditorIfClickOutside(event) {
+        // Close if clicking outside - Make globally accessible for inline onclick attributes
+        window.closeCodeEditorIfClickOutside = function(event) {
             if (event.target.id === 'codeEditorPanel') {
-                toggleCodeEditor();
+                window.toggleCodeEditor();
             }
         }
 
-        // Change programming language
-        function changeLanguage() {
+        // Change programming language - Make globally accessible for inline onchange attributes
+        window.changeLanguage = function() {
             const select = document.getElementById('languageSelect');
             currentLanguage = select.value;
             
@@ -4860,8 +4872,8 @@ console.log("Hello World!");
             return starters[lang] || '// Start coding...';
         }
 
-        // Run code
-        function runCode() {
+        // Run code - Make globally accessible for inline onclick attributes
+        window.runCode = function() {
             if (!monacoEditor) return;
             
             const code = monacoEditor.getValue();
@@ -4902,16 +4914,16 @@ console.log("Hello World!");
             }
         }
 
-        // Clear editor
-        function clearEditor() {
+        // Clear editor - Make globally accessible for inline onclick attributes
+        window.clearEditor = function() {
             if (monacoEditor && confirm('Clear all code?')) {
                 monacoEditor.setValue(getStarterCode(currentLanguage));
-                clearOutput();
+                window.clearOutput();
             }
         }
 
-        // Clear output
-        function clearOutput() {
+        // Clear output - Make globally accessible for inline onclick attributes
+        window.clearOutput = function() {
             document.getElementById('codeOutput').innerHTML = '';
         }
 
