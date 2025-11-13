@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Genius Academy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <!-- Firebase SDK (compat for browser) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <style>
+    :root{ --accent-teal:#00BFA5; --primary-blue:#0A3D62 }
+    body{ font-family:'Inter',sans-serif }
+    .tab-active{ border-bottom: 3px solid var(--accent-teal); color: var(--accent-teal); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Firebase config -->
+  <script src="firebase-config.js"></script>
+  <script src="auth.js"></script>
+  <script src="database.js"></script>
+  
+  <!-- Admin Guard (inline for simplicity) -->
+  <script>
+    document.documentElement.style.visibility = 'hidden';
+    
+    function checkAdminAccess() {
+      if (window.firebase && firebase.apps && firebase.apps.length > 0) {
+        firebase.auth().onAuthStateChanged(async function(user) {
+          if (!user) {
+            window.location.href = 'auth.html?redirect=' + encodeURIComponent(window.location.pathname);
+            return;
+          }
+          
+          // Check if user is admin
+          try {
+            const userDoc = await firebase.firestore().collection('users').doc(user.uid).get();
+            const userData = userDoc.data();
+            
+            if (!userData || userData.role !== 'admin') {
+              alert('Access Denied: Admin privileges required');
+              window.location.href = 'dashboard.html';
+              return;
+            }
+            
+            document.documentElement.style.visibility = '';
+          } catch (error) {
+            console.error('Error checking admin status:', error);
+            window.location.href = 'dashboard.html';
+          }
+        });
+      } else {
+        setTimeout(checkAdminAccess, 100);
+      }
+    }
+    checkAdminAccess();
+  </script>
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b-4 border-red-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center text-xl font-extrabold text-blue-800 tracking-tight">
+          <i class="fas fa-brain text-2xl mr-2 text-[var(--accent-teal)]"></i> Genius Academy
+        </a>
+        <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-full">ADMIN</span>
+      </div>
+      <nav class="flex items-center gap-6 text-sm font-medium">
+        <a href="dashboard.html" class="text-gray-600 hover:text-[var(--accent-teal)]">
+          <i class="fas fa-user mr-1"></i> My Dashboard
+        </a>
+        <button onclick="handleLogout()" class="text-gray-600 hover:text-[var(--accent-teal)]">
+          <i class="fas fa-sign-out-alt mr-1"></i> Logout
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Welcome -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
+      <p class="text-gray-600">Manage users, courses, and platform analytics.</p>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white rounded-xl shadow p-6 border-l-4 border-blue-600">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-600">Total Users</p>
+            <p class="text-3xl font-bold text-gray-900" id="totalUsers">0</p>
+          </div>
+          <i class="fas fa-users text-3xl text-blue-600"></i>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6 border-l-4 border-[var(--accent-teal)]">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-600">Total Enrollments</p>
+            <p class="text-3xl font-bold text-gray-900" id="totalEnrollments">0</p>
+          </div>
+          <i class="fas fa-graduation-cap text-3xl text-[var(--accent-teal)]"></i>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6 border-l-4 border-purple-600">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-600">Avg Completion</p>
+            <p class="text-3xl font-bold text-gray-900"><span id="avgCompletion">0</span>%</p>
+          </div>
+          <i class="fas fa-chart-pie text-3xl text-purple-600"></i>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6 border-l-4 border-green-600">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-600">Active Today</p>
+            <p class="text-3xl font-bold text-gray-900" id="activeToday">0</p>
+          </div>
+          <i class="fas fa-bolt text-3xl text-green-600"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="bg-white rounded-xl shadow mb-6">
+      <div class="flex border-b">
+        <button class="tab-active px-6 py-4 font-semibold transition" onclick="switchTab('users')">
+          <i class="fas fa-users mr-2"></i>Users
+        </button>
+        <button class="px-6 py-4 font-semibold text-gray-600 hover:text-[var(--accent-teal)] transition" onclick="switchTab('enrollments')">
+          <i class="fas fa-book mr-2"></i>Enrollments
+        </button>
+        <button class="px-6 py-4 font-semibold text-gray-600 hover:text-[var(--accent-teal)] transition" onclick="switchTab('analytics')">
+          <i class="fas fa-chart-bar mr-2"></i>Analytics
+        </button>
+        <button class="px-6 py-4 font-semibold text-gray-600 hover:text-[var(--accent-teal)] transition" onclick="switchTab('contact')">
+          <i class="fas fa-envelope mr-2"></i>Contact Forms
+        </button>
+      </div>
+
+      <!-- Users Tab -->
+      <div id="usersTab" class="p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-bold">User Management</h2>
+          <input type="text" id="userSearch" placeholder="Search users..." class="border border-gray-300 rounded-lg px-3 py-2 text-sm" onkeyup="searchUsers()" />
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="text-left px-4 py-3 font-semibold">Name</th>
+                <th class="text-left px-4 py-3 font-semibold">Email</th>
+                <th class="text-left px-4 py-3 font-semibold">Joined</th>
+                <th class="text-left px-4 py-3 font-semibold">Role</th>
+                <th class="text-left px-4 py-3 font-semibold">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <tr><td colspan="5" class="text-center py-8 text-gray-500">
+                <i class="fas fa-spinner fa-spin text-2xl mb-2"></i><br>Loading users...
+              </td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Enrollments Tab -->
+      <div id="enrollmentsTab" class="p-6 hidden">
+        <h2 class="text-xl font-bold mb-4">Course Enrollments</h2>
+        <div id="enrollmentsContainer"></div>
+      </div>
+
+      <!-- Analytics Tab -->
+      <div id="analyticsTab" class="p-6 hidden">
+        <h2 class="text-xl font-bold mb-4">Course Analytics</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="border border-gray-200 rounded-lg p-4">
+            <h3 class="font-semibold mb-3">Completion Rates</h3>
+            <div id="completionRates"></div>
+          </div>
+          <div class="border border-gray-200 rounded-lg p-4">
+            <h3 class="font-semibold mb-3">Popular Lessons</h3>
+            <div id="popularLessons"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Forms Tab -->
+      <div id="contactTab" class="p-6 hidden">
+        <h2 class="text-xl font-bold mb-4">Contact Form Submissions</h2>
+        <p class="text-gray-600 mb-4">Contact form backend not yet implemented. Submissions will appear here once integrated.</p>
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 text-yellow-800 rounded-r">
+          <p class="font-semibold mb-1">Implementation Note:</p>
+          <p class="text-sm">To collect form submissions, integrate with EmailJS, SendGrid, or create a Firestore collection to store messages.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center text-sm py-6 mt-8">
+    &copy; 2025 Genius Academy. All rights reserved.
+  </footer>
+
+  <script>
+    let allUsers = [];
+    let allEnrollments = [];
+
+    // Load admin data
+    firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) return;
+      await loadAdminData();
+    });
+
+    async function loadAdminData() {
+      try {
+        // Load users
+        const usersSnap = await db.collection('users').get();
+        allUsers = [];
+        usersSnap.forEach(doc => {
+          allUsers.push({ id: doc.id, ...doc.data() });
+        });
+
+        // Load enrollments
+        const enrollmentsSnap = await db.collection('enrollments').get();
+        allEnrollments = [];
+        let totalProgress = 0;
+        enrollmentsSnap.forEach(doc => {
+          const data = { id: doc.id, ...doc.data() };
+          allEnrollments.push(data);
+          totalProgress += data.progress || 0;
+        });
+
+        // Update stats
+        document.getElementById('totalUsers').textContent = allUsers.length;
+        document.getElementById('totalEnrollments').textContent = allEnrollments.length;
+        document.getElementById('avgCompletion').textContent = allEnrollments.length > 0 
+          ? Math.round(totalProgress / allEnrollments.length) 
+          : 0;
+        document.getElementById('activeToday').textContent = calculateActiveToday();
+
+        // Render tables
+        renderUsersTable();
+        renderEnrollmentsTab();
+        renderAnalytics();
+      } catch (error) {
+        console.error('Error loading admin data:', error);
+      }
+    }
+
+    function calculateActiveToday() {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return allEnrollments.filter(e => {
+        if (!e.lastAccessedDate) return false;
+        const accessDate = new Date(e.lastAccessedDate.seconds * 1000);
+        return accessDate >= today;
+      }).length;
+    }
+
+    function renderUsersTable() {
+      const tbody = document.getElementById('usersTableBody');
+      if (allUsers.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-gray-500">No users found</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = allUsers.map(user => `
+        <tr class="border-t hover:bg-gray-50">
+          <td class="px-4 py-3">${user.displayName || 'N/A'}</td>
+          <td class="px-4 py-3">${user.email}</td>
+          <td class="px-4 py-3">${user.createdAt ? new Date(user.createdAt.seconds * 1000).toLocaleDateString() : 'N/A'}</td>
+          <td class="px-4 py-3">
+            <span class="px-2 py-1 rounded-full text-xs font-semibold ${user.role === 'admin' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}">
+              ${user.role || 'user'}
+            </span>
+          </td>
+          <td class="px-4 py-3">
+            ${user.role !== 'admin' ? `
+              <button onclick="promoteToAdmin('${user.id}')" class="text-blue-600 hover:text-blue-800 text-xs mr-2">
+                <i class="fas fa-user-shield"></i> Promote
+              </button>
+            ` : ''}
+            <button onclick="viewUserDetails('${user.id}')" class="text-gray-600 hover:text-gray-800 text-xs">
+              <i class="fas fa-eye"></i> View
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderEnrollmentsTab() {
+      const container = document.getElementById('enrollmentsContainer');
+      
+      if (allEnrollments.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 text-center py-8">No enrollments yet</p>';
+        return;
+      }
+
+      const enrollmentsByUser = {};
+      allEnrollments.forEach(enrollment => {
+        if (!enrollmentsByUser[enrollment.userId]) {
+          enrollmentsByUser[enrollment.userId] = [];
+        }
+        enrollmentsByUser[enrollment.userId].push(enrollment);
+      });
+
+      container.innerHTML = `
+        <div class="space-y-4">
+          ${Object.entries(enrollmentsByUser).map(([userId, enrollments]) => {
+            const user = allUsers.find(u => u.id === userId);
+            return `
+              <div class="border border-gray-200 rounded-lg p-4">
+                <h3 class="font-semibold mb-2">${user?.displayName || user?.email || 'Unknown User'}</h3>
+                <div class="space-y-2">
+                  ${enrollments.map(e => `
+                    <div class="flex items-center justify-between text-sm">
+                      <span>${e.courseId === 'prompt-engineering' ? 'The Genius of the Prompt' : e.courseId}</span>
+                      <div class="flex items-center gap-3">
+                        <div class="w-32 bg-gray-200 rounded-full h-2">
+                          <div class="bg-[var(--accent-teal)] h-2 rounded-full" style="width: ${e.progress || 0}%"></div>
+                        </div>
+                        <span class="font-semibold">${e.progress || 0}%</span>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function renderAnalytics() {
+      // Completion rates
+      const completionRates = document.getElementById('completionRates');
+      const ranges = [
+        { label: '0-25%', count: 0 },
+        { label: '26-50%', count: 0 },
+        { label: '51-75%', count: 0 },
+        { label: '76-100%', count: 0 }
+      ];
+
+      allEnrollments.forEach(e => {
+        const progress = e.progress || 0;
+        if (progress <= 25) ranges[0].count++;
+        else if (progress <= 50) ranges[1].count++;
+        else if (progress <= 75) ranges[2].count++;
+        else ranges[3].count++;
+      });
+
+      completionRates.innerHTML = ranges.map(range => `
+        <div class="flex items-center justify-between py-2">
+          <span class="text-sm text-gray-700">${range.label}</span>
+          <div class="flex items-center gap-2">
+            <div class="w-24 bg-gray-200 rounded-full h-2">
+              <div class="bg-blue-600 h-2 rounded-full" style="width: ${allEnrollments.length > 0 ? (range.count / allEnrollments.length * 100) : 0}%"></div>
+            </div>
+            <span class="text-sm font-semibold text-gray-900">${range.count}</span>
+          </div>
+        </div>
+      `).join('');
+
+      // Popular lessons (placeholder)
+      document.getElementById('popularLessons').innerHTML = `
+        <p class="text-sm text-gray-600 mb-3">Most accessed lessons this week:</p>
+        <ol class="list-decimal list-inside space-y-2 text-sm">
+          <li>Lesson 1.1: What is Generative AI</li>
+          <li>Lesson 2.1: Role-Playing Technique</li>
+          <li>Lesson 3.1: Chain-of-Thought</li>
+          <li>Lesson 2.3: Providing High-Quality Data</li>
+          <li>Lesson 4.1: Marketing Copy Automation</li>
+        </ol>
+      `;
+    }
+
+    // Tab switching
+    window.switchTab = function(tabName) {
+      // Hide all tabs
+      ['usersTab', 'enrollmentsTab', 'analyticsTab', 'contactTab'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+
+      // Remove active class from all buttons
+      document.querySelectorAll('.tab-active').forEach(btn => {
+        btn.classList.remove('tab-active', 'text-[var(--accent-teal)]');
+        btn.classList.add('text-gray-600');
+      });
+
+      // Show selected tab
+      document.getElementById(tabName + 'Tab').classList.remove('hidden');
+
+      // Add active class to clicked button
+      event.target.closest('button').classList.add('tab-active', 'text-[var(--accent-teal)]');
+      event.target.closest('button').classList.remove('text-gray-600');
+    }
+
+    // Search users
+    window.searchUsers = function() {
+      const query = document.getElementById('userSearch').value.toLowerCase();
+      const filtered = allUsers.filter(user => 
+        (user.displayName || '').toLowerCase().includes(query) ||
+        (user.email || '').toLowerCase().includes(query)
+      );
+
+      const tbody = document.getElementById('usersTableBody');
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-gray-500">No users found</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(user => `
+        <tr class="border-t hover:bg-gray-50">
+          <td class="px-4 py-3">${user.displayName || 'N/A'}</td>
+          <td class="px-4 py-3">${user.email}</td>
+          <td class="px-4 py-3">${user.createdAt ? new Date(user.createdAt.seconds * 1000).toLocaleDateString() : 'N/A'}</td>
+          <td class="px-4 py-3">
+            <span class="px-2 py-1 rounded-full text-xs font-semibold ${user.role === 'admin' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}">
+              ${user.role || 'user'}
+            </span>
+          </td>
+          <td class="px-4 py-3">
+            ${user.role !== 'admin' ? `
+              <button onclick="promoteToAdmin('${user.id}')" class="text-blue-600 hover:text-blue-800 text-xs mr-2">
+                <i class="fas fa-user-shield"></i> Promote
+              </button>
+            ` : ''}
+            <button onclick="viewUserDetails('${user.id}')" class="text-gray-600 hover:text-gray-800 text-xs">
+              <i class="fas fa-eye"></i> View
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // Promote to admin
+    window.promoteToAdmin = async function(userId) {
+      if (!confirm('Are you sure you want to promote this user to admin? They will have full access to the admin dashboard.')) {
+        return;
+      }
+
+      try {
+        await db.collection('users').doc(userId).update({ role: 'admin' });
+        alert('User promoted to admin successfully!');
+        await loadAdminData();
+      } catch (error) {
+        alert('Error promoting user: ' + error.message);
+      }
+    }
+
+    // View user details
+    window.viewUserDetails = function(userId) {
+      const user = allUsers.find(u => u.id === userId);
+      const userEnrollments = allEnrollments.filter(e => e.userId === userId);
+      
+      alert(`User Details:\n\nName: ${user.displayName || 'N/A'}\nEmail: ${user.email}\nRole: ${user.role || 'user'}\n\nEnrollments: ${userEnrollments.length}\nAvg Progress: ${userEnrollments.length > 0 ? Math.round(userEnrollments.reduce((sum, e) => sum + (e.progress || 0), 0) / userEnrollments.length) : 0}%`);
+    }
+
+    // Logout
+    window.handleLogout = async function() {
+      const result = await logOut();
+      if (result.success) {
+        window.location.href = 'index.html';
+      }
+    }
+  </script>
+</body>
+</html>
