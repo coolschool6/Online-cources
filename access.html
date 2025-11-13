@@ -13,17 +13,57 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics-compat.js"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #F8F9FA; }
-        .sidebar { background-color: #1F2937; color: white; }
+        body { font-family: 'Inter', sans-serif; background-color: #F8F9FA; transition: background-color 0.3s, color 0.3s; }
+        .sidebar { background-color: #1F2937; color: white; transition: background-color 0.3s; }
         .lesson-link { transition: background-color 0.2s, color 0.2s; }
         .lesson-link:hover { background-color: #374151; }
         .lesson-link.active { background-color: #00BFA5; color: #1F2937; font-weight: 700; }
         .text-accent-teal{color:#00BFA5}
         .rotate-90{transform:rotate(90deg)}
         .aspect-video{aspect-ratio:16/9}
+        
+        /* Dark Mode Styles */
+        body.dark-mode { background-color: #111827; color: #E5E7EB; }
+        body.dark-mode .sidebar { background-color: #0F172A; }
+        body.dark-mode .lesson-link:hover { background-color: #1E293B; }
+        body.dark-mode #lessonContent { background-color: #1F2937; color: #E5E7EB; }
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 { color: #F3F4F6; }
+        body.dark-mode p, body.dark-mode li { color: #D1D5DB; }
+        body.dark-mode code { background-color: #374151; color: #FCD34D; }
+        body.dark-mode pre { background-color: #1F2937; border-color: #374151; }
+        
+        /* Progress Bar */
+        #progressBar { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #E5E7EB; z-index: 9999; }
+        #progressBarFill { height: 100%; background: linear-gradient(90deg, #00BFA5 0%, #00D9A5 100%); transition: width 0.3s; box-shadow: 0 0 10px rgba(0, 191, 165, 0.5); }
+        
+        /* Search Box */
+        #searchBox { background: #374151; border: 1px solid #4B5563; color: white; border-radius: 8px; }
+        #searchBox:focus { outline: none; border-color: #00BFA5; box-shadow: 0 0 0 2px rgba(0, 191, 165, 0.2); }
+        
+        /* Timer Badge */
+        #lessonTimer { position: fixed; bottom: 20px; right: 20px; background: rgba(0, 191, 165, 0.95); color: white; padding: 12px 20px; border-radius: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); font-weight: 600; z-index: 1000; }
+        
+        /* Copy Button */
+        .copy-btn { position: absolute; top: 8px; right: 8px; background: #00BFA5; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; opacity: 0; transition: opacity 0.2s; }
+        .copy-btn:hover { background: #009688; }
+        pre:hover .copy-btn { opacity: 1; }
+        .copy-btn.copied { background: #4CAF50; }
+        
+        /* Code blocks */
+        pre { position: relative; }
     </style>
 </head>
 <body>
+    <!-- Progress Bar -->
+    <div id="progressBar">
+        <div id="progressBarFill" style="width: 0%"></div>
+    </div>
+    
+    <!-- Lesson Timer -->
+    <div id="lessonTimer" style="display: none;">
+        <i class="fas fa-clock mr-2"></i><span id="timerDisplay">00:00</span>
+    </div>
+    
     <!-- Firebase config and auth scripts + Guard -->
     <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
@@ -34,11 +74,22 @@
     <script src="guard.js"></script>
     <div class="flex h-screen overflow-hidden">
         <aside class="sidebar w-64 p-6 overflow-y-auto hidden md:block">
-            <a href="index.html" class="flex items-center text-xl font-extrabold text-accent-teal tracking-tight mb-8">
+            <a href="index.html" class="flex items-center text-xl font-extrabold text-accent-teal tracking-tight mb-4">
                 <i class="fas fa-brain text-2xl mr-2"></i> Genius Academy
             </a>
+            
+            <!-- Search Box -->
+            <div class="mb-4">
+                <input type="text" id="searchBox" placeholder="🔍 Search lessons..." class="w-full px-3 py-2 text-sm" onkeyup="searchLessons(this.value)">
+            </div>
+            
+            <!-- Dark Mode Toggle -->
+            <button onclick="toggleDarkMode()" class="w-full mb-4 py-2 px-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm flex items-center justify-center gap-2 transition">
+                <i class="fas fa-moon"></i> <span id="darkModeText">Dark Mode</span>
+            </button>
+            
             <h2 class="text-xl font-bold mb-4 text-gray-100 border-b border-gray-700 pb-2">Course Modules</h2>
-            <nav class="space-y-2 text-sm">
+            <nav class="space-y-2 text-sm" id="lessonNav">
                 <div>
                     <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="toggleLessons(this, 'module1')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 1: AI Foundation</button>
                     <div id="module1" class="pl-4 space-y-1 mt-1 hidden">
@@ -4243,6 +4294,200 @@ Emily Rodriguez,Sales,88000,2</code></pre>
                 console.error('Error handling course completion:', error);
             }
         }
+
+        // ========================================
+        // NEW FEATURES: Dark Mode, Progress Bar, Search, Timer, Copy Code
+        // ========================================
+
+        // 1. DARK MODE TOGGLE
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('darkModeText').textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            document.querySelector('#darkModeText').previousElementSibling.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        // Load dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            toggleDarkMode();
+        }
+
+        // 2. PROGRESS BAR
+        function updateProgressBar() {
+            firebase.auth().onAuthStateChanged(async (user) => {
+                if (!user) return;
+                
+                try {
+                    const enrollmentQuery = await db.collection('enrollments')
+                        .where('userId', '==', user.uid)
+                        .where('courseId', '==', 'prompt-engineering')
+                        .get();
+                    
+                    if (!enrollmentQuery.empty) {
+                        const progress = enrollmentQuery.docs[0].data().progress || 0;
+                        document.getElementById('progressBarFill').style.width = progress + '%';
+                    }
+                } catch (error) {
+                    console.error('Error loading progress:', error);
+                }
+            });
+        }
+
+        // Update progress bar on page load
+        updateProgressBar();
+
+        // 3. SEARCH LESSONS
+        function searchLessons(query) {
+            const lessonLinks = document.querySelectorAll('.lesson-link');
+            const modules = document.querySelectorAll('[id^="module"]');
+            
+            query = query.toLowerCase().trim();
+            
+            if (query === '') {
+                // Show all lessons
+                lessonLinks.forEach(link => link.style.display = 'block');
+                modules.forEach(mod => mod.classList.add('hidden'));
+                return;
+            }
+            
+            let hasResults = false;
+            
+            // Search through lessons
+            lessonLinks.forEach(link => {
+                const text = link.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    link.style.display = 'block';
+                    // Show parent module
+                    const moduleDiv = link.closest('[id^="module"]');
+                    if (moduleDiv) {
+                        moduleDiv.classList.remove('hidden');
+                    }
+                    hasResults = true;
+                } else {
+                    link.style.display = 'none';
+                }
+            });
+            
+            // Hide empty modules
+            modules.forEach(mod => {
+                const visibleLinks = mod.querySelectorAll('.lesson-link[style="display: block"]');
+                if (visibleLinks.length === 0) {
+                    mod.classList.add('hidden');
+                }
+            });
+        }
+
+        // 4. LESSON TIMER
+        let timerInterval = null;
+        let secondsElapsed = 0;
+        let currentLessonForTimer = null;
+
+        function startLessonTimer(lessonKey) {
+            // Stop previous timer
+            stopLessonTimer();
+            
+            currentLessonForTimer = lessonKey;
+            secondsElapsed = parseInt(localStorage.getItem(`timer_${lessonKey}`) || '0');
+            
+            document.getElementById('lessonTimer').style.display = 'block';
+            updateTimerDisplay();
+            
+            timerInterval = setInterval(() => {
+                secondsElapsed++;
+                updateTimerDisplay();
+                
+                // Save every 10 seconds
+                if (secondsElapsed % 10 === 0) {
+                    localStorage.setItem(`timer_${currentLessonForTimer}`, secondsElapsed);
+                }
+            }, 1000);
+        }
+
+        function stopLessonTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                if (currentLessonForTimer) {
+                    localStorage.setItem(`timer_${currentLessonForTimer}`, secondsElapsed);
+                }
+            }
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(secondsElapsed / 60);
+            const seconds = secondsElapsed % 60;
+            document.getElementById('timerDisplay').textContent = 
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        // Start timer when lesson loads
+        const originalLoadLessonForTimer = window.loadLesson;
+        window.loadLesson = function(event, lessonKey) {
+            startLessonTimer(lessonKey);
+            return originalLoadLessonForTimer.call(this, event, lessonKey);
+        };
+
+        // Stop timer when leaving page
+        window.addEventListener('beforeunload', stopLessonTimer);
+
+        // 5. COPY CODE BLOCKS
+        function addCopyButtonsToCodeBlocks() {
+            const codeBlocks = document.querySelectorAll('pre');
+            
+            codeBlocks.forEach((block) => {
+                // Remove existing copy button if any
+                const existingBtn = block.querySelector('.copy-btn');
+                if (existingBtn) existingBtn.remove();
+                
+                // Create copy button
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                copyBtn.onclick = function() {
+                    const code = block.textContent;
+                    navigator.clipboard.writeText(code).then(() => {
+                        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        copyBtn.classList.add('copied');
+                        setTimeout(() => {
+                            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                            copyBtn.classList.remove('copied');
+                        }, 2000);
+                    });
+                };
+                
+                block.style.position = 'relative';
+                block.appendChild(copyBtn);
+            });
+        }
+
+        // Add copy buttons when lesson content loads
+        const originalLoadLessonForCopy = window.loadLesson;
+        window.loadLesson = function(event, lessonKey) {
+            const result = originalLoadLessonForCopy.call(this, event, lessonKey);
+            setTimeout(addCopyButtonsToCodeBlocks, 100);
+            return result;
+        };
+
+        // Initial load
+        setTimeout(addCopyButtonsToCodeBlocks, 500);
+
+        // Keyboard Shortcuts (Bonus!)
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + K: Focus search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                document.getElementById('searchBox').focus();
+            }
+            
+            // Ctrl/Cmd + D: Toggle dark mode
+            if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+                e.preventDefault();
+                toggleDarkMode();
+            }
+        });
+
+        console.log('✨ New features loaded: Dark Mode, Progress Bar, Search, Timer, Copy Code');
+        console.log('💡 Keyboard shortcuts: Ctrl+K (search), Ctrl+D (dark mode)');
     </script>
 </body>
 </html>
