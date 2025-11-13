@@ -1,24 +1,5 @@
 {
-  "version": 2,
-  "buildCommand": "echo 'No build needed - static site'",
+  "buildCommand": "echo 'Static site - no build needed'",
   "outputDirectory": ".",
-  "installCommand": "npm install",
-  "framework": null,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
-    }
-  ]
+  "installCommand": "npm install"
 }
