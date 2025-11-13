@@ -11,8 +11,8 @@
 
 // EmailJS Configuration - REPLACE WITH YOUR ACTUAL IDs
 const EMAILJS_CONFIG = {
-  publicKey: 'YOUR_PUBLIC_KEY', // Get from EmailJS dashboard
-  serviceId: 'YOUR_SERVICE_ID',
+  publicKey: 'Bc96UGs_w_Tn4JOy9', // Your EmailJS Public Key
+  serviceId: 'service_t52m0im', // Your Gmail service
   templates: {
     welcome: 'template_welcome',
     enrollment: 'template_enrollment',
