@@ -68,13 +68,13 @@
     </div>
     
     <!-- Firebase config and auth scripts + Guard -->
-    <script src="firebase-config.js"></script>
-    <script src="auth.js"></script>
-    <script src="database.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/database.js"></script>
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script src="email-service.js"></script>
-    <script src="guard.js"></script>
+    <script src="js/email-service.js"></script>
+    <script src="js/guard.js"></script>
     <div class="flex h-screen overflow-hidden">
         <aside class="sidebar w-64 p-6 overflow-y-auto hidden md:block">
             <a href="index.html" class="flex items-center text-xl font-extrabold text-accent-teal tracking-tight mb-4">
@@ -4441,7 +4441,7 @@ Emily Rodriguez,Sales,88000,2</code></pre>
                         await completLesson(user.uid, courseId, lessonKey);
                         
                         // Update progress percentage
-                        const totalLessons = 25; // Update if you add/remove lessons
+                        const totalLessons = 21; // Updated to reflect 21 lessons across 5 modules
                         const completedCount = currentEnrollment.completedLessons.length + 1;
                         const progressPercent = Math.round((completedCount / totalLessons) * 100);
                         await updateProgress(user.uid, courseId, progressPercent);

@@ -1,0 +1,306 @@
+<p class="text-gray-700 mb-6">Modern LLMs like Google Gemini, GPT-4 Vision, and Claude can process images alongside text, unlocking powerful new capabilities. This lesson teaches you how to combine visual and textual inputs for tasks ranging from image analysis to document extraction, OCR, and visual question answering.</p>
+
+<h3 class="text-2xl font-bold mb-4 border-b pb-2">What is Multimodal Prompting?</h3>
+<p class="text-gray-700 mb-4"><span class="font-semibold">Multimodal</span> means the model can understand multiple types of input simultaneously—text, images, and in some advanced cases, audio or video. This expands AI capabilities far beyond text-only interactions.</p>
+
+<div class="bg-blue-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-blue-900 mb-3">Current Multimodal Capabilities (2025):</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li><span class="font-semibold">Google Gemini:</span> Text + images (photos, diagrams, PDFs, screenshots)</li>
+        <li><span class="font-semibold">GPT-4 Vision (OpenAI):</span> Text + images with high accuracy</li>
+        <li><span class="font-semibold">Claude 3 (Anthropic):</span> Text + images + multi-page PDF analysis</li>
+        <li><span class="font-semibold">Emerging:</span> Video understanding, audio analysis in some platforms</li>
+    </ul>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">What You Can Do with Image Inputs</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">1. Image Description & Analysis</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-2">Use Cases:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li>Generate alt text for web accessibility (WCAG compliance)</li>
+        <li>Describe product photos for e-commerce listings</li>
+        <li>Identify objects, people, scenes, and actions in photos</li>
+        <li>Analyze image composition, quality, and aesthetics</li>
+        <li>Detect emotions, sentiment, or mood conveyed</li>
+    </ul>
+    <p class="text-gray-700 mt-3 italic text-sm"><span class="font-semibold">Prompt example:</span> "Describe this image in detail for someone who can't see it. Focus on: main subject, background elements, colors, mood, composition, and any text visible. Write it as descriptive alt text under 125 characters."</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">2. Text Extraction (OCR)</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-2">Extract text from:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li>Screenshots of documents, emails, code</li>
+        <li>Business cards (name, title, contact info)</li>
+        <li>Receipts and invoices (itemized expenses)</li>
+        <li>Handwritten notes (limited accuracy, best with neat handwriting)</li>
+        <li>Street signs, product labels, packaging</li>
+        <li>Whiteboards, presentation slides</li>
+    </ul>
+    <p class="text-gray-700 mt-3 italic text-sm"><span class="font-semibold">Prompt example:</span> "Extract all text from this receipt. Format as JSON with keys: storeName, date, items (array of {name, price}), subtotal, tax, total, paymentMethod."</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">3. Document Analysis</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li>Summarize multi-page PDFs (reports, contracts, research papers)</li>
+        <li>Extract tables, charts, and graphs from scanned documents</li>
+        <li>Analyze data visualizations and explain trends</li>
+        <li>Compare two versions of a document side-by-side</li>
+        <li>Extract form data from filled-out PDFs</li>
+    </ul>
+    <p class="text-gray-700 mt-3 italic text-sm"><span class="font-semibold">Prompt example:</span> "This PDF contains our Q4 financial report. Extract data from the revenue chart on page 3 and create a summary table with: Quarter, Revenue ($M), Growth (%)."</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">4. Visual Question Answering</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-2">Ask specific questions about images:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li>"How many people are in this photo?"</li>
+        <li>"What brand logo appears on this product?"</li>
+        <li>"What time does the clock in this image show?"</li>
+        <li>"Is this image appropriate for children?"</li>
+        <li>"What's the error message in this screenshot?"</li>
+        <li>"What ingredients are visible in this recipe photo?"</li>
+    </ul>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">5. Code from Screenshots</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 mb-2">Upload a screenshot of a UI/design and request:</p>
+    <p class="text-gray-700 italic text-sm">"Write the HTML and Tailwind CSS code to recreate this layout exactly. Include: responsive design for mobile, proper semantic HTML, accessibility attributes. Match colors, spacing, and typography as closely as possible."</p>
+    <p class="text-gray-700 text-sm mt-3"><span class="font-semibold">Use case:</span> Rapidly prototype designs, recreate layouts, convert mockups to code</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Best Practices for Image Prompts</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Be Specific About What You Want</h4>
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-gray-50">
+                <th class="text-left px-4 py-2 border-b">Vague Prompt ❌</th>
+                <th class="text-left px-4 py-2 border-b">Specific Prompt ✅</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b">"What's in this image?"</td>
+                <td class="px-4 py-3 border-b bg-green-50">"Identify all text visible in this store window display. List: brand names, product types, prices, promotional messages."</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">"Describe this product"</td>
+                <td class="px-4 py-3 border-b bg-green-50">"Describe this product for an e-commerce listing. Include: material, color(s), visible dimensions/size indicators, key features, and 3 suggested use cases."</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b">"Analyze this chart"</td>
+                <td class="px-4 py-3 border-b bg-green-50">"Extract all data points from this line chart. Create a table with columns: Month, Sales ($), and calculate month-over-month growth percentage."</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">"Fix this code"</td>
+                <td class="px-4 py-3 border-b bg-green-50">"This screenshot shows a Python error. Identify: (1) the error type, (2) the line number, (3) the cause, (4) provide corrected code with explanation."</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Combine Multiple Images</h4>
+<p class="text-gray-700 mb-3">Many models support multiple images in one prompt for comparison or sequence analysis:</p>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li><span class="font-semibold">Comparison:</span> "Compare these two product photos. Which presents the product more effectively? Explain: lighting, composition, context, background choice."</li>
+        <li><span class="font-semibold">Before/After:</span> "These are before and after screenshots of a UI redesign. List all visual differences. Rate the improvement on: clarity, visual hierarchy, accessibility."</li>
+        <li><span class="font-semibold">Sequence:</span> "Analyze this sequence of 4 images showing a cooking process. Write step-by-step instructions matching each image."</li>
+        <li><span class="font-semibold">Multi-angle:</span> "These 3 photos show the same product from different angles. Write a comprehensive product description incorporating details from all views."</li>
+    </ul>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Real-World Applications</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Application 1: Product Catalog Automation</h4>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">Scenario: Bulk product listing creation</p>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">Challenge:</span> Upload 50 product photos, need listing for each</p>
+        <p class="text-gray-700 text-sm mb-3"><span class="font-semibold">Prompt (per image):</span></p>
+        <p class="text-gray-700 italic text-sm mb-3">
+            "Analyze this product image and generate JSON for an e-commerce listing:<br>
+            {<br>
+              'title': (descriptive 5-8 words),<br>
+              'description': (2-3 sentences emphasizing benefits),<br>
+              'suggestedCategory': ('Electronics' | 'Clothing' | 'Home' | 'Sports' | 'Beauty'),<br>
+              'colors': (array of main colors visible),<br>
+              'keywords': (array of 5-7 SEO keywords),<br>
+              'suggestedPrice': (estimated price range based on perceived quality)<br>
+            }<br><br>
+            Be specific and accurate. Output ONLY JSON."
+        </p>
+        <p class="text-gray-700 text-sm"><span class="font-semibold">Result:</span> Automated product data generation from photos alone</p>
+    </div>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Application 2: Invoice/Receipt Processing</h4>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">Scenario: Expense management automation</p>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">Upload:</span> Photo of receipt (any quality, angle)</p>
+        <p class="text-gray-700 text-sm mb-3"><span class="font-semibold">Prompt:</span></p>
+        <p class="text-gray-700 italic text-sm mb-3">
+            "Extract expense data from this receipt as JSON:<br>
+            {<br>
+              'merchant': (business name),<br>
+              'date': (YYYY-MM-DD format),<br>
+              'total': (number, 2 decimals),<br>
+              'category': ('Food' | 'Travel' | 'Office' | 'Other'),<br>
+              'paymentMethod': ('Cash' | 'Credit' | 'Debit'),<br>
+              'taxAmount': (number or null if not shown)<br>
+            }<br><br>
+            If any field is unclear or illegible, use null. Output ONLY JSON."
+        </p>
+        <p class="text-gray-700 text-sm"><span class="font-semibold">Result:</span> Ready-to-import expense records with zero manual data entry</p>
+    </div>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Application 3: UI/UX Feedback</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 mb-2"><span class="font-semibold">Upload:</span> Website screenshot or app interface</p>
+    <p class="text-gray-700 text-sm italic">
+        "Analyze this landing page design from a conversion optimization perspective:<br><br>
+        1. <span class="font-semibold">Visual hierarchy:</span> Is the primary CTA immediately obvious? What draws attention first?<br>
+        2. <span class="font-semibold">Color contrast:</span> Check text readability, button visibility<br>
+        3. <span class="font-semibold">Mobile concerns:</span> What elements might break on small screens?<br>
+        4. <span class="font-semibold">Trust signals:</span> Do you see testimonials, logos, guarantees? Are they prominent?<br>
+        5. <span class="font-semibold">Cognitive load:</span> Is the page overwhelming or clean?<br>
+        6. <span class="font-semibold">Specific improvements:</span> List 3 actionable changes with rationale<br><br>
+        Be specific, reference exact elements by location (e.g., 'top-right corner')."
+    </p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Application 4: Accessibility Alt Text Generation</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm">
+        "Generate alt text for this image following WCAG 2.1 guidelines:<br>
+        • Be concise (under 125 characters preferred)<br>
+        • Describe essential information only (what's functionally important)<br>
+        • Don't start with 'Image of...' or 'Picture of...'<br>
+        • If text is visible and important, include it<br>
+        • Consider context: this will appear on a blog about sustainable living<br>
+        • If decorative, state '[Decorative image]'<br><br>
+        Provide: (1) short alt text, (2) optional long description if needed for complex images."
+    </p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Limitations & Challenges</h3>
+<div class="bg-red-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-red-900 mb-3">Be Aware of These Limitations:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li><span class="font-semibold">Small/blurry text:</span> Struggles with tiny fonts, low-resolution images, or poor image quality</li>
+        <li><span class="font-semibold">Handwriting:</span> Accuracy varies significantly; neat, large handwriting works better</li>
+        <li><span class="font-semibold">Complex layouts:</span> May misinterpret multi-column documents, overlapping text, or unusual formatting</li>
+        <li><span class="font-semibold">Cultural context:</span> May miss nuanced cultural references, idioms, or region-specific symbols</li>
+        <li><span class="font-semibold">Image manipulation:</span> Cannot reliably detect fake, edited, or deepfake images</li>
+        <li><span class="font-semibold">Medical/legal:</span> NOT certified for diagnostic decisions, legal judgments, or safety-critical applications</li>
+        <li><span class="font-semibold">Faces/people:</span> Some platforms restrict identification of specific individuals (privacy)</li>
+    </ul>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">How to Upload Images</h3>
+<div class="bg-blue-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-blue-900 mb-3">Platform-Specific Methods:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li><span class="font-semibold">Google Gemini (web):</span> Click attachment/paperclip icon, select image file</li>
+        <li><span class="font-semibold">ChatGPT Plus:</span> Click image icon (requires GPT-4 with Vision model selected)</li>
+        <li><span class="font-semibold">Claude (Anthropic):</span> Drag-and-drop image or click attachment button</li>
+        <li><span class="font-semibold">APIs:</span> Base64 encode image data or provide publicly accessible image URL</li>
+    </ul>
+    <p class="text-gray-700 mt-3 text-sm italic"><span class="font-semibold">Supported formats (typically):</span> JPG, PNG, WebP, GIF (static), PDF (some platforms), HEIC (iPhone photos, often)</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Advanced: Chaining Image Analysis</h3>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="text-gray-700 mb-3"><span class="font-semibold">Multi-step workflow example:</span></p>
+    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+        <li><span class="font-semibold">Step 1:</span> Upload document image → "Extract all text from this document"</li>
+        <li><span class="font-semibold">Step 2:</span> (Same conversation) → "Now summarize the key points in bullet format"</li>
+        <li><span class="font-semibold">Step 3:</span> → "Convert that summary into a formal email to my team"</li>
+        <li><span class="font-semibold">Step 4:</span> → "Translate the email to Spanish"</li>
+    </ol>
+    <p class="text-gray-700 mt-3 text-sm italic">💡 The model retains context from the image throughout the entire conversation, allowing progressive refinement</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Prompt Templates for Common Tasks</h3>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-3">Template Library:</p>
+    <div class="space-y-3">
+        <div class="bg-white p-3 rounded border border-gray-200">
+            <p class="font-semibold text-sm mb-1">Product Description:</p>
+            <p class="text-gray-700 text-xs italic">"Describe this product for an online store: material, color, size/dimensions if visible, key features, suggested uses. 2-3 sentences."</p>
+        </div>
+        <div class="bg-white p-3 rounded border border-gray-200">
+            <p class="font-semibold text-sm mb-1">Data Extraction:</p>
+            <p class="text-gray-700 text-xs italic">"Extract [specific data] from this image as JSON with keys: [list keys]. If unclear, use null."</p>
+        </div>
+        <div class="bg-white p-3 rounded border border-gray-200">
+            <p class="font-semibold text-sm mb-1">Code from Design:</p>
+            <p class="text-gray-700 text-xs italic">"Recreate this UI in [language/framework]. Match layout, colors, spacing. Include responsive design."</p>
+        </div>
+        <div class="bg-white p-3 rounded border border-gray-200">
+            <p class="font-semibold text-sm mb-1">Error Debugging:</p>
+            <p class="text-gray-700 text-xs italic">"This screenshot shows an error. Identify: error type, cause, solution. Provide fixed code if applicable."</p>
+        </div>
+    </div>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Mini Exercise: Multimodal Practice</h3>
+<div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r mb-6">
+    <p class="font-semibold text-green-900 mb-3">Exercise Task:</p>
+    <p class="text-gray-700 mb-4">Choose one scenario and write a complete multimodal prompt:</p>
+    
+    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+        <li><span class="font-semibold">Scenario A:</span> You have a photo of a restaurant menu board. You want to create a digital menu with categories and prices in JSON format for your website.</li>
+        <li><span class="font-semibold">Scenario B:</span> You have a screenshot of a competitor's website homepage. You want detailed competitive analysis: value proposition, design choices, CTA effectiveness, trust signals.</li>
+        <li><span class="font-semibold">Scenario C:</span> You have a technical diagram from a software architecture document. You need it explained in simple terms suitable for non-technical stakeholders.</li>
+    </ol>
+
+    <p class="font-semibold text-green-900 mt-4 mb-2">Your prompt should include:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li>Clear objective (what you want extracted/analyzed)</li>
+        <li>Desired output format (JSON, markdown, paragraphs, bullets)</li>
+        <li>Specific details to extract/focus on</li>
+        <li>Any constraints (length, data types, structure)</li>
+        <li>Handling of unclear/missing information</li>
+    </ul>
+
+    <details class="mt-4">
+        <summary class="cursor-pointer font-semibold text-green-900 hover:text-green-700">Click to see sample solution (Scenario A)</summary>
+        <div class="mt-3 p-4 bg-white rounded border border-green-200">
+            <p class="text-gray-700 text-sm">
+                <span class="font-semibold">Prompt for Menu Board Photo:</span><br><br>
+                "Extract menu items from this restaurant menu board photo. Output as JSON array with this structure:<br><br>
+                [<br>
+                  {<br>
+                    'category': (string, e.g., 'Appetizers', 'Entrees', 'Desserts'),<br>
+                    'name': (string, item name),<br>
+                    'description': (string or null, if visible),<br>
+                    'price': (number, no $ sign),<br>
+                    'dietary': (array, from: 'vegetarian', 'vegan', 'gluten-free', 'spicy')<br>
+                  }<br>
+                ]<br><br>
+                <span class="font-semibold">Instructions:</span><br>
+                • Extract ALL visible menu items<br>
+                • Group by category if menu has sections<br>
+                • If price is unclear, use null<br>
+                • For dietary tags, infer from item name/description if marked<br>
+                • Output ONLY valid JSON, no explanatory text<br><br>
+                If any text is illegible, note it in a separate 'illegibleItems' array at the end."
+            </p>
+        </div>
+    </details>
+</div>
+
+<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 text-yellow-800 rounded-r">
+    <p class="font-semibold mb-2">Key Takeaway:</p>
+    <p class="italic">Multimodal prompting bridges the gap between visual and textual information, unlocking workflows impossible with text alone—from automated data extraction to visual quality analysis and UI recreation. Always be explicit about what you want the model to "see" in the image, desired output format, and how to handle ambiguity. The more specific your instructions, the more reliable the extraction or analysis.</p>
+</div>

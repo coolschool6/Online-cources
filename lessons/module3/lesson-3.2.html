@@ -1,0 +1,252 @@
+<p class="text-gray-700 mb-6">Even the best prompts produce imperfect outputs on the first try. This lesson teaches you how to build self-correction and verification mechanisms directly into your prompts—making the AI critique, verify, and improve its own work before presenting the final result. It's like having a built-in editor and fact-checker.</p>
+
+<h3 class="text-2xl font-bold mb-4 border-b pb-2">The Self-Correction Concept</h3>
+<p class="text-gray-700 mb-4">Instead of blindly accepting the first draft, you design prompts that make the model:</p>
+<ul class="list-disc pl-5 space-y-2 text-gray-700 mb-6">
+    <li><span class="font-semibold">Generate:</span> Produce an initial response</li>
+    <li><span class="font-semibold">Critique:</span> Evaluate that response for errors, weaknesses, or gaps</li>
+    <li><span class="font-semibold">Revise:</span> Improve based on the self-critique</li>
+    <li><span class="font-semibold">Verify:</span> (Optional) Confirm the revision addresses all issues</li>
+</ul>
+
+<div class="bg-blue-50 p-4 rounded-lg mb-6">
+    <p class="font-semibold text-blue-900 mb-2">Why It Works:</p>
+    <p class="text-gray-700">When LLMs evaluate their own output, they activate different reasoning patterns than during generation. The critique phase catches errors, logical gaps, and quality issues the model wouldn't notice while producing content. It's the difference between writing and editing—two distinct cognitive modes.</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Basic Self-Correction Pattern</h3>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-3">Three-Step Formula:</p>
+    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+        <li><span class="font-semibold">Step 1 - Generate:</span> "Create [output with specifications]"</li>
+        <li><span class="font-semibold">Step 2 - Critique:</span> "Now review what you wrote. Identify any errors, weaknesses, missing information, or areas needing improvement."</li>
+        <li><span class="font-semibold">Step 3 - Revise:</span> "Based on your critique, provide an improved version that addresses all issues you identified."</li>
+    </ol>
+</div>
+
+<h4 class="text-xl font-semibold mt-6 mb-3 text-blue-800">Comparison: With vs. Without Self-Correction</h4>
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-gray-50">
+                <th class="text-left px-4 py-2 border-b">Without Self-Correction</th>
+                <th class="text-left px-4 py-2 border-b">With Self-Correction</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b align-top">
+                    <p class="italic text-sm mb-2">"Write a 300-word blog post about remote work productivity tips."</p>
+                    <p class="text-xs text-orange-600">→ Result: Generic list of tips everyone knows, no depth or personality, may contain clichés</p>
+                </td>
+                <td class="px-4 py-3 border-b align-top bg-green-50">
+                    <p class="italic text-sm mb-2">"Write a 300-word blog post about remote work productivity tips. Then critique it: Is it too generic? Are the examples specific enough? Is the tone engaging? Are any tips clichéd? Finally, rewrite it addressing all those issues."</p>
+                    <p class="text-xs text-green-700">→ Result: Refined content with specific examples, unique angles, engaging tone, actionable advice</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Verification Techniques</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Technique 1: Fact-Checking Prompt</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm mb-3">"Generate a response to [question]. Then, review each factual claim you made. For any claim you're not 100% certain about, flag it with [VERIFY]. List all flagged claims at the end for human review."</p>
+    <p class="text-gray-700 mt-3 text-sm"><span class="font-semibold">Benefit:</span> Model becomes more cautious, explicitly identifies uncertain claims rather than presenting everything as fact</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Technique 2: Logic Verification (Working Backwards)</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm mb-3">"Solve this problem: [problem]. After solving, verify your answer by working backwards: If your answer is correct, does it satisfy all the original conditions? Show this verification step explicitly."</p>
+    <p class="text-gray-700 mt-3 text-sm"><span class="font-semibold">Use case:</span> Math problems, logic puzzles, calculations, budget planning</p>
+    <p class="text-gray-700 mt-2 text-sm italic">Example: "If the answer is 15, does 15 × 3 + 5 = 50? Yes, so answer is verified."</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Technique 3: Alternative Approach Verification</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm mb-3">"Solve this problem using Method A. Then solve it again using Method B. If the answers differ, identify which approach is correct and explain why the other failed."</p>
+    <p class="text-gray-700 mt-3 text-sm"><span class="font-semibold">Benefit:</span> Cross-validation catches errors—if two independent methods agree, confidence increases dramatically</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">The "Red Team" Approach</h3>
+<p class="text-gray-700 mb-4">Ask the model to actively attack its own argument like a critical opponent:</p>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-3">Three-Step Red Team Formula:</p>
+    <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+        <li><span class="font-semibold">Generate:</span> Produce initial response or argument</li>
+        <li><span class="font-semibold">Attack:</span> "Now act as a critical reviewer who disagrees. What are the 3 weakest points in this argument? What objections would a skeptic raise?"</li>
+        <li><span class="font-semibold">Strengthen:</span> "Address those weaknesses in a revised version that preemptively handles the objections."</li>
+    </ol>
+</div>
+
+<h4 class="text-xl font-semibold mt-6 mb-3 text-blue-800">Example: Product Pitch Red Teaming</h4>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">Scenario: Startup Pitch</p>
+    <div class="bg-white p-4 rounded border border-green-200 mb-3">
+        <p class="font-semibold mb-2">Step 1: Generate</p>
+        <p class="text-gray-700 text-sm italic">"Write a 150-word investor pitch for our new AI-powered calendar app that automatically schedules your day based on priorities and energy levels."</p>
+    </div>
+    <div class="bg-white p-4 rounded border border-green-200 mb-3">
+        <p class="font-semibold mb-2">Step 2: Red Team</p>
+        <p class="text-gray-700 text-sm italic">"Now play the role of a skeptical venture capitalist. What are the 3 biggest concerns or objections you'd have about this product pitch? What questions would you ask?"</p>
+    </div>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="font-semibold mb-2">Step 3: Strengthen</p>
+        <p class="text-gray-700 text-sm italic">"Rewrite the pitch addressing those concerns preemptively. Include specific data, competitive advantages, or traction that would overcome investor skepticism."</p>
+    </div>
+    <p class="text-gray-700 text-sm mt-3 italic">Result: A pitch that anticipates and answers objections before they're raised—much more persuasive</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Quality Checklist Method</h3>
+<p class="text-gray-700 mb-4">Provide explicit criteria for the model to evaluate itself against:</p>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="text-gray-700 mb-3"><span class="font-semibold">Prompt Structure:</span></p>
+    <p class="text-gray-700 italic text-sm mb-3">"Write a professional email to a client about a project delay. After writing, evaluate it against these specific criteria:</p>
+    <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm ml-4 mb-3">
+        <li>Does it take responsibility without making excuses? (Yes/No)</li>
+        <li>Is the new timeline clearly stated with specific dates? (Yes/No)</li>
+        <li>Does it offer a concrete solution or compensation? (Yes/No)</li>
+        <li>Is the tone apologetic but professional (not groveling)? (Yes/No)</li>
+        <li>Is it concise (under 200 words)? (Yes/No)</li>
+    </ul>
+    <p class="text-gray-700 text-sm">Rate each criterion explicitly. If any are 'No', rewrite the email to fix those specific issues."</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Real-World Applications</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Application 1: Code Review & Debugging</h4>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">Scenario: Generate then self-review code</p>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">Prompt:</span></p>
+        <pre class="bg-gray-50 p-3 rounded text-xs overflow-x-auto mb-2"><code>"Write a Python function to validate email addresses.
+
+After writing, test it mentally against these edge cases:
+1. Invalid formats (missing @, multiple @)
+2. Empty strings and None values
+3. International characters in domain
+4. Very long email addresses (>254 chars)
+5. Emails with subdomains
+
+For each edge case, state whether your code handles it correctly.
+List any bugs you find.
+Provide a corrected version addressing all bugs."</code></pre>
+    </div>
+    <p class="text-gray-700 text-sm mt-3">Result: More robust code with fewer bugs on first try</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Application 2: Legal/Compliance Review</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm">"Draft a privacy policy for a mobile health app that collects heart rate and sleep data. Then review it against HIPAA requirements: Does it explain data collection? User rights? Data security measures? Third-party sharing? Retention periods? List any compliance gaps. Provide a revised version addressing those gaps with specific HIPAA-compliant language."</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Application 3: Marketing Copy Refinement</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm">"Write a Facebook ad headline for [product]. Then critique it against these standards: Is it specific (not generic)? Does it promise a clear benefit? Is it attention-grabbing without being clickbait? Does it differentiate from competitors? Rewrite 3 improved versions based on your critique."</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Multi-Pass Refinement</h3>
+<p class="text-gray-700 mb-4">For high-stakes content, use multiple correction passes focusing on different dimensions:</p>
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-gray-50">
+                <th class="text-left px-4 py-2 border-b">Pass</th>
+                <th class="text-left px-4 py-2 border-b">Focus Area</th>
+                <th class="text-left px-4 py-2 border-b">Evaluation Prompt</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b font-semibold">Pass 1</td>
+                <td class="px-4 py-3 border-b">Content accuracy</td>
+                <td class="px-4 py-3 border-b">"Check all facts, statistics, and claims for accuracy"</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b font-semibold">Pass 2</td>
+                <td class="px-4 py-3 border-b">Logical flow</td>
+                <td class="px-4 py-3 border-b">"Does each paragraph follow logically from the previous?"</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b font-semibold">Pass 3</td>
+                <td class="px-4 py-3 border-b">Tone & style</td>
+                <td class="px-4 py-3 border-b">"Is tone consistent and appropriate for audience?"</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b font-semibold">Pass 4</td>
+                <td class="px-4 py-3 border-b">Conciseness</td>
+                <td class="px-4 py-3 border-b">"Remove redundancy, fluff, and unnecessary words"</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b font-semibold">Pass 5</td>
+                <td class="px-4 py-3 border-b">Final polish</td>
+                <td class="px-4 py-3 border-b">"Grammar, spelling, formatting consistency check"</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">When to Use Self-Correction</h3>
+<div class="bg-blue-50 p-4 rounded-lg mb-6">
+    <p class="font-semibold text-blue-900 mb-2">✅ Use Self-Correction When:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li>Accuracy is critical (legal, medical, financial content)</li>
+        <li>Stakes are high (client-facing materials, public statements, press releases)</li>
+        <li>You've gotten poor first drafts before on similar tasks</li>
+        <li>The task involves complex reasoning or multi-step logic</li>
+        <li>Content will be published/sent without human review</li>
+        <li>You need production-quality output, not just a draft</li>
+    </ul>
+    <p class="font-semibold text-blue-900 mb-2 mt-4">❌ Skip Self-Correction When:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li>Task is simple and low-stakes (casual notes, brainstorming)</li>
+        <li>You need speed over perfection (first drafts, internal docs)</li>
+        <li>Creative flow is more important than precision (fiction writing)</li>
+        <li>You'll review and edit manually anyway</li>
+        <li>Output is just for personal reference</li>
+    </ul>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Mini Exercise: Self-Correction Practice</h3>
+<div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r mb-6">
+    <p class="font-semibold text-green-900 mb-3">Exercise Task:</p>
+    <p class="text-gray-700 mb-4">Write a complete 3-step self-correction prompt for this scenario:</p>
+    <p class="text-gray-700 mb-3 italic bg-white p-3 rounded border border-green-200">"Create a social media post announcing a 15% price increase for your SaaS product, effective next month. It needs to maintain customer trust and minimize churn."</p>
+    
+    <p class="font-semibold text-green-900 mb-2">Your prompt must include:</p>
+    <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+        <li>Initial generation instruction with specifications</li>
+        <li>Critique criteria (what could go wrong with this sensitive message?)</li>
+        <li>Revision instruction based on critique</li>
+    </ol>
+
+    <details class="mt-4">
+        <summary class="cursor-pointer font-semibold text-green-900 hover:text-green-700">Click to see sample solution</summary>
+        <div class="mt-3 p-4 bg-white rounded border border-green-200">
+            <p class="text-gray-700 text-sm">
+                <span class="font-semibold">Step 1 - Generate:</span><br>
+                "Write a LinkedIn post announcing a 15% price increase for our project management SaaS, effective in 30 days. Target: existing customers who use our tool daily. Keep it under 150 words. Tone: transparent, empathetic, not defensive."<br><br>
+                
+                <span class="font-semibold">Step 2 - Critique:</span><br>
+                "Now critique your post against these specific criteria:<br>
+                • Does it clearly explain WHY prices are increasing (value justification)?<br>
+                • Does it emphasize improvements/features customers are getting?<br>
+                • Is the tone empathetic and customer-focused (not company-focused)?<br>
+                • Does it provide clear next steps or FAQs link?<br>
+                • Does it acknowledge customer loyalty/relationship?<br>
+                • Does it sound defensive or dismissive anywhere?<br>
+                • Would YOU stay subscribed if you read this?<br><br>
+                List specific weaknesses you find."<br><br>
+                
+                <span class="font-semibold">Step 3 - Revise:</span><br>
+                "Based on your critique, write an improved version that addresses every weakness identified. Focus especially on value justification and maintaining customer trust. If you identified tone issues, rewrite those sentences completely."
+            </p>
+        </div>
+    </details>
+</div>
+
+<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 text-yellow-800 rounded-r">
+    <p class="font-semibold mb-2">Key Takeaway:</p>
+    <p class="italic">Self-correction transforms good outputs into great ones by harnessing the model's ability to evaluate and improve its own work. By building critique and revision into your prompts, you catch errors, improve quality, and produce more polished results—often eliminating the need for human editing entirely. It's the difference between a first draft and a final draft, all in one prompt.</p>
+</div>

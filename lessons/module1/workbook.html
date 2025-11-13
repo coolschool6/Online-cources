@@ -1,0 +1,160 @@
+<h2 class="text-3xl font-bold mb-4">Module 1 Workbook: Foundations & First Prompts</h2>
+<p class="text-gray-700 mb-6">This workbook contains hands-on labs, real-world scenarios, prompt templates, and mini projects for Module 1. Work through them sequentially or jump to what’s most relevant. Each lab includes sample prompts, variations, and optional stretch goals.</p>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 1: Company Bio Generator</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700 mb-2"><span class="font-semibold">Scenario:</span> You need a one-paragraph bio for a startup’s About page.</p>
+  <p class="text-gray-700 mb-3"><span class="font-semibold">Prompt:</span></p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Write a one-paragraph company bio for [Company], a [industry] startup based in [City].
+Audience: prospective customers.
+Tone: friendly and trustworthy.
+Constraints:
+- 120–150 words
+- Include founding year and 1–2 standout achievements
+- Avoid jargon and buzzwords
+Facts:
+- Founded in 2022 by engineers from [School]
+- Serves 1,200+ SMBs in the US
+- Recently won the [Award Name] award</code></pre>
+  <p class="text-gray-700 font-semibold">Try variations:</p>
+  <ul class="list-disc pl-5 text-gray-700 text-sm">
+    <li>Change tone: professional, playful, bold</li>
+    <li>Add a constraint: “readability at Grade 7”</li>
+    <li>Ask for 3 versions and choose the best</li>
+  </ul>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 2: Persona Interview</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700 mb-2">Interview an AI pretending to be your ideal customer to learn their pains.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>You are a 35-year-old operations manager at a 50-person e-commerce brand.
+Goal: understand your biggest daily frustrations and what would help.
+I will ask questions; answer candidly with concrete examples from your day.
+Stay in character and mention numbers when relevant.</code></pre>
+  <p class="text-gray-700 text-sm">Ask follow-ups like: “Tell me about the last time that happened—what was the impact?”</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 3: Compare-and-Choose</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700 mb-2">Provide 5 tagline options and have the model select the best with reasoning.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Here are 5 taglines for our project management app for remote teams:
+1) Work together, anywhere
+2) Less chaos. More clarity.
+3) Projects done, promises kept
+4) Plan boldly. Deliver quickly.
+5) Your team's command center
+Evaluate each on clarity, memorability, and differentiation (1–10).
+Choose a winner and explain in 3 bullets.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 4: Constraint Practice</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700 mb-2">Practice strict constraints to see how output quality changes.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Write a product description for eco-friendly laundry detergent.
+Constraints:
+- 90–110 words
+- 2 short paragraphs
+- Grade 6 reading level
+- Include 3 benefits (bulleted)
+- Avoid these words: eco, green, sustainable</code></pre>
+  <p class="text-gray-700 text-sm">Now loosen constraints and compare results. Which is better and why?</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 5: Role-Play a Specialist</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700 mb-2">Use a role to change depth and language.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>You are a senior reliability engineer.
+Explain the concept of "retry with exponential backoff" to a junior developer.
+Include: definition, when to use it, pseudocode, pitfalls, and a 10-line JS code example.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 6: From Vague to Precise</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700 mb-2">Start with a vague prompt and iteratively refine.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Vague: "Write about remote work challenges."
+Refined v1: Audience: startup CTOs; Length: 400 words; Include 3 data points.
+Refined v2: Structure with H2s; include 2 quotes; end with a checklist.
+Refined v3: Add counterargument section and action-oriented CTA.</code></pre>
+  <p class="text-gray-700 text-sm">Observe how specificity changes relevance and depth.</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 7: Structured Output</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700 mb-2">Enforce a JSON schema.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Summarize this customer email into JSON:
+Schema: {
+  "intent": string ("complaint"|"question"|"feature_request"),
+  "summary": string,
+  "urgency": number (1-5),
+  "nextSteps": string[]
+}
+Email: [paste]</code></pre>
+  <p class="text-gray-700 text-sm">Add: “Return only JSON. No prose.” Test strictness.</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 8: Evidence & Sources</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700 mb-2">Ask the model to separate facts from opinions and cite sources when possible.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Topic: "Will AI replace software engineers?"
+Write 5 bullet points labeled [Fact] or [Opinion].
+If Fact, attach a credible source link.
+Add a one-sentence takeaway for a CTO.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 9: Multi-Format Output</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700 mb-2">Generate both markdown and HTML versions.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Write a "Quick Start" for connecting to our API.
+Output two blocks:
+1) Markdown version (with fenced code)
+2) HTML version (semantic tags only)
+Topic details: [auth, base URL, one sample call]</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 10: Prompt Anti-Patterns</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700 mb-2">See what goes wrong with weak prompts.</p>
+  <ul class="list-disc pl-5 text-gray-700 text-sm">
+    <li>No audience, no constraints</li>
+    <li>Multiple goals in one sentence</li>
+    <li>Ambiguous verbs ("improve", "make better")</li>
+  </ul>
+  <p class="text-gray-700 text-sm">Rewrite them into strong, testable prompts.</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Mini Project A: Team Handbook Section</h3>
+<div class="bg-green-50 p-5 rounded mb-6">
+  <p class="text-gray-700 mb-2">Create a 2-page handbook section on "Async Communication for Remote Teams".</p>
+  <ul class="list-disc pl-5 text-gray-700 text-sm mb-3">
+    <li>Audience: engineers and PMs</li>
+    <li>Sections: Principles, Tools, Examples, Do/Don’t</li>
+    <li>Include checklists and 3 templates</li>
+  </ul>
+  <details>
+    <summary class="cursor-pointer font-semibold text-green-900">Sample Outline</summary>
+    <div class="mt-2 bg-white p-3 rounded border border-green-200 text-sm">
+      <p><span class="font-semibold">Principles:</span> default to written; clear owners; time-bound asks...</p>
+      <p><span class="font-semibold">Templates:</span> status update, decision log, RFC comment...</p>
+    </div>
+  </details>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Mini Project B: Meeting Notes Summarizer</h3>
+<div class="bg-green-50 p-5 rounded mb-8">
+  <p class="text-gray-700 mb-2">Convert raw meeting transcript into structured notes.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Task: Summarize the transcript below.
+Output JSON: {
+  "title": string,
+  "attendees": string[],
+  "decisions": string[],
+  "actionItems": [{"owner": string, "due": string, "task": string}],
+  "openQuestions": string[]
+}
+Transcript: [paste]</code></pre>
+  <p class="text-gray-700 text-sm">Add tests: “reject if fewer than 2 decisions found; otherwise return schema.”</p>
+</div>
+
+<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 text-yellow-800 rounded-r">
+  <p class="font-semibold mb-1">Tip:</p>
+  <p class="italic">Save your best prompts and outputs. Start a personal library—great prompts compound.</p>
+</div>

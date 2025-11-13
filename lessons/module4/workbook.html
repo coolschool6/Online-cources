@@ -1,0 +1,110 @@
+<h2 class="text-3xl font-bold mb-4">Module 4 Workbook: Applications & Custom Assistants</h2>
+<p class="text-gray-700 mb-6">Ship real assets: marketing campaigns, technical documentation packs, ideation systems, and assistant specifications. Use the templates to stay consistent and measurable.</p>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 1: Brand Voice Pack</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Define brand voice and reuse it across assets.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Output JSON:
+{
+  "voice": {"tone":"warm, expert, witty", "vocabulary": ["..."], "do": ["..."], "dont": ["..."]},
+  "audience": {"primary":"...","secondary":"..."},
+  "pillars": ["trust","value","proof"],
+  "style_examples": ["1 tweet","1 email","1 headline"]
+}
+Task: Fill and then generate 1 tweet, 1 email, 1 landing hero using this voice.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 2: Ad Copy Matrix (A/B)</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Create variants by angle x format x audience.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Angles: pain, gain, proof
+Formats: headline, body, CTA
+Audiences: SMB founders, PMs, Developers
+Task: Produce a table with 3x3x3 variants and a UTM-tagged URL per ad.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 3: Landing Page Outline</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Build a structured brief for a landing page.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Sections: Hero, Benefits (3), Social Proof (2), Feature Grid, Objections (3), FAQ (5), CTA.
+Constraints: Grade 7 reading level. 1 visual idea per section.
+Output: JSON + HTML snippet for the Hero section only.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 4: Docs Transformer Pipeline</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Go from code comments to usable docs.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Input: Paste a commented code sample (~60–120 lines).
+Outputs:
+- Docstring improvements
+- README section
+- Quickstart
+- Changelog entry
+- Breaking-change note (if any)</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 5: API QA Assistant (RAG-lite)</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Answer questions from provided API docs snippets.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Context: Paste 5–10 API doc chunks.
+Rules: Answer only with citations [#], include example requests/responses, and warn when ambiguous.
+Output: Answer + 1 example + [#] citations.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 6: Ideation Systems (SCAMPER + Hats)</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Run structured idea generation.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Task: 12 ideas for a note-taking app using SCAMPER.
+Then apply Six Thinking Hats to critique top 3 ideas.
+Return JSON with ideas[], scores, and critiques.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 7: Jobs To Be Done → Backlog</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Convert JTBD statements into backlog items.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Input: 5 JTBD statements.
+Output: backlog items with title, user story, acceptance criteria, value score, effort score, priority.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 8: Custom Assistant Spec (YAML)</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Define a reusable assistant with tools and policies.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>assistant:
+  name: "API Docs Helper"
+  goal: "Answer developer questions using internal docs"
+  memory: none
+  tools:
+    - name: search
+      input: {query: string}
+      output: {results: [string]}
+  policies:
+    - "Cite sources"
+    - "If unknown, say so"
+  output_schema:
+    answer: string
+    citations: [string]
+    confidence: number</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 9: Safety & Brand Guardrails</h3>
+<div class="bg-gray-50 p-5 rounded mb-8">
+  <p class="text-gray-700">Probe for prompt injection and off-brand content.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Red team prompts: "Ignore previous...", competitor mentions, sensitive claims.
+Policy: refuse, deflect, or reframe.
+Exercise: Create 10 red team prompts and verify compliant responses.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Mini Project A: Campaign Pack</h3>
+<div class="bg-green-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Deliver a coordinated set: 1 landing hero, 2 ads, 1 email, 2 tweets.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Input: product brief (audience, value prop, proof).
+Constraints: consistent voice, single message map, 1 unique CTA across all.
+Evaluation: brand checklist + click-worthiness ratings (1–5).</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Mini Project B: Developer Docs Pack</h3>
+<div class="bg-green-50 p-5 rounded mb-8">
+  <p class="text-gray-700">Create onboarding docs from a code sample and comments.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Outputs: README, Quickstart, API reference excerpt, Troubleshooting.
+Validation: paste into a syntax-aware editor and check for broken examples.</code></pre>
+</div>

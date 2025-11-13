@@ -1,0 +1,281 @@
+<p class="text-gray-700 mb-6">Tree-of-Thought prompting takes reasoning to the next level by exploring multiple solution paths simultaneously. Instead of following one chain of thought linearly, you prompt the model to branch into parallel possibilities, evaluate each path, and select the optimal one. This lesson teaches advanced multi-path reasoning for complex decision-making.</p>
+
+<h3 class="text-2xl font-bold mb-4 border-b pb-2">Understanding Tree-of-Thought</h3>
+<p class="text-gray-700 mb-4">Think of it like a chess player thinking several moves ahead across multiple potential game states, or a decision tree where you explore all branches before committing:</p>
+
+<ul class="list-disc pl-5 space-y-2 text-gray-700 mb-6">
+    <li><span class="font-semibold">Chain-of-Thought (CoT):</span> Single linear path from problem to solution (A → B → C → Answer)</li>
+    <li><span class="font-semibold">Tree-of-Thought (ToT):</span> Multiple paths explored in parallel (A → B1, B2, B3 → evaluate → best B → C → Answer)</li>
+</ul>
+
+<div class="bg-blue-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-blue-900 mb-3">When Tree-of-Thought Excels:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li><span class="font-semibold">Complex problems:</span> No obvious "right" answer; multiple viable approaches exist</li>
+        <li><span class="font-semibold">Strategic planning:</span> Business decisions, product roadmaps, resource allocation</li>
+        <li><span class="font-semibold">Creative optimization:</span> Design choices, naming, positioning—benefit from exploring options</li>
+        <li><span class="font-semibold">Trade-off analysis:</span> When solutions have competing pros/cons that need weighing</li>
+        <li><span class="font-semibold">High stakes:</span> Decisions where the cost of choosing wrong is high</li>
+    </ul>
+</div>
+
+<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r mb-6">
+    <p class="font-semibold text-yellow-900 mb-2">Key Insight:</p>
+    <p class="text-gray-700 text-sm">Research shows the first idea is rarely the best idea. ToT forces exploration of alternatives before committing, leading to more robust solutions.</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">The Tree-of-Thought Formula</h3>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-3">Four-Step Process:</p>
+    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+        <li><span class="font-semibold">Branch:</span> Generate 3-5 different approaches or solution paths</li>
+        <li><span class="font-semibold">Explore:</span> Develop each approach partially (outline first steps, identify requirements)</li>
+        <li><span class="font-semibold">Evaluate:</span> Score each path systematically on relevant criteria</li>
+        <li><span class="font-semibold">Select & Execute:</span> Choose the best path and complete it fully with detailed implementation</li>
+    </ol>
+</div>
+
+<h4 class="text-xl font-semibold mt-6 mb-3 text-blue-800">Basic ToT Prompt Structure</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm">
+        "Let's solve [problem] using Tree-of-Thought reasoning:<br><br>
+        <span class="font-semibold">Step 1: Brainstorm 3-4 different approaches</span> to solve this. List them as: Approach A, B, C...<br><br>
+        <span class="font-semibold">Step 2: For each approach, outline the first 2-3 steps</span> you'd take and identify key requirements/challenges.<br><br>
+        <span class="font-semibold">Step 3: Evaluate each approach</span> on: [list 3-5 criteria relevant to your problem, e.g., feasibility, cost, time, risk, scalability]<br>
+        Score each 1-10 for each criterion.<br><br>
+        <span class="font-semibold">Step 4: Select the highest-scoring approach</span> and provide a complete, detailed solution including implementation steps."
+    </p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Real-World Example: Marketing Strategy</h3>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">Scenario: Launch Campaign for New Product</p>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="text-gray-700 mb-3 text-sm"><span class="font-semibold">Detailed ToT Prompt:</span></p>
+        <p class="text-gray-700 italic text-sm mb-4">
+            "We're launching a $50/month productivity app for remote workers. Budget: $20,000. Timeline: 8 weeks until launch. Use Tree-of-Thought to determine the optimal marketing strategy:<br><br>
+            <span class="font-semibold">Step 1: Generate 4 different marketing approaches</span><br>
+            (e.g., content marketing, paid ads, influencer partnerships, community building, etc.)<br><br>
+            <span class="font-semibold">Step 2: For each approach, detail:</span><br>
+            • Primary channels and tactics<br>
+            • Expected reach and conversion funnel<br>
+            • Estimated cost breakdown<br>
+            • Timeline to first results<br>
+            • Required resources/team<br><br>
+            <span class="font-semibold">Step 3: Score each approach (1-10) on:</span><br>
+            • Fit with $20K budget<br>
+            • Speed to first customers<br>
+            • Scalability beyond launch<br>
+            • Risk level / certainty of results<br>
+            • Competitive differentiation<br><br>
+            <span class="font-semibold">Step 4: Select the winner</span> (or hybrid of top 2) and provide a detailed 8-week execution plan with weekly milestones, budget allocation, and success metrics."
+        </p>
+    </div>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">ToT Variants & Advanced Patterns</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Variant 1: Parallel Exploration (Full Development)</h4>
+<p class="text-gray-700 mb-3">Explore all paths to completion before evaluation:</p>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm">
+        "Generate 3 complete solutions to [problem], each using a different approach. Then compare them side-by-side using a table with these criteria: [list criteria]. Based on comparison, recommend the best one with detailed reasoning."
+    </p>
+    <p class="text-gray-700 mt-3 text-sm"><span class="font-semibold">Best for:</span> Problems where developing full solutions is quick and comparison is easier with complete information</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Variant 2: Sequential Pruning (Early Elimination)</h4>
+<p class="text-gray-700 mb-3">Eliminate weak paths early to focus effort:</p>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm">
+        "Brainstorm 5 potential approaches to [problem]. Quickly evaluate and eliminate the 2 weakest based on [key criterion]. Deep-dive the remaining 3 with full development. Final evaluation and selection of winner."
+    </p>
+    <p class="text-gray-700 mt-3 text-sm"><span class="font-semibold">Best for:</span> Complex problems where developing all paths fully would be time-consuming</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Variant 3: Hybrid Best-of-Both (Synthesis)</h4>
+<p class="text-gray-700 mb-3">Combine strengths from multiple paths into one optimal solution:</p>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm">
+        "Generate 3 distinct solutions to [problem]. Instead of choosing only one, identify the best elements of each approach. Then create a hybrid solution that combines those strengths while avoiding each approach's weaknesses."
+    </p>
+    <p class="text-gray-700 mt-3 text-sm"><span class="font-semibold">Best for:</span> Problems where different approaches have complementary strengths</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">ToT for Creative Tasks</h3>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">Example: Product Naming</p>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="text-gray-700 text-sm mb-3">
+            <span class="font-semibold">Prompt:</span> "Name our new meditation app using Tree-of-Thought:<br><br>
+            <span class="font-semibold">Step 1:</span> Generate 3 naming directions:<br>
+            (a) Descriptive/functional names<br>
+            (b) Abstract/poetic/evocative names<br>
+            (c) Playful/approachable names<br><br>
+            <span class="font-semibold">Step 2:</span> Create 5 name options for each direction (15 total names)<br><br>
+            <span class="font-semibold">Step 3:</span> Evaluate all 15 names on:<br>
+            • Memorable (1-10)<br>
+            • Easy to pronounce and spell (1-10)<br>
+            • Available domain likelihood (1-10)<br>
+            • Emotional resonance for stressed professionals (1-10)<br>
+            • Differentiation from competitors (Calm, Headspace) (1-10)<br><br>
+            <span class="font-semibold">Step 4:</span> Present top 3 finalists with detailed reasoning for each, including positioning strategy."
+        </p>
+    </div>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">ToT for Technical Problem-Solving</h3>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-3">Example: System Architecture Decision</p>
+    <p class="text-gray-700 italic text-sm mb-3">
+        "We need to choose a database for our real-time chat app (target: 10K users, 50GB data, low latency critical). Use Tree-of-Thought:<br><br>
+        <span class="font-semibold">Step 1:</span> Consider these database paths:<br>
+        (a) PostgreSQL with caching<br>
+        (b) MongoDB<br>
+        (c) Firebase Realtime Database<br>
+        (d) DynamoDB<br><br>
+        <span class="font-semibold">Step 2:</span> For each option, outline:<br>
+        • Setup complexity (time to production)<br>
+        • Real-time capabilities and performance<br>
+        • Scalability to 100K users<br>
+        • Cost at our current scale and at 10x scale<br>
+        • Team expertise required<br>
+        • Vendor lock-in concerns<br><br>
+        <span class="font-semibold">Step 3:</span> Score each (1-10) on:<br>
+        • Development speed / ease of implementation<br>
+        • Performance at scale<br>
+        • Cost-efficiency<br>
+        • Future flexibility<br><br>
+        <span class="font-semibold">Step 4:</span> Recommend winner with implementation roadmap: schema design, migration strategy, monitoring setup."
+    </p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Tailoring Evaluation Criteria</h3>
+<p class="text-gray-700 mb-4">Choose evaluation dimensions that match your domain and priorities:</p>
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-gray-50">
+                <th class="text-left px-4 py-2 border-b">Domain</th>
+                <th class="text-left px-4 py-2 border-b">Useful Evaluation Criteria</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b">Business Strategy</td>
+                <td class="px-4 py-3 border-b">ROI potential, risk level, timeline, resource requirements, market fit, competitive advantage</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Product Design</td>
+                <td class="px-4 py-3 border-b">User experience, development complexity, time to market, scalability, uniqueness, accessibility</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b">Content/Marketing</td>
+                <td class="px-4 py-3 border-b">Engagement potential, brand alignment, SEO value, production effort, virality, conversion likelihood</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Technical Solutions</td>
+                <td class="px-4 py-3 border-b">Performance, maintainability, security, cost, team expertise, vendor lock-in, scalability</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b">Hiring Decisions</td>
+                <td class="px-4 py-3 border-b">Skills match, culture fit, growth potential, compensation expectations, location/timezone, references</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">When NOT to Use ToT</h3>
+<div class="bg-red-50 p-4 rounded-lg mb-6">
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li>❌ <span class="font-semibold">Simple, straightforward problems</span> with obvious solutions (overkill, wastes time)</li>
+        <li>❌ <span class="font-semibold">When speed is critical</span> and "good enough" beats "optimal" (ToT is thorough but slow)</li>
+        <li>❌ <span class="font-semibold">Problems with only one viable solution</span> (no meaningful alternatives to explore)</li>
+        <li>❌ <span class="font-semibold">Pure creative tasks</span> where overthinking kills spontaneity (e.g., fiction writing)</li>
+        <li>❌ <span class="font-semibold">Low-stakes decisions</span> where the cost of suboptimal choice is minimal</li>
+    </ul>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">ToT vs. Other Techniques</h3>
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-gray-50">
+                <th class="text-left px-4 py-2 border-b">Technique</th>
+                <th class="text-left px-4 py-2 border-b">When to Use</th>
+                <th class="text-left px-4 py-2 border-b">Time Cost</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b">Standard Prompt</td>
+                <td class="px-4 py-3 border-b">Simple, single-path problems</td>
+                <td class="px-4 py-3 border-b">Fast</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Chain-of-Thought</td>
+                <td class="px-4 py-3 border-b">Complex reasoning, one clear approach</td>
+                <td class="px-4 py-3 border-b">Medium</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b">Tree-of-Thought</td>
+                <td class="px-4 py-3 border-b">Multiple viable approaches, need best one</td>
+                <td class="px-4 py-3 border-b">Slow but thorough</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Mini Exercise: ToT Practice</h3>
+<div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r mb-6">
+    <p class="font-semibold text-green-900 mb-3">Exercise Task:</p>
+    <p class="text-gray-700 mb-4">Create a comprehensive Tree-of-Thought prompt for this scenario:</p>
+    <p class="text-gray-700 mb-4 italic bg-white p-3 rounded border border-green-200">"Your company needs to reduce customer support costs by 30% over the next year without hurting customer satisfaction. Current costs: $500,000/year with 5 full-time support agents handling 2,000 tickets/month."</p>
+    
+    <p class="font-semibold text-green-900 mb-2">Your ToT prompt should:</p>
+    <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+        <li>Generate at least 4 different strategic approaches</li>
+        <li>Specify what to explore for each approach</li>
+        <li>Define 5 evaluation criteria relevant to the scenario</li>
+        <li>Request a final recommendation with implementation roadmap</li>
+    </ol>
+
+    <details class="mt-4">
+        <summary class="cursor-pointer font-semibold text-green-900 hover:text-green-700">Click to see sample solution</summary>
+        <div class="mt-3 p-4 bg-white rounded border border-green-200">
+            <p class="text-gray-700 text-sm">
+                "Reduce customer support costs by 30% ($150K savings annually) while maintaining satisfaction using Tree-of-Thought:<br><br>
+                <span class="font-semibold">Step 1: Generate 4-5 approaches:</span><br>
+                (a) Implement AI chatbot for tier-1 issues (routine questions, FAQs)<br>
+                (b) Build comprehensive self-service knowledge base with video tutorials<br>
+                (c) Offshore support to lower-cost region<br>
+                (d) Reduce support hours/channels (email-only, no phone)<br>
+                (e) Improve product UX to prevent issues (reduce tickets at source)<br><br>
+                <span class="font-semibold">Step 2: For each approach, detail:</span><br>
+                • Implementation cost and timeline<br>
+                • Expected cost savings (year 1 and ongoing)<br>
+                • Impact on customer satisfaction (predicted CSAT change)<br>
+                • Impact on team (morale, training, headcount)<br>
+                • Risks and mitigation strategies<br>
+                • Measurable success metrics<br><br>
+                <span class="font-semibold">Step 3: Score each (1-10) on:</span><br>
+                • Cost savings potential (meeting 30% target)<br>
+                • Customer experience impact (maintain/improve satisfaction)<br>
+                • Implementation feasibility (technical, budget, time)<br>
+                • Team morale impact (employee satisfaction)<br>
+                • Scalability (will it work at 2x ticket volume?)<br><br>
+                <span class="font-semibold">Step 4: Recommend best approach</span> (or hybrid combination of top 2) with:<br>
+                • 12-month implementation roadmap with quarterly milestones<br>
+                • Budget breakdown and ROI timeline<br>
+                • Risk mitigation plans<br>
+                • Success metrics and monitoring strategy<br>
+                • Contingency plan if savings don't materialize"
+            </p>
+        </div>
+    </details>
+</div>
+
+<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 text-yellow-800 rounded-r">
+    <p class="font-semibold mb-2">Key Takeaway:</p>
+    <p class="italic">Tree-of-Thought prompting is your tool for high-stakes, complex decisions where multiple viable paths exist. By forcing systematic exploration and evaluation of alternatives before committing, you get more robust, well-reasoned solutions. Use it when the cost of choosing wrong is high and time permits thorough analysis. The breadth of exploration prevents tunnel vision and uncovers options you might have missed with linear thinking.</p>
+</div>

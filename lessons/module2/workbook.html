@@ -1,0 +1,92 @@
+<h2 class="text-3xl font-bold mb-4">Module 2 Workbook: Effective Prompting Patterns</h2>
+<p class="text-gray-700 mb-6">Practice the patterns from Module 2 with realistic, ready-to-run prompts. Each lab includes progressive variations and a mini-evaluation checklist.</p>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 1: Role & Persona</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Switch roles and note how outputs change.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Role: Senior Technical Writer.
+Task: explain "idempotency" to a junior developer in 150 words.
+Tone: clear, friendly, concrete.
+Include: 1 analogy, 1 example in HTTP APIs, and a "gotcha" tip.</code></pre>
+  <p class="text-gray-700 text-sm">Try roles: Product Manager, SRE, Support Agent.</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 2: Constraints & Requirements</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Harden outputs with strict requirements.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Write a changelog entry for version 3.2.0.
+Constraints:
+- 3 sections: Added, Changed, Fixed
+- Each bullet starts with an emoji
+- 6–10 bullets total
+- Link 2 tickets in [ABC-123] format
+- Grade 8 reading level</code></pre>
+  <p class="text-gray-700 text-sm">Validate each constraint was met.</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 3: High-Quality Context</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Provide real context and see improvement.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Context:
+- App: habit tracking mobile app for students
+- Problem: low day-1 retention (22%)
+- Hypothesis: onboarding is too long
+Task: propose 5 onboarding experiments.
+For each: rationale, expected impact, measurement metric.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 4: Iterative Refinement</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Use a loop: draft → critique → revise.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Write a 200-word feature announcement email for dark mode.
+Then critique your own draft against: clarity, benefits, CTA strength, and length.
+Finally, produce a revised version addressing all issues.
+Return both versions with a short diff summary.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 5: Parameters (Temperature, Top-p)</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Compare creativity vs consistency.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Task: 5 subject lines for a webinar invite (AI in Finance).
+Run once with temperature=0.2; once with temperature=0.9.
+Compare: diversity, quality, and off-topic rate.
+Pick the best 2 and explain why.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 6: Schema-First Outputs</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Lock down JSON outputs tightly.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Extract product info from the text below.
+Return only JSON with schema:
+{
+  "name": string,
+  "price": number,
+  "categories": string[],
+  "features": string[]
+}
+Text: [paste 2–3 product blurbs]</code></pre>
+  <p class="text-gray-700 text-sm">Add: "If missing info, set null or []. No extra fields."</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 7: Prompt Library</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Capture your best prompts.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Create a prompt library entry with fields:
+- Name, Goal, Audience
+- Systems/Rules
+- User Prompt
+- Parameters (temp/top_p/max_tokens)
+- Examples (few-shot)
+- Output spec/schema
+- Notes/Learnings</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Mini Project: Cold Email Engine</h3>
+<div class="bg-green-50 p-5 rounded mb-8">
+  <p class="text-gray-700 mb-2">Generate 10 tailored cold emails given a prospect profile.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Input: prospect data (name, company, role, recent news, problems)
+Task: create 10 email drafts.
+Structure each: subject, opener (custom), value prop, proof, CTA.
+Constraints: 110–140 words; no more than 1 emoji; 1-link max.
+Return JSON array of objects with those fields.</code></pre>
+</div>

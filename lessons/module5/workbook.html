@@ -1,0 +1,72 @@
+<h2 class="text-3xl font-bold mb-4">Module 5 Workbook: Ethics, Monitoring, and Capstone</h2>
+<p class="text-gray-700 mb-6">Operationalize AI responsibly. Use these exercises to design guardrails, evaluate quality, monitor performance, and ship a capstone project.</p>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 1: Harm & Bias Review</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Identify potential harms and mitigations for your use case.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Template:
+- Use case: ...
+- Stakeholders: ...
+- Risks: representational, allocative, privacy, security
+- Mitigations: policy, technical, process
+- Residual risk & escalation path</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 2: PII Redaction & Logging</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Design input/output filters and safe logs.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>PII list: email, phone, address, ssn
+Policy: redact before storage, minimize retention to 7 days.
+Exercise: demonstrate redaction patterns and safe logging JSON schema.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 3: Prompt Injection Defense</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Create a mutation set and detection/response policy.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Mutations: instruction override, URL bait, hidden controls, role confusion.
+Policy: isolate untrusted content, quote-only mode, refuse escalation.
+Test: 12 adversarial prompts and expected safe responses.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 4: Quality Metrics & Dashboards</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Define KPIs and sketch dashboards.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>KPIs: helpfulness score, refusal rate, latency p95, error rate, complaint rate.
+Dashboard JSON: panels[], metric, target, threshold, owner.
+Alerting rules: who, when, how.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 5: Evaluation Harness</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Create a reference set and pass/fail checks.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Dataset JSONL: {"input":"...","ref":"...","policy":"..."}
+Checks: correctness (0/1), policy compliance (0/1), structure (0/1).
+Scoring prompt: compare MODEL vs REF and return a report object.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 6: Rollout Strategy</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Plan a staged rollout with guardrails.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Plan: canary (5%), feature flag, A/B, kill switch, rollback.
+Checklist: preflight evals, observability, SLOs, on-call, comms plan.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 7: Feedback Loop & Drift</h3>
+<div class="bg-gray-50 p-5 rounded mb-8">
+  <p class="text-gray-700">Capture feedback and create a data flywheel.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Schema: {"prompt":"","output":"","thumb":"up|down","reason":"","category":""}
+Process: triage weekly, curate dataset, retrain or reprompt.
+Drift detection: moving average of helpfulness, alerts when -10%.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Capstone Project: Design, Evaluate, and Monitor an Assistant</h3>
+<div class="bg-green-50 p-5 rounded mb-8">
+  <p class="text-gray-700">Bring it all together with a scoped assistant.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Deliverables:
+- PRD (goal, users, success metrics)
+- Prompt(s) + schema(s)
+- Safety policy + red team set
+- Eval set (>=20), baseline results, and improvements
+- Monitoring plan + dashboard sketch
+- Post-launch checklist</code></pre>
+</div>

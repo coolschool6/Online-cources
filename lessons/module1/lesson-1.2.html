@@ -1,0 +1,55 @@
+<p class="text-gray-700 mb-6">Welcome to Lesson 1.2! To master prompt engineering, you must treat the model not as a perfect oracle, but as a powerful, specialized tool. This lesson explores the core strengths and unavoidable limitations of models like Gemini.</p>
+
+<h3 class="text-2xl font-bold mb-4 border-b pb-2">What LLMs Do Well: The Strengths</h3>
+<p class="text-gray-700 mb-6">Large Language Models excel at tasks related to language processing, pattern recognition, and rapid information synthesis.</p>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">1. Generating Cohesive and Contextual Text</h4>
+<p class="text-gray-700 mb-3">LLMs are phenomenal at generating human-like text across various formats, tones, and styles.</p>
+<ul class="list-disc pl-5 space-y-2 text-gray-700 mb-6">
+    <li><span class="font-semibold">Creative Writing:</span> Producing stories, poems, scripts, and marketing copy.</li>
+    <li><span class="font-semibold">Drafting & Outlining:</span> Quickly generating email drafts, reports, and academic outlines.</li>
+    <li><span class="font-semibold">Code Generation:</span> Writing, explaining, and debugging code snippets in multiple languages.</li>
+</ul>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">2. Information Synthesis and Summarization</h4>
+<p class="text-gray-700 mb-3">Models can ingest massive amounts of text and distill the key points, making them excellent tools for research and analysis.</p>
+<ul class="list-disc pl-5 space-y-2 text-gray-700 mb-6">
+    <li><span class="font-semibold">Summarizing:</span> Condensing long articles or documents into concise bullet points or short paragraphs.</li>
+    <li><span class="font-semibold">Translation & Paraphrasing:</span> Rephrasing content while maintaining the original meaning, or translating it between languages.</li>
+</ul>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">3. Understanding and Adapting to Context</h4>
+<p class="text-gray-700 mb-3">LLMs use the entire conversation history (the "context window") to inform their current response, allowing for natural, multi-turn dialogues.</p>
+<ul class="list-disc pl-5 space-y-2 text-gray-700 mb-6">
+    <li><span class="font-semibold">Role-Playing:</span> Adopting specific personas or system instructions (e.g., acting as a CEO, a history professor, or a helpful assistant).</li>
+    <li><span class="font-semibold">Instruction Following:</span> Executing complex, multi-step instructions (e.g., "First, research three facts about Mars, and second, write a 100-word paragraph about its moons").</li>
+</ul>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">4. Speed and Accessibility</h4>
+<p class="text-gray-700 mb-6">The sheer speed at which an LLM can process a query and return a complex, structured answer is its greatest productivity boost. They offer instant, 24/7 access to an immense amount of structured knowledge, dramatically reducing the time spent on initial research or drafting.</p>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Where LLMs Struggle: The Limitations</h3>
+<p class="text-gray-700 mb-6">It's equally important to know where LLMs fall short. These are inherent limitations that prompt engineering seeks to mitigate.</p>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">1. Hallucination (Lack of Truthfulness)</h4>
+<p class="text-gray-700 mb-3">This is the single biggest limitation. LLMs do not "know" facts; they predict the most statistically probable sequence of words based on their training data.</p>
+<p class="text-gray-700 mb-3"><span class="font-semibold">Risk:</span> The model may confidently state plausible-sounding but completely false information (hallucinations). It is essentially an expert in <em>sounding right</em>, not <em>being right</em>.</p>
+<p class="text-gray-700 mb-6"><span class="font-semibold">Mitigation:</span> Always verify critical or factual information with reliable sources. The use of grounding tools (like Google Search) can also significantly reduce this risk by forcing the model to cite external, real-time sources.</p>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">2. Limited Context Window and "Memory"</h4>
+<p class="text-gray-700 mb-3">While models use conversation history, this "memory" is finite. The context window is the maximum amount of text (including the prompt and previous responses) the model can hold in memory.</p>
+<p class="text-gray-700 mb-6"><span class="font-semibold">Risk:</span> In very long conversations, the model will start to "forget" details from the beginning of the chat as the oldest information cycles out of the window.</p>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">3. Bias and Safety</h4>
+<p class="text-gray-700 mb-3">The models are trained on vast amounts of data reflecting the human internet. This means they can unintentionally absorb and reflect societal biases (gender, racial, political) present in the training data.</p>
+<p class="text-gray-700 mb-6"><span class="font-semibold">Risk:</span> Responses can sometimes be prejudiced, unfair, or inappropriate if not guided by robust safety mechanisms and explicit prompt instructions.</p>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">4. Difficulty with Complex Reasoning and Math</h4>
+<p class="text-gray-700 mb-3">LLMs are excellent at recall and applying patterns, but they struggle with true logical deduction, multi-step problem-solving, and precise mathematical calculations.</p>
+<p class="text-gray-700 mb-6"><span class="font-semibold">Risk:</span> They might make calculation errors or struggle with complex, abstract "if/then" scenarios that require pure deductive reasoning rather than learned patterns.</p>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Key Takeaway for Prompt Engineering</h3>
+<p class="text-gray-700 mb-4">Your goal as a prompt engineer is to leverage the model's strengths (speed, synthesis, context) while mitigating its weaknesses (hallucination, memory limits, bias) through clear, explicit, and structured instructions.</p>
+<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 text-yellow-800 rounded-r mb-6">
+    <p class="italic"><span class="font-semibold">Think of it this way:</span> The LLM is a brilliant, extremely fast research assistant who occasionally makes up facts. Your job is to give it a strict outline and double-check its sources.</p>
+</div>

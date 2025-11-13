@@ -1,0 +1,214 @@
+<p class="text-gray-700 mb-6">Before you can become a prompt engineering expert, you need to know your tools. This lesson walks you through the major AI platforms, how to access them, and how to set up your workspace for maximum productivity.</p>
+
+<h3 class="text-2xl font-bold mb-4 border-b pb-2">Major AI Platforms & LLMs</h3>
+<p class="text-gray-700 mb-6">Different platforms offer different strengths. Understanding the landscape helps you choose the right tool for each task.</p>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">1. Google Gemini (Recommended for This Course)</h4>
+<div class="bg-blue-50 p-4 rounded-lg mb-4">
+    <p class="text-gray-700 mb-2"><span class="font-semibold">Access:</span> gemini.google.com (free tier available)</p>
+    <p class="text-gray-700 mb-2"><span class="font-semibold">Best For:</span> Research, coding, multimodal tasks (text + images), integration with Google Workspace</p>
+    <p class="text-gray-700 mb-2"><span class="font-semibold">Key Features:</span></p>
+    <ul class="list-disc pl-5 space-y-1 text-gray-700">
+        <li>Large context window (handles lengthy documents)</li>
+        <li>Real-time web search grounding (reduces hallucination)</li>
+        <li>Can process images, videos, and audio</li>
+        <li>Code execution capabilities</li>
+    </ul>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">2. ChatGPT (OpenAI)</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-4">
+    <p class="text-gray-700 mb-2"><span class="font-semibold">Access:</span> chat.openai.com (free tier with GPT-3.5, paid for GPT-4)</p>
+    <p class="text-gray-700 mb-2"><span class="font-semibold">Best For:</span> General writing, creative tasks, conversation, plugin ecosystem</p>
+    <p class="text-gray-700 mb-2"><span class="font-semibold">Notable:</span> Most widely adopted LLM; strong community and resources</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">3. Claude (Anthropic)</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-4">
+    <p class="text-gray-700 mb-2"><span class="font-semibold">Access:</span> claude.ai (free tier available)</p>
+    <p class="text-gray-700 mb-2"><span class="font-semibold">Best For:</span> Long-form content, detailed analysis, safety-focused tasks</p>
+    <p class="text-gray-700 mb-2"><span class="font-semibold">Notable:</span> Extremely large context window (200K+ tokens); excellent for processing entire books or codebases</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">4. Microsoft Copilot</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 mb-2"><span class="font-semibold">Access:</span> copilot.microsoft.com (integrated in Edge, Windows, Office)</p>
+    <p class="text-gray-700 mb-2"><span class="font-semibold">Best For:</span> Microsoft ecosystem integration, web search-enhanced responses</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Setting Up Your Workspace</h3>
+<p class="text-gray-700 mb-6">To maximize your prompt engineering efficiency, follow these setup steps:</p>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Step 1: Create Accounts</h4>
+<ol class="list-decimal pl-5 space-y-2 text-gray-700 mb-6">
+    <li>Sign up for <span class="font-semibold">Google Gemini</span> at gemini.google.com (use your Google account)</li>
+    <li>(Optional) Create accounts on ChatGPT and Claude for comparison</li>
+    <li>Verify your email and explore the free tier limitations</li>
+</ol>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Step 2: Understand the Interface</h4>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-3">Key Interface Elements:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li><span class="font-semibold">Prompt Input Box:</span> Where you type your prompts (bottom of screen)</li>
+        <li><span class="font-semibold">Response Area:</span> Where the model's output appears</li>
+        <li><span class="font-semibold">New Chat Button:</span> Starts a fresh conversation (important: models remember context only within the same chat session)</li>
+        <li><span class="font-semibold">Chat History:</span> Sidebar showing previous conversations (for reference)</li>
+        <li><span class="font-semibold">Settings/Model Selector:</span> Choose between different model versions or adjust parameters</li>
+    </ul>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Step 3: Organize Your Workflow</h4>
+<div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r mb-6">
+    <p class="font-semibold text-blue-900 mb-3">Pro Tips for Organization:</p>
+    <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+        <li><span class="font-semibold">Use Descriptive Chat Titles:</span> Rename your chats so you can find them later (e.g., "Marketing Copy - Product Launch" instead of "New Chat")</li>
+        <li><span class="font-semibold">Keep a Prompt Library:</span> Save your best prompts in a separate document (Google Doc, Notion, or simple text file)</li>
+        <li><span class="font-semibold">Create Template Prompts:</span> Build reusable templates for common tasks</li>
+        <li><span class="font-semibold">Use Folders/Tags:</span> Some platforms allow organizing chats into categories</li>
+    </ol>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Understanding Chat Context & Memory</h3>
+<p class="text-gray-700 mb-4">This is crucial to understand early:</p>
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-gray-50">
+                <th class="text-left px-4 py-2 border-b">Concept</th>
+                <th class="text-left px-4 py-2 border-b">How It Works</th>
+                <th class="text-left px-4 py-2 border-b">What It Means for You</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b font-semibold">Within-Session Memory</td>
+                <td class="px-4 py-3 border-b">Model remembers everything in the current chat</td>
+                <td class="px-4 py-3 border-b">You can reference earlier messages: "Make it shorter"</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b font-semibold">Between-Session Memory</td>
+                <td class="px-4 py-3 border-b">Completely reset when you start a new chat</td>
+                <td class="px-4 py-3 border-b">Must re-provide context in each new conversation</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b font-semibold">Context Window</td>
+                <td class="px-4 py-3 border-b">Limited token capacity (varies by model)</td>
+                <td class="px-4 py-3 border-b">Very long chats may "forget" early details</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Free vs. Paid Tiers: What You Need to Know</h3>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <div class="mb-4">
+        <p class="font-semibold text-gray-800 mb-2">Free Tier Limitations:</p>
+        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Rate limits (number of prompts per hour/day)</li>
+            <li>Access to older or smaller models</li>
+            <li>Slower response times during peak hours</li>
+            <li>No advanced features (plugins, file uploads, etc.)</li>
+        </ul>
+    </div>
+    <div>
+        <p class="font-semibold text-gray-800 mb-2">Paid Tier Benefits ($20/month typical):</p>
+        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Access to most powerful models (GPT-4, Gemini Advanced)</li>
+            <li>Higher/unlimited usage limits</li>
+            <li>Priority access during high traffic</li>
+            <li>Advanced features (image generation, code execution, file analysis)</li>
+            <li>Better for professional/commercial use</li>
+        </ul>
+    </div>
+    <p class="text-gray-700 mt-4 italic">For this course: The free tier is sufficient to learn and practice all concepts.</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">API Access (Advanced Option)</h3>
+<p class="text-gray-700 mb-4">If you're a developer or want to integrate AI into applications:</p>
+<div class="bg-purple-50 p-4 rounded-lg mb-6">
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li><span class="font-semibold">Google AI Studio:</span> ai.google.dev - Free API access with rate limits</li>
+        <li><span class="font-semibold">OpenAI API:</span> platform.openai.com - Pay-per-use pricing</li>
+        <li><span class="font-semibold">Anthropic API:</span> console.anthropic.com - Pay-per-use pricing</li>
+    </ul>
+    <p class="text-gray-700 mt-3 italic">APIs allow you to programmatically send prompts and receive responses in your own applications.</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Real-World Application: Your First Interaction</h3>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">Practical Scenario:</p>
+    <p class="text-gray-700 mb-4">You're a freelance graphic designer who needs to write a professional email to a potential client responding to their project inquiry.</p>
+    <p class="font-semibold text-green-900 mb-2">Step-by-Step:</p>
+    <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+        <li>Open Gemini (or your chosen platform)</li>
+        <li>Click "New Chat" for a fresh conversation</li>
+        <li>Use the prompt structure from Lesson 1.3</li>
+        <li>Review the output and ask for revisions if needed</li>
+        <li>Copy the final result for use</li>
+    </ol>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Mini Exercise: Platform Familiarization</h3>
+<div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r mb-6">
+    <p class="font-semibold text-green-900 mb-3">Exercise Tasks:</p>
+    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+        <li>
+            <span class="font-semibold">Create an account</span> on Google Gemini (or your preferred platform)
+        </li>
+        <li>
+            <span class="font-semibold">Start a new chat</span> and send this simple prompt:<br>
+            <span class="italic bg-white px-2 py-1 rounded inline-block mt-1">"Explain the concept of prompt engineering in 3 simple sentences suitable for a complete beginner."</span>
+        </li>
+        <li>
+            <span class="font-semibold">Follow up</span> with: "Now give me an example of a good prompt vs. a bad prompt."
+        </li>
+        <li>
+            <span class="font-semibold">Start a new chat</span> (fresh context) and try: "What did I just ask you?" Notice it has no memory of the previous chat.
+        </li>
+        <li>
+            <span class="font-semibold">Rename your first chat</span> to "Prompt Engineering Practice" so you can find it later.
+        </li>
+    </ol>
+    <p class="text-gray-700 mt-4 font-semibold">Goal: Get comfortable navigating the interface and understanding conversation context.</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Troubleshooting Common Issues</h3>
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-red-50">
+                <th class="text-left px-4 py-2 border-b">Issue</th>
+                <th class="text-left px-4 py-2 border-b">Likely Cause</th>
+                <th class="text-left px-4 py-2 border-b">Solution</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b">"Too many requests" error</td>
+                <td class="px-4 py-3 border-b">Hit free tier rate limit</td>
+                <td class="px-4 py-3 border-b">Wait an hour or upgrade to paid tier</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Model gives outdated info</td>
+                <td class="px-4 py-3 border-b">Training data cutoff date</td>
+                <td class="px-4 py-3 border-b">Use web search feature or verify externally</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b">Response is cut off mid-sentence</td>
+                <td class="px-4 py-3 border-b">Hit token output limit</td>
+                <td class="px-4 py-3 border-b">Type "continue" or ask it to complete the response</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Can't find old conversations</td>
+                <td class="px-4 py-3 border-b">Auto-deleted or not saved</td>
+                <td class="px-4 py-3 border-b">Always save important outputs externally</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 text-yellow-800 rounded-r">
+    <p class="font-semibold mb-2">Key Takeaway:</p>
+    <p class="italic">Your tools are only as good as your understanding of them. Spend time exploring the interface, testing different features, and learning the limitations. This foundational knowledge will make you exponentially more effective as you progress through advanced techniques.</p>
+</div>

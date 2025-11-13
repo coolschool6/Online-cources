@@ -1,0 +1,226 @@
+<p class="text-gray-700 mb-6">The quality of AI output depends directly on the quality of data you provide. This lesson teaches you how to feed the model rich context, examples, and specific information to dramatically improve results.</p>
+
+<h3 class="text-2xl font-bold mb-4 border-b pb-2">The Data-Quality Principle</h3>
+<div class="bg-blue-50 p-4 rounded-lg mb-6">
+    <p class="font-semibold text-blue-900 mb-2">Universal Truth:</p>
+    <p class="text-gray-700">"Garbage in, garbage out." Rich, specific context produces rich, specific outputs. Vague input forces the model to fill gaps with assumptions.</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Example: The Power of Details</h4>
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-gray-50">
+                <th class="text-left px-4 py-2 border-b">Vague Prompt</th>
+                <th class="text-left px-4 py-2 border-b">Data-Rich Prompt</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b align-top">
+                    <p class="italic mb-2">"Write a press release about our new product."</p>
+                    <p class="text-sm text-red-700">Result: Generic, could apply to any product</p>
+                </td>
+                <td class="px-4 py-3 border-b align-top bg-green-50">
+                    <p class="italic mb-2">"Write a press release: We're EcoCharge, a 4-year-old sustainable tech company. Launching PowerPod Solar, a portable 10,000mAh solar battery charger for hikers/campers. Charges in 6 hours of sunlight, 30% lighter than competitors, priced at $89. Launching July 1st. Available at REI and our website. Quote from CEO Maya Chen: 'Clean energy shouldn't be complicated.'"</p>
+                    <p class="text-sm text-green-700">Result: Specific, newsworthy, ready to use</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Types of Data to Include</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">1. Factual Details</h4>
+<ul class="list-disc pl-5 space-y-2 text-gray-700 mb-6">
+    <li>Names (people, companies, products)</li>
+    <li>Numbers (prices, dates, statistics, metrics)</li>
+    <li>Locations (cities, regions, markets)</li>
+    <li>Technical specifications</li>
+    <li>Timeline information</li>
+</ul>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">2. Background Context</h4>
+<p class="text-gray-700 mb-3">Set the scene completely:</p>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="font-semibold mb-2">Poor Context:</p>
+    <p class="text-gray-700 mb-3 italic">"Write an email about a project update."</p>
+    <p class="font-semibold mb-2">Rich Context:</p>
+    <p class="text-gray-700 italic">"Write an email to stakeholders: We're 3 weeks into a 12-week website redesign project. Originally budgeted at $50K, now tracking at $48K (under budget). Design phase complete, development 60% done. Launch date still on track for March 15. Key win: new mobile layout tested with 95% user satisfaction. One challenge: third-party API integration taking longer than expected but not affecting timeline."</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">3. Examples (Few-Shot Learning)</h4>
+<p class="text-gray-700 mb-3">Show the model 2-5 examples of what you want:</p>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold mb-3">Scenario: Product Description Style</p>
+    <p class="text-gray-700 mb-2">"Write product descriptions in this style:</p>
+    <div class="ml-4 mt-3 space-y-3">
+        <div class="bg-white p-3 rounded border border-gray-200">
+            <p class="font-semibold text-sm">Alpine Jacket:</p>
+            <p class="text-gray-700 text-sm">"Adventure-ready. This waterproof shell laughs at rainstorms and keeps you warm down to 20°F. Two-way zippers, four deep pockets, lifetime guarantee. Built for life outside."</p>
+        </div>
+        <div class="bg-white p-3 rounded border border-gray-200">
+            <p class="font-semibold text-sm">Trail Running Shoes:</p>
+            <p class="text-gray-700 text-sm">"Grip that doesn't quit. Vibram soles handle mud, rock, and everything between. Breathable mesh keeps feet cool on mile 10. Light enough to forget you're wearing them."</p>
+        </div>
+    </div>
+    <p class="text-gray-700 mt-4">Now write one for our Camping Backpack (65L capacity, waterproof, ergonomic straps, $199)."</p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">4. Structured Data</h4>
+<p class="text-gray-700 mb-3">For complex information, use JSON, tables, or bullet points:</p>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <pre class="bg-white p-3 rounded border border-gray-200 overflow-x-auto text-xs"><code>Product Comparison:
+        
+Basic Plan:
+- Price: $19/month
+- Users: Up to 5
+- Storage: 50GB
+- Support: Email only
+
+Pro Plan:
+- Price: $49/month
+- Users: Up to 25
+- Storage: 500GB
+- Support: 24/7 chat + phone
+
+Enterprise:
+- Price: Custom
+- Users: Unlimited
+- Storage: Unlimited
+- Support: Dedicated account manager
+
+Write a landing page section comparing these plans.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Few-Shot Learning Deep Dive</h3>
+<p class="text-gray-700 mb-4">Few-shot prompting means providing 2-5 examples of desired output before asking for new content. It's extraordinarily powerful.</p>
+
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-gray-50">
+                <th class="text-left px-4 py-2 border-b">Technique</th>
+                <th class="text-left px-4 py-2 border-b">Examples</th>
+                <th class="text-left px-4 py-2 border-b">When to Use</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b">Zero-shot</td>
+                <td class="px-4 py-3 border-b">0 examples</td>
+                <td class="px-4 py-3 border-b">Simple, common tasks</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">One-shot</td>
+                <td class="px-4 py-3 border-b">1 example</td>
+                <td class="px-4 py-3 border-b">Establishing format</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b">Few-shot</td>
+                <td class="px-4 py-3 border-b">2-5 examples</td>
+                <td class="px-4 py-3 border-b">Complex or custom styles</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Many-shot</td>
+                <td class="px-4 py-3 border-b">6+ examples</td>
+                <td class="px-4 py-3 border-b">Highly specific patterns</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Real-World Application: Customer Email Response</h3>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">Scenario: Personalized Support Email</p>
+    <p class="text-gray-700 mb-4">A customer complained about a delayed shipment. Compare approaches:</p>
+    
+    <div class="bg-white p-4 rounded border border-red-200 mb-4">
+        <p class="font-semibold text-red-700 mb-2">❌ Without Data:</p>
+        <p class="text-gray-700 italic">"Write an apology email for a shipping delay."</p>
+        <p class="text-sm text-gray-600 mt-2">Result: Generic template anyone could write</p>
+    </div>
+
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="font-semibold text-green-700 mb-2">✅ With Complete Data:</p>
+        <p class="text-gray-700 mb-3">"Write an apology email with these details:</p>
+        <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm ml-4 mb-2">
+            <li>Customer: Jennifer Martinez, VIP member since 2021, 23 previous orders</li>
+            <li>Order: #9841 (custom engraved watch, anniversary gift), ordered Nov 20</li>
+            <li>Promised: Dec 5, Actually arrived: Dec 14 (9 days late)</li>
+            <li>Reason: Engraving equipment malfunction Nov 28 (resolved now)</li>
+            <li>Compensation: Full refund of $25 expedited shipping + $50 store credit</li>
+            <li>Tone: Genuinely apologetic, take responsibility, don't make excuses</li>
+            <li>Sign: Marcus Chen, Customer Care Director</li>
+        </ul>
+        <p class="text-gray-700 text-sm italic mt-2">Result: Personalized, addresses specific concerns, offers real solution</p>
+    </div>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Domain-Specific Terminology</h3>
+<p class="text-gray-700 mb-4">Use industry jargon to signal the expertise level you need:</p>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 mb-2"><span class="font-semibold">For healthcare:</span> "HIPAA-compliant, EHR integration, patient outcomes, clinical workflows"</p>
+    <p class="text-gray-700 mb-2"><span class="font-semibold">For finance:</span> "SOC 2 Type II certified, algorithmic trading, liquidity pools, yield optimization"</p>
+    <p class="text-gray-700 mb-2"><span class="font-semibold">For marketing:</span> "CAC, LTV, conversion funnels, attribution modeling, A/B testing"</p>
+    <p class="text-gray-700"><span class="font-semibold">For software:</span> "CI/CD pipeline, containerization, microservices, API-first architecture"</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Context Window Strategy</h3>
+<p class="text-gray-700 mb-4">Be strategic about how much context you provide:</p>
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-gray-50">
+                <th class="text-left px-4 py-2 border-b">Data Amount</th>
+                <th class="text-left px-4 py-2 border-b">Best Practice</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b">Small (< 500 words)</td>
+                <td class="px-4 py-3 border-b">Paste directly into prompt</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Medium (500-5,000 words)</td>
+                <td class="px-4 py-3 border-b">Paste into conversation, then reference</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b">Large (5,000+ words)</td>
+                <td class="px-4 py-3 border-b">Summarize key points or use file upload</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Very Large (books, codebases)</td>
+                <td class="px-4 py-3 border-b">Use models with large context windows or chunk work</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Mini Exercise: Data-Rich Prompting</h3>
+<div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r mb-6">
+    <p class="font-semibold text-green-900 mb-3">Your Task:</p>
+    <p class="text-gray-700 mb-4">Create a data-rich prompt for writing a LinkedIn post announcing your (fictional) company reached 50,000 users. Include:</p>
+    <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+        <li>Company background (name, industry, founding year, team size)</li>
+        <li>Milestone details (when hit, how long it took, growth rate)</li>
+        <li>A specific customer quote or usage statistic</li>
+        <li>What's next/future plans</li>
+        <li>Desired tone, length, and 2-3 style reference examples</li>
+    </ol>
+
+    <details class="mt-4">
+        <summary class="cursor-pointer font-semibold text-green-900 hover:text-green-700">Click to see sample solution</summary>
+        <div class="mt-3 p-4 bg-white rounded border border-green-200">
+            <p class="text-gray-700 italic text-sm">
+                "Write a 200-word LinkedIn post: We're TaskFlow, a 3-year-old productivity SaaS for remote teams, bootstrapped by a team of 15. Hit 50,000 users this week (started with 800 users 2 years ago—that's 6,150% growth). 78% on paid plans ($29-99/mo). Customer Sarah Mills (Design Director, Apex Corp) said: 'TaskFlow cut our meeting time by 40%. Only tool my entire team uses daily.' Launching mobile app Q2 2026, expanding to APAC Q3. Tone: Humble but proud, transparent, data-driven. Style references: Buffer's authentic growth posts, Notion's community celebrations. Length: 180-220 words. End with gratitude to community."
+            </p>
+        </div>
+    </details>
+</div>
+
+<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 text-yellow-800 rounded-r">
+    <p class="font-semibold mb-2">Key Takeaway:</p>
+    <p class="italic">Never ask the AI to "figure it out." Provide specific names, numbers, dates, examples, and context. Rich data eliminates guesswork and produces outputs that feel custom-made, not template-generated.</p>
+</div>

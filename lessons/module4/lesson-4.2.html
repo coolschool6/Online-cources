@@ -1,0 +1,274 @@
+<p class="text-gray-700 mb-6">Documentation is critical but time-consuming. AI can transform code, APIs, processes, and systems into clear, comprehensive documentation. This lesson teaches you how to generate user manuals, API docs, code comments, and technical guides that actually help people.</p>
+
+<h3 class="text-2xl font-bold mb-4 border-b pb-2">Why AI for Documentation?</h3>
+<div class="bg-blue-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-blue-900 mb-3">Documentation Challenges AI Solves:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li><span class="font-semibold">Time-sink:</span> Docs are always last priority—AI makes it fast</li>
+        <li><span class="font-semibold">Out-of-date:</span> Generate fresh docs from current code/systems</li>
+        <li><span class="font-semibold">Inconsistency:</span> Maintain uniform structure and style</li>
+        <li><span class="font-semibold">Audience mismatch:</span> Generate versions for different skill levels</li>
+        <li><span class="font-semibold">Language barriers:</span> Translate technical concepts clearly</li>
+    </ul>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Application 1: Code Documentation</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Inline Code Comments</h4>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-2">Prompt Template:</p>
+    <p class="text-gray-700 italic text-sm mb-4">
+        "Add comprehensive inline comments to this code. For each function:<br>
+        - Purpose and what it returns<br>
+        - Parameters explained<br>
+        - Any non-obvious logic<br>
+        - Edge cases handled<br><br>
+        Follow [language] documentation standards (e.g., JSDoc for JavaScript, docstrings for Python).<br><br>
+        [Paste code here]"
+    </p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Function/Class Documentation</h4>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">Example: Python Function</p>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">Prompt:</span></p>
+        <p class="text-gray-700 italic text-sm mb-3">
+            "Write a comprehensive docstring for this Python function following PEP 257 and Google style:<br><br>
+            [paste function code]<br><br>
+            Include:<br>
+            - Brief one-line summary<br>
+            - Detailed description<br>
+            - Args with types and descriptions<br>
+            - Returns with type and description<br>
+            - Raises (exceptions)<br>
+            - Example usage"
+        </p>
+        <p class="text-gray-700 text-sm"><span class="font-semibold">Result:</span> Professional docstring ready to paste</p>
+    </div>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Application 2: API Documentation</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Endpoint Documentation</h4>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-3">Comprehensive API Doc Prompt:</p>
+    <div class="bg-white p-4 rounded border border-gray-200">
+        <p class="text-gray-700 italic text-sm">
+            "Generate API documentation for this endpoint. Format as markdown:<br><br>
+            Endpoint: [e.g., POST /api/users]<br>
+            Purpose: [brief description]<br><br>
+            Include:<br>
+            1. <span class="font-semibold">Overview:</span> What this endpoint does and when to use it<br>
+            2. <span class="font-semibold">Authentication:</span> Required auth method<br>
+            3. <span class="font-semibold">Request:</span><br>
+               - Headers (table format)<br>
+               - Body parameters (table: name, type, required?, description)<br>
+               - Example request (JSON)<br>
+            4. <span class="font-semibold">Response:</span><br>
+               - Success response (200) with example JSON<br>
+               - Error responses (400, 401, 404, 500) with examples<br>
+            5. <span class="font-semibold">Code Examples:</span> cURL, Python requests, JavaScript fetch<br>
+            6. <span class="font-semibold">Rate Limits:</span> Any throttling<br>
+            7. <span class="font-semibold">Notes:</span> Edge cases, best practices"
+        </p>
+    </div>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Full API Reference Generation</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm">
+        "I have a REST API with 15 endpoints. Generate a complete API reference guide. For each endpoint, provide: HTTP method, path, description, auth requirements, request/response schemas, example calls. Structure: Introduction → Authentication section → Endpoints (grouped by resource: Users, Products, Orders) → Error codes reference → Rate limiting section. Format as markdown suitable for static site generator."
+    </p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Application 3: User Manuals & Guides</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Software User Manual</h4>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">User Manual Prompt Structure:</p>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="text-gray-700 text-sm mb-3">
+            "Create a user manual for [software/app]. Target audience: [non-technical users / admins / developers].<br><br>
+            <span class="font-semibold">Structure:</span>
+        </p>
+        <ol class="list-decimal pl-5 space-y-2 text-gray-700 text-sm">
+            <li><span class="font-semibold">Introduction:</span> What is it? Who is it for? Key benefits</li>
+            <li><span class="font-semibold">Getting Started:</span> Installation, account setup, first steps</li>
+            <li><span class="font-semibold">Core Features:</span> Step-by-step guides for main tasks (include screenshots placeholders)</li>
+            <li><span class="font-semibold">Advanced Features:</span> Optional but powerful features</li>
+            <li><span class="font-semibold">Troubleshooting:</span> Common problems and solutions</li>
+            <li><span class="font-semibold">FAQ:</span> Top 10 questions</li>
+            <li><span class="font-semibold">Glossary:</span> Technical terms explained</li>
+        </ol>
+        <p class="text-gray-700 text-sm mt-3">Tone: Clear, patient, encouraging. Avoid jargon. Use numbered steps for procedures. Length: Comprehensive (5000+ words).</p>
+    </div>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Quick Start Guide</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm">
+        "Create a 2-page Quick Start Guide for [product]. Goal: Get user from zero to first success in under 10 minutes. Structure: 1) What you'll accomplish, 2) Prerequisites (what you need), 3) Step-by-step (numbered, max 7 steps), 4) Verification (how to confirm it worked), 5) Next steps (link to full docs). Format: Simple language, each step is ONE action, include expected outcomes after each step."
+    </p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Application 4: Process Documentation</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Standard Operating Procedure (SOP)</h4>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-3">SOP Generation Prompt:</p>
+    <div class="bg-white p-4 rounded border border-gray-200">
+        <p class="text-gray-700 italic text-sm">
+            "Create a Standard Operating Procedure document for [process]. Audience: [team members who will execute this].<br><br>
+            <span class="font-semibold">Format:</span><br>
+            - Title and version number<br>
+            - Purpose (why this process exists)<br>
+            - Scope (when to use it, when not to)<br>
+            - Responsibilities (who does what)<br>
+            - Materials/tools needed<br>
+            - Procedure (numbered steps with substeps, include decision points)<br>
+            - Quality checks (how to verify success)<br>
+            - Troubleshooting (what if something goes wrong)<br>
+            - Related documents<br><br>
+            Tone: Authoritative, precise, leave no room for ambiguity. Use imperatives ('Click X', not 'You should click X')."
+        </p>
+    </div>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Workflow Diagrams (Text-Based)</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 italic text-sm">
+        "Describe the workflow for [process] as a text-based flowchart using ASCII or Mermaid diagram syntax. Include: Start/end points, decision diamonds, process boxes, and arrows showing flow. Also provide a written explanation of each step for someone who can't view the diagram."
+    </p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Application 5: README Files</h3>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">GitHub README Generator:</p>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">Prompt:</span></p>
+        <p class="text-gray-700 italic text-sm">
+            "Generate a professional README.md for my GitHub project. Project details:<br>
+            - Name: [project name]<br>
+            - Description: [1-sentence description]<br>
+            - Tech stack: [languages, frameworks]<br>
+            - Main features: [list]<br><br>
+            Include standard sections:<br>
+            1. Title with logo placeholder<br>
+            2. Badges (build status, license, version)<br>
+            3. Description<br>
+            4. Features (bulleted)<br>
+            5. Installation (code blocks for commands)<br>
+            6. Usage (with code examples)<br>
+            7. Configuration (environment variables)<br>
+            8. Contributing guidelines<br>
+            9. License<br>
+            10. Contact/Support<br><br>
+            Format in markdown with proper headers, code blocks, and links."
+        </p>
+    </div>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Documentation Best Practices</h3>
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-gray-50">
+                <th class="text-left px-4 py-2 border-b">Principle</th>
+                <th class="text-left px-4 py-2 border-b">How to Prompt for It</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b">Clarity</td>
+                <td class="px-4 py-3 border-b">"Use simple language, avoid jargon, explain acronyms on first use"</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Structure</td>
+                <td class="px-4 py-3 border-b">"Use clear headings, numbered lists for steps, bullet points for features"</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b">Examples</td>
+                <td class="px-4 py-3 border-b">"Include code examples for every major concept, show expected output"</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Completeness</td>
+                <td class="px-4 py-3 border-b">"Cover all parameters, all error cases, all configuration options"</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b">Accessibility</td>
+                <td class="px-4 py-3 border-b">"Describe all visual elements, use semantic markdown, provide text alternatives"</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Multi-Audience Documentation</h3>
+<div class="bg-blue-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-blue-900 mb-3">Generate Different Versions for Different Audiences:</p>
+    <div class="bg-white p-4 rounded border border-blue-200">
+        <p class="text-gray-700 text-sm italic">
+            "I need to document [system/feature]. Generate 3 versions:<br><br>
+            1. <span class="font-semibold">Executive Summary:</span> High-level overview for decision-makers (1 page, business value focus)<br>
+            2. <span class="font-semibold">End User Guide:</span> How to use it (step-by-step, non-technical)<br>
+            3. <span class="font-semibold">Technical Implementation:</span> For developers (architecture, APIs, code examples)<br><br>
+            Keep consistent information but adjust depth and terminology for each audience."
+        </p>
+    </div>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Keeping Documentation Updated</h3>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-3">Diff-Based Documentation Updates:</p>
+    <p class="text-gray-700 italic text-sm mb-3">
+        "Here's the current documentation: [paste]. Here's the code change: [paste git diff or description]. Update the documentation to reflect these changes. Identify which sections need updates and rewrite only those sections. Highlight what changed."
+    </p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Mini Exercise: Document Your Own Code</h3>
+<div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r mb-6">
+    <p class="font-semibold text-green-900 mb-3">Exercise Task:</p>
+    <p class="text-gray-700 mb-4">You have this simple function (Python):</p>
+    
+    <div class="bg-white p-3 rounded border border-green-200 mb-4">
+        <pre class="text-gray-700 text-xs overflow-x-auto"><code>def calculate_total(items, tax_rate=0.08, discount=0):
+    subtotal = sum(item['price'] * item['qty'] for item in items)
+    discounted = subtotal * (1 - discount)
+    total = discounted * (1 + tax_rate)
+    return round(total, 2)</code></pre>
+    </div>
+
+    <p class="font-semibold text-green-900 mb-2">Your Tasks:</p>
+    <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+        <li>Write a prompt to generate a Google-style docstring</li>
+        <li>Write a prompt to create a user guide section explaining when/how to use this function</li>
+        <li>Write a prompt to generate 3 usage examples (basic, with discount, edge case)</li>
+    </ol>
+
+    <details class="mt-4">
+        <summary class="cursor-pointer font-semibold text-green-900 hover:text-green-700">Click to see sample solution</summary>
+        <div class="mt-3 p-4 bg-white rounded border border-green-200">
+            <p class="text-gray-700 text-sm">
+                <span class="font-semibold">Prompt 1 (Docstring):</span><br>
+                "Write a Google-style Python docstring for this function. Include: Brief description, detailed explanation of calculation logic, Args section with types and descriptions, Returns section with type and description, example usage. Here's the function: [paste code]"
+            </p>
+            <p class="text-gray-700 text-sm mb-3">
+                <span class="font-semibold">Prompt 2 (User Guide):</span><br>
+                "Write a user guide section explaining this function. Target audience: developers using our library for the first time. Cover: What it calculates, when to use it, what format 'items' should be (structure), how tax_rate and discount work (percentages as decimals), what gets returned. Use clear examples. Tone: friendly but precise."
+            </p>
+            <p class="text-gray-700 text-sm">
+                <span class="font-semibold">Prompt 3 (Examples):</span><br>
+                "Generate 3 Python code examples for calculate_total function:<br>
+                1. Basic: 2 items, default tax, no discount<br>
+                2. With discount: 3 items, default tax, 15% discount<br>
+                3. Edge case: Empty items list (should return 0.00)<br><br>
+                For each example, show: input data structure, function call, expected output, and brief comment explaining what's being demonstrated."
+            </p>
+        </div>
+    </details>
+</div>
+
+<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 text-yellow-800 rounded-r">
+    <p class="font-semibold mb-2">Key Takeaway:</p>
+    <p class="italic">Great documentation explains not just <em>what</em> something does, but <em>why</em> it exists, <em>when</em> to use it, and <em>how</em> to use it correctly. When prompting for docs, specify your audience (users vs. developers), desired format (markdown, docstrings, manuals), and level of detail. Always include examples—they're often more valuable than explanations.</p>
+</div>

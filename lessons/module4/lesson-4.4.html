@@ -1,0 +1,323 @@
+<p class="text-gray-700 mb-6">The ultimate application of prompt engineering is creating custom AI assistants—persistent agents with specific roles, knowledge, and behaviors tailored to your needs. This lesson teaches you how to design, configure, and deploy AI assistants that work like specialized team members.</p>
+
+<h3 class="text-2xl font-bold mb-4 border-b pb-2">What are Custom AI Assistants?</h3>
+<p class="text-gray-700 mb-4">Custom assistants are AI models configured with:</p>
+<ul class="list-disc pl-5 space-y-2 text-gray-700 mb-6">
+    <li><span class="font-semibold">System prompt:</span> Persistent instructions defining role and behavior</li>
+    <li><span class="font-semibold">Knowledge base:</span> Custom documents, data, or context</li>
+    <li><span class="font-semibold">Conversation memory:</span> Retains context across sessions</li>
+    <li><span class="font-semibold">Tool access:</span> Can search web, run code, access APIs</li>
+    <li><span class="font-semibold">Shareable:</span> Others can interact with your assistant</li>
+</ul>
+
+<div class="bg-blue-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-blue-900 mb-3">Platforms Supporting Custom Assistants:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li><span class="font-semibold">ChatGPT GPTs:</span> Build and share custom versions of ChatGPT</li>
+        <li><span class="font-semibold">Claude Projects:</span> Persistent context and knowledge base</li>
+        <li><span class="font-semibold">OpenAI Assistants API:</span> Programmatically create assistants</li>
+        <li><span class="font-semibold">Poe:</span> Create bots with custom prompts</li>
+    </ul>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">The System Prompt: Your Assistant's DNA</h3>
+<p class="text-gray-700 mb-4">The system prompt defines WHO your assistant is and HOW it behaves. This is foundational.</p>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">System Prompt Structure</h4>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-3">Essential Components:</p>
+    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+        <li><span class="font-semibold">Role/Identity:</span> "You are a [role] with expertise in [domains]"</li>
+        <li><span class="font-semibold">Core Purpose:</span> "Your primary function is to [help with X]"</li>
+        <li><span class="font-semibold">Expertise/Knowledge:</span> "You have deep knowledge of [topics]"</li>
+        <li><span class="font-semibold">Personality/Tone:</span> "Communicate in a [adjectives] manner"</li>
+        <li><span class="font-semibold">Behavioral Rules:</span> "Always [do X], Never [do Y]"</li>
+        <li><span class="font-semibold">Response Format:</span> "Structure responses as [format]"</li>
+        <li><span class="font-semibold">Interaction Style:</span> "Ask clarifying questions when [situation]"</li>
+    </ol>
+</div>
+
+<h4 class="text-xl font-semibold mt-6 mb-3 text-blue-800">Example 1: Content Marketing Assistant</h4>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">System Prompt:</p>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="text-gray-700 text-sm">
+            <span class="font-semibold">Role & Expertise:</span><br>
+            You are an expert Content Marketing Strategist with 10+ years of experience in B2B SaaS marketing. You specialize in SEO-optimized content, conversion copywriting, and content strategy.<br><br>
+            <span class="font-semibold">Core Purpose:</span><br>
+            Your primary function is to help users create high-performing content marketing strategies and assets. This includes blog posts, landing pages, email sequences, and social media content.<br><br>
+            <span class="font-semibold">Behavioral Guidelines:</span><br>
+            - Always ask about target audience before suggesting strategies<br>
+            - Provide SEO keyword recommendations when relevant<br>
+            - Include specific metrics to track success<br>
+            - Cite marketing frameworks (AIDA, PAS, etc.) when applicable<br>
+            - Offer 2-3 options rather than single solutions<br><br>
+            <span class="font-semibold">Tone:</span><br>
+            Professional yet approachable. Use data-driven language. Avoid jargon unless explaining it first.<br><br>
+            <span class="font-semibold">Response Format:</span><br>
+            Structure responses with clear headings, bullet points for lists, and actionable next steps at the end.
+        </p>
+    </div>
+</div>
+
+<h4 class="text-xl font-semibold mt-6 mb-3 text-blue-800">Example 2: Code Review Assistant</h4>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">System Prompt:</p>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="text-gray-700 text-sm">
+            You are a Senior Software Engineer specializing in code quality, security, and best practices across multiple languages (Python, JavaScript, Java, Go).<br><br>
+            When reviewing code:<br>
+            1. Identify bugs, security vulnerabilities, and performance issues<br>
+            2. Check adherence to language-specific style guides<br>
+            3. Suggest refactoring opportunities<br>
+            4. Explain WHY each suggestion matters (maintainability, performance, security)<br>
+            5. Provide corrected code snippets, not just descriptions<br><br>
+            Structure feedback as:<br>
+            - <span class="font-semibold">Critical Issues:</span> Must fix (security, bugs)<br>
+            - <span class="font-semibold">Improvements:</span> Should consider (performance, readability)<br>
+            - <span class="font-semibold">Nice-to-haves:</span> Optional (stylistic preferences)<br><br>
+            Be constructive, never condescending. Praise good patterns when you see them.
+        </p>
+    </div>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Adding Knowledge: Custom Context</h3>
+<p class="text-gray-700 mb-4">Enhance your assistant with domain-specific knowledge:</p>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Knowledge Sources You Can Add</h4>
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-gray-50">
+                <th class="text-left px-4 py-2 border-b">Knowledge Type</th>
+                <th class="text-left px-4 py-2 border-b">Examples</th>
+                <th class="text-left px-4 py-2 border-b">Use Case</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b">Company docs</td>
+                <td class="px-4 py-3 border-b">Brand guidelines, SOPs, policies</td>
+                <td class="px-4 py-3 border-b">Internal Q&A assistant</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Product data</td>
+                <td class="px-4 py-3 border-b">Specs, pricing, features</td>
+                <td class="px-4 py-3 border-b">Customer support bot</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b">Code repositories</td>
+                <td class="px-4 py-3 border-b">API docs, code examples</td>
+                <td class="px-4 py-3 border-b">Developer assistant</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Research papers</td>
+                <td class="px-4 py-3 border-b">Studies, whitepapers</td>
+                <td class="px-4 py-3 border-b">Academic tutor</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b">Writing samples</td>
+                <td class="px-4 py-3 border-b">Past blog posts, emails</td>
+                <td class="px-4 py-3 border-b">Content assistant matching your voice</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">How to Structure Knowledge Documents</h4>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-3">Best Practices:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700 text-sm">
+        <li>Use clear headings and subheadings (H1, H2, H3)</li>
+        <li>Format as markdown or plain text (most compatible)</li>
+        <li>Break large documents into smaller topical files</li>
+        <li>Include metadata (document title, version, date)</li>
+        <li>Use consistent terminology across documents</li>
+        <li>Keep files under 50k words each for better retrieval</li>
+    </ul>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Real-World Assistant Examples</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Assistant 1: Personal Tutor</h4>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">Configuration:</p>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">Role:</span> Patient math tutor for high school students</p>
+        <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">System Prompt Excerpt:</span></p>
+        <p class="text-gray-700 text-sm italic mb-3">
+            "You are a patient, encouraging math tutor. When a student struggles, break concepts into smaller steps. Use everyday analogies. Always have them try solving before showing answers. Celebrate progress, no matter how small. Use socratic method—guide with questions rather than lecturing."
+        </p>
+        <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">Knowledge:</span> Algebra textbook chapters, common misconceptions doc</p>
+        <p class="text-gray-700 text-sm"><span class="font-semibold">Tools:</span> Code interpreter (for graphing, calculations)</p>
+    </div>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Assistant 2: Customer Support Agent</h4>
+<div class="bg-green-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-green-900 mb-3">Configuration:</p>
+    <div class="bg-white p-4 rounded border border-green-200">
+        <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">Role:</span> First-line support for SaaS product</p>
+        <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">System Prompt Excerpt:</span></p>
+        <p class="text-gray-700 text-sm italic mb-3">
+            "You provide friendly, efficient support. Always empathize first ('I understand that's frustrating'). Check knowledge base before responding. For bugs or feature requests, acknowledge and explain you're escalating to human team. Never make promises about timelines. Provide step-by-step troubleshooting with screenshots placeholders."
+        </p>
+        <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">Knowledge:</span> Help center articles, troubleshooting guides, known issues</p>
+        <p class="text-gray-700 text-sm"><span class="font-semibold">Tools:</span> Web search (for recent updates), knowledge base search</p>
+    </div>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Assistant 3: Research Analyst</h4>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">Role:</span> Market research analyst for tech industry</p>
+    <p class="text-gray-700 text-sm mb-2"><span class="font-semibold">Key Behaviors:</span></p>
+    <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+        <li>Provide sources for all claims (with links)</li>
+        <li>Distinguish between facts and opinions</li>
+        <li>Identify data gaps and note uncertainty</li>
+        <li>Structure findings as executive summary + detailed analysis</li>
+        <li>Compare multiple sources when available</li>
+    </ul>
+    <p class="text-gray-700 text-sm mt-2"><span class="font-semibold">Knowledge:</span> Recent industry reports, company financial data</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Conversation Design Patterns</h3>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Pattern 1: Intake → Analysis → Recommendation</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 text-sm">
+        <span class="font-semibold">System instruction:</span> "First, ask 3-5 clarifying questions to understand the user's situation. Then analyze their needs. Finally, provide tailored recommendations with specific next steps."
+    </p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Pattern 2: Teach → Practice → Feedback</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 text-sm">
+        <span class="font-semibold">System instruction:</span> "Explain the concept briefly. Give an example. Then provide a practice problem for the user. After they attempt it, give detailed feedback on what they did well and what to improve."
+    </p>
+</div>
+
+<h4 class="text-xl font-semibold mt-4 mb-3 text-blue-800">Pattern 3: Progressive Disclosure</h4>
+<div class="bg-gray-50 p-4 rounded-lg mb-6">
+    <p class="text-gray-700 text-sm">
+        <span class="font-semibold">System instruction:</span> "Start with a high-level summary (2-3 sentences). Then ask if they want more detail. If yes, provide the full analysis with supporting data."
+    </p>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Advanced: Tool Integration</h3>
+<p class="text-gray-700 mb-4">Some platforms allow assistants to use tools:</p>
+<div class="bg-blue-50 p-6 rounded-lg mb-6">
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li><span class="font-semibold">Web browsing:</span> Search for current information</li>
+        <li><span class="font-semibold">Code interpreter:</span> Run Python code, analyze data, create charts</li>
+        <li><span class="font-semibold">Image generation:</span> Create visuals on demand</li>
+        <li><span class="font-semibold">File reading:</span> Analyze uploaded documents</li>
+        <li><span class="font-semibold">Custom functions:</span> Call your APIs (via OpenAI Assistants API)</li>
+    </ul>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Testing & Refining Your Assistant</h3>
+<div class="bg-gray-50 p-6 rounded-lg mb-6">
+    <p class="font-semibold text-gray-800 mb-3">Refinement Process:</p>
+    <ol class="list-decimal pl-5 space-y-3 text-gray-700">
+        <li><span class="font-semibold">Create initial system prompt</span> with role, purpose, and key behaviors</li>
+        <li><span class="font-semibold">Test with 10-15 realistic queries</span> covering different scenarios</li>
+        <li><span class="font-semibold">Identify failure patterns:</span> Where does it break character? Give wrong info? Wrong format?</li>
+        <li><span class="font-semibold">Add specific rules</span> addressing those failures to system prompt</li>
+        <li><span class="font-semibold">Retest</span> with same queries + new edge cases</li>
+        <li><span class="font-semibold">Iterate</span> until consistent performance</li>
+    </ol>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Common Pitfalls</h3>
+<div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-sm border border-gray-200">
+        <thead>
+            <tr class="bg-red-50">
+                <th class="text-left px-4 py-2 border-b">Pitfall</th>
+                <th class="text-left px-4 py-2 border-b">Solution</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            <tr>
+                <td class="px-4 py-3 border-b">Overly complex system prompt</td>
+                <td class="px-4 py-3 border-b">Start simple, add rules only when needed</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Vague personality description</td>
+                <td class="px-4 py-3 border-b">Use specific examples of desired behavior</td>
+            </tr>
+            <tr>
+                <td class="px-4 py-3 border-b">Too much knowledge at once</td>
+                <td class="px-4 py-3 border-b">Break into smaller, focused documents</td>
+            </tr>
+            <tr class="bg-white">
+                <td class="px-4 py-3 border-b">Inconsistent responses</td>
+                <td class="px-4 py-3 border-b">Add explicit format guidelines in system prompt</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Mini Exercise: Design Your Custom Assistant</h3>
+<div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r mb-6">
+    <p class="font-semibold text-green-900 mb-3">Exercise Task:</p>
+    <p class="text-gray-700 mb-4">Design a custom AI assistant for one of these use cases:</p>
+    
+    <ol class="list-decimal pl-5 space-y-2 text-gray-700 mb-4">
+        <li><span class="font-semibold">Fitness Coach:</span> Personalized workout plans and nutrition advice</li>
+        <li><span class="font-semibold">Business Consultant:</span> Strategic advice for small businesses</li>
+        <li><span class="font-semibold">Creative Writing Partner:</span> Helps develop story ideas and characters</li>
+    </ol>
+
+    <p class="font-semibold text-green-900 mb-2">Create a complete assistant specification including:</p>
+    <ul class="list-disc pl-5 space-y-2 text-gray-700">
+        <li>Full system prompt (role, purpose, personality, rules)</li>
+        <li>3-5 knowledge documents needed</li>
+        <li>Conversation flow for typical interaction</li>
+        <li>3 example queries and expected responses</li>
+        <li>Success metrics (how to know it's working well)</li>
+    </ul>
+
+    <details class="mt-4">
+        <summary class="cursor-pointer font-semibold text-green-900 hover:text-green-700">Click to see sample solution (Fitness Coach)</summary>
+        <div class="mt-3 p-4 bg-white rounded border border-green-200 text-sm">
+            <p class="font-semibold text-gray-800 mb-2">System Prompt:</p>
+            <p class="text-gray-700 mb-3 italic">
+                "You are FitCoach, a certified personal trainer and nutritionist with 8 years of experience. Your expertise includes strength training, cardio, flexibility, and evidence-based nutrition.<br><br>
+                Core Purpose: Create personalized workout and nutrition plans based on individual goals, fitness levels, and constraints.<br><br>
+                Behavioral Guidelines:<br>
+                - Always ask about: current fitness level, goals, available equipment, time commitment, injuries/limitations<br>
+                - Prioritize safety over intensity<br>
+                - Provide progressive plans (start easier, scale up)<br>
+                - Include warm-up/cool-down in workouts<br>
+                - For nutrition, never give medical advice—focus on general healthy eating<br>
+                - Celebrate small wins, encourage consistency over perfection<br><br>
+                Tone: Motivational but realistic. Supportive, never judgmental. Use analogies and clear explanations."
+            </p>
+            <p class="font-semibold text-gray-800 mb-2 mt-3">Knowledge Documents:</p>
+            <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                <li>Exercise database (150+ exercises with form cues, variations, muscle groups)</li>
+                <li>Nutrition basics (macros, meal timing, portions)</li>
+                <li>Workout templates (beginner/intermediate/advanced for different goals)</li>
+            </ul>
+            <p class="font-semibold text-gray-800 mb-2">Conversation Flow:</p>
+            <p class="text-gray-700 mb-3">
+                1. Greet and ask about goals<br>
+                2. Assess current fitness level (questionnaire)<br>
+                3. Identify constraints (time, equipment, injuries)<br>
+                4. Generate customized 4-week plan<br>
+                5. Explain each workout component<br>
+                6. Provide nutrition guidelines<br>
+                7. Schedule check-in for progress adjustment
+            </p>
+            <p class="font-semibold text-gray-800 mb-2">Success Metrics:</p>
+            <p class="text-gray-700">- Users find plans actionable (can start immediately)<br>- Plans match stated constraints (time, equipment)<br>- Safety warnings appear for risky exercises<br>- Progressive difficulty over 4 weeks<br>- Positive, motivational tone throughout</p>
+        </div>
+    </details>
+</div>
+
+<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 text-yellow-800 rounded-r">
+    <p class="font-semibold mb-2">Key Takeaway:</p>
+    <p class="italic">Custom AI assistants are your opportunity to create specialized team members that never tire, never forget, and scale infinitely. The key is a well-crafted system prompt (defining role, personality, behaviors) combined with relevant knowledge. Test extensively with real-world scenarios and refine based on where it fails. A great assistant should feel like talking to a domain expert, not a general chatbot.</p>
+</div>

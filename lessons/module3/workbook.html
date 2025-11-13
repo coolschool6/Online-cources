@@ -1,0 +1,125 @@
+<h2 class="text-3xl font-bold mb-4">Module 3 Workbook: Advanced Prompting Techniques</h2>
+<p class="text-gray-700 mb-6">Go beyond basics with deliberate reasoning, planning, retrieval, and structured outputs. Each lab includes instructions, example prompts, and acceptance criteria to self-evaluate results.</p>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 1: Chain-of-Thought (CoT)</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Compare answers with and without explicit reasoning steps.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Question: If a bakery sells 240 bagels in 6 hours at a constant rate, how many bagels per hour?
+No-CoT Prompt: Answer the question concisely.
+CoT Prompt: Think step by step. Show your reasoning and final answer.</code></pre>
+  <p class="text-gray-700 text-sm">Acceptance: correct numeric result and coherent intermediate steps.</p>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 2: ReAct (Reason+Act Trace)</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Simulate tool usage with a think/act/observe loop.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>System: You may think, act, and observe.
+Format:
+THINK: ...
+ACT: [search] query
+OBSERVE: [result] ...
+...
+TASK: Determine the capital of New Zealand and 1 fun fact.
+Rules: Only use 1 ACT step; cite your source in the final answer.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 3: Self-Critique (Reflexion)</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Have the model critique and improve its own draft.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Draft: Write 120 words pitching a habit tracker.
+Critique dimensions: clarity, audience fit, benefits, proof, CTA.
+Revise: produce a 2nd version addressing all issues. Return both.
+Output: {"draft_1":"...","critique":"...","draft_2":"..."}</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 4: Tree-of-Thought (ToT)</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Generate multiple solution branches and pick a winner.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Problem: Increase trial-to-paid conversion for a SaaS notes app.
+Steps:
+1) Propose 3 strategies (branches) with 3 steps each.
+2) Score each branch on impact, effort, risk (1–5).
+3) Select the top branch and expand it to a 30-day plan.
+Return JSON with branches[], scores[], winner, plan.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 5: Planner–Executor</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Create a plan and then execute each step deterministically.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Task: Convert a product spec into a 1-pager.
+Phase 1 (Plan): list steps with inputs/outputs.
+Phase 2 (Execute): run steps sequentially, keeping outputs structured.
+Return a final single-page document with sections: Problem, Solution, Proof, CTA.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 6: Strict JSON Schemas</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Enforce structure with a schema and rejection sampling.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Schema:
+{
+  "summary": string,
+  "risks": string[],
+  "actions": [{"title": string, "owner": string, "due_date": string}]
+}
+Instruction: If any field is unknown, set null or []. Do not add fields.
+Input: Paste a weekly team status email. Extract the fields above.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 7: Retrieval-Augmented Generation (RAG) Prompt</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Design a prompt that quotes sources and avoids hallucination.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>System:
+- Answer only from the provided CONTEXT.
+- If not in context, say "I don't know based on context".
+- Quote exact sentences with [#1], [#2] markers.
+User:
+CONTEXT:
+---
+[Chunk #1]
+[Chunk #2]
+---
+Question: ...
+Output: Answer + Citations [#] + Confidence (0–1).</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 8: Evaluation Harness</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Create a small test set and a rubric.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Testcases (JSONL):
+{"input":"Explain idempotency to a student","ref":"..."}
+{"input":"Summarize RFC2616 caching","ref":"..."}
+Rubric (0–3 each): Correctness, Faithfulness, Structure, Style.
+Scoring prompt: Compare MODEL vs REF and score each dimension with evidence.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 9: Hallucination Guardrail</h3>
+<div class="bg-gray-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Design an attribution-first answer policy.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Policy:
+- Only output facts supported by quotes.
+- If unsure, respond with an explicit uncertainty phrase.
+Exercise: Ask 3 factual questions with partial context. Inspect uncertainty rates.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Lab 10: Multimodal Patterns (Text-only Simulation)</h3>
+<div class="bg-gray-50 p-5 rounded mb-8">
+  <p class="text-gray-700">Simulate image prompts using alt-text descriptions.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Alt-text: "A chart showing monthly signups rising from 500 to 2200 over 6 months."
+Task: describe 3 key insights and 1 caveat. Provide a tweet-length summary.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Mini Project A: Research Brief Synthesizer</h3>
+<div class="bg-green-50 p-5 rounded mb-6">
+  <p class="text-gray-700">Given 3 pasted sources, synthesize a 1-page brief with citations.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Inputs: Source A, B, C.
+Output sections: Executive Summary, 5 Key Findings (with [A]/[B]/[C]), Risks, Open Questions, References.
+Constraints: Quote verbatim for key stats; avoid mixing sources.</code></pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-3 border-b pb-2">Mini Project B: FAQ Assistant (RAG)</h3>
+<div class="bg-green-50 p-5 rounded mb-8">
+  <p class="text-gray-700">Build an FAQ assistant prompt with a small context set.</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 text-xs overflow-x-auto"><code>Context: Paste 5–8 FAQ pairs.
+Prompt rules: answer with citation tags [Q1]..[Q8], include confidence, and offer a link to support.
+Evaluation: craft 10 queries and measure exact-match vs partial-match.</code></pre>
+</div>

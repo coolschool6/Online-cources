@@ -1,0 +1,131 @@
+<p class="text-gray-700 mb-6">Time to bring it all together. In this capstone, you’ll scope, design, and deliver a working AI assistant or workflow that solves a real problem. You’ll apply techniques from every module and ship a small but complete system.</p>
+
+<h3 class="text-2xl font-bold mb-4 border-b pb-2">Project Brief</h3>
+<div class="bg-blue-50 p-6 rounded-lg mb-6">
+  <p class="font-semibold text-blue-900 mb-2">Goal:</p>
+  <p class="text-gray-700 mb-4">Build a focused AI solution that delivers value end-to-end in a constrained scope (1–2 weeks of part-time work).</p>
+  <p class="font-semibold text-blue-900 mb-2">Examples:</p>
+  <ul class="list-disc pl-5 space-y-2 text-gray-700 text-sm">
+    <li>Marketing: Generate on-brand landing page copy + social snippets from a product brief</li>
+    <li>Support: Turn tickets into structured summaries + suggested responses</li>
+    <li>Docs: Create developer-ready API docs from endpoint specs</li>
+    <li>Education: Tutor that explains code and creates practice questions</li>
+  </ul>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Deliverables</h3>
+<ul class="list-disc pl-5 space-y-2 text-gray-700 text-sm mb-6">
+  <li>System prompt (role, purpose, behaviors, format rules)</li>
+  <li>Primary user prompt(s) with examples (few-shot if needed)</li>
+  <li>Structured output schema (JSON, table, etc.)</li>
+  <li>Demo input(s) and outputs (screenshots or text)</li>
+  <li>Safety plan: risks, guardrails, and refusal policy</li>
+  <li>Monitoring plan: metrics, logging fields, and eval set outline</li>
+  <li>Short README (what it does, how to use, limitations)</li>
+</ul>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Rubric (100 pts)</h3>
+<div class="overflow-x-auto mb-6 text-sm">
+  <table class="min-w-full border border-gray-200">
+    <thead>
+      <tr class="bg-gray-50">
+        <th class="text-left px-4 py-2 border-b">Category</th>
+        <th class="text-left px-4 py-2 border-b">Criteria</th>
+        <th class="text-left px-4 py-2 border-b">Points</th>
+      </tr>
+    </thead>
+    <tbody class="text-gray-700">
+      <tr>
+        <td class="px-4 py-3 border-b">Prompt Quality</td>
+        <td class="px-4 py-3 border-b">Clarity, context, constraints, examples</td>
+        <td class="px-4 py-3 border-b">25</td>
+      </tr>
+      <tr class="bg-white">
+        <td class="px-4 py-3 border-b">Structured Output</td>
+        <td class="px-4 py-3 border-b">Valid, consistent schema; parseable</td>
+        <td class="px-4 py-3 border-b">15</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 border-b">Safety</td>
+        <td class="px-4 py-3 border-b">Risks identified; guardrails implemented</td>
+        <td class="px-4 py-3 border-b">15</td>
+      </tr>
+      <tr class="bg-white">
+        <td class="px-4 py-3 border-b">Evaluation</td>
+        <td class="px-4 py-3 border-b">Golden set + validators; pass criteria</td>
+        <td class="px-4 py-3 border-b">20</td>
+      </tr>
+      <tr>
+        <td class="px-4 py-3 border-b">Documentation</td>
+        <td class="px-4 py-3 border-b">README clarity; usage steps; limitations</td>
+        <td class="px-4 py-3 border-b">15</td>
+      </tr>
+      <tr class="bg-white">
+        <td class="px-4 py-3 border-b">Polish</td>
+        <td class="px-4 py-3 border-b">Usability; reasonable defaults; examples</td>
+        <td class="px-4 py-3 border-b">10</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Templates</h3>
+<div class="bg-gray-50 p-6 rounded-lg mb-6 text-sm">
+  <p class="font-semibold text-gray-800 mb-2">System Prompt Template</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 overflow-x-auto text-xs">You are a [role] helping with [goal].
+Users are [audience] facing [pain points].
+Always follow these rules: [safety, privacy, format].
+Respond in [format], max [length].
+Ask [1-3] clarifying questions when needed.
+If info is missing, explain assumptions.</pre>
+
+  <p class="font-semibold text-gray-800 mb-2 mt-4">User Prompt Template</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 overflow-x-auto text-xs">Task: [what to produce]
+Context: [facts, constraints]
+Style: [tone, voice]
+Output: [schema or sections]
+Examples: [few-shot pairs]</pre>
+
+  <p class="font-semibold text-gray-800 mb-2 mt-4">JSON Schema Example</p>
+  <pre class="bg-white p-3 rounded border border-gray-200 overflow-x-auto text-xs">{
+  "title": string,
+  "sections": [
+    {"heading": string, "content": string}
+  ],
+  "cta": {"label": string, "url": string}
+}</pre>
+</div>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Submission Checklist</h3>
+<ul class="list-disc pl-5 space-y-2 text-gray-700 text-sm mb-6">
+  <li>All deliverables included (prompts, schema, demos, safety, monitoring, README)</li>
+  <li>One-page overview (problem → solution → demo → results → next steps)</li>
+  <li>Clearly state model(s) and parameters</li>
+  <li>Note known limitations and failure cases</li>
+</ul>
+
+<h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">Mini Exercise: Scope Your Project</h3>
+<div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r mb-6">
+  <p class="font-semibold text-green-900 mb-3">Exercise Task:</p>
+  <p class="text-gray-700 mb-4">Pick a problem and outline a lean, testable solution.</p>
+  <ol class="list-decimal pl-5 space-y-2 text-gray-700 text-sm mb-3">
+    <li>Write a one-sentence problem statement</li>
+    <li>List 3 success criteria (what good looks like)</li>
+    <li>Draft your system prompt and output schema</li>
+    <li>Define 5 golden examples for evaluation</li>
+  </ol>
+  <details class="mt-2">
+    <summary class="cursor-pointer font-semibold text-green-900 hover:text-green-700">Click to see sample outline</summary>
+    <div class="mt-3 p-4 bg-white rounded border border-green-200 text-sm">
+      <p><span class="font-semibold">Problem:</span> Support agents take too long to summarize tickets.</p>
+      <p><span class="font-semibold">Success:</span> Valid JSON summaries in &lt; 5s with ≥ 90% agent approval.</p>
+      <p><span class="font-semibold">System prompt:</span> "You are a support summarizer... (rules, schema)"</p>
+      <p><span class="font-semibold">Golden 5:</span> Mix of short/long, noisy/clean tickets; include edge cases.</p>
+    </div>
+  </details>
+</div>
+
+<div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 text-yellow-800 rounded-r">
+  <p class="font-semibold mb-2">Key Takeaway:</p>
+  <p class="italic">Ship something small, real, and well-instrumented. Clear prompts + structured outputs + safety + monitoring = a credible MVP you can iterate on.</p>
+</div>
