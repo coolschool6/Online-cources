@@ -1,8 +1,5 @@
 // Firebase Configuration and Initialization
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+// This file must be loaded AFTER Firebase CDN scripts in HTML
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,9 +13,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth(app);
-const db = getFirestore(app);
+firebase.initializeApp(firebaseConfig);
 
-export { app, analytics, auth, db };
+// Initialize services
+const auth = firebase.auth();
+const db = firebase.firestore();
+const analytics = firebase.analytics();

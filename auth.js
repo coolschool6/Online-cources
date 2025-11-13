@@ -1,25 +1,15 @@
 // Authentication Module
-import { auth } from './firebase-config.js';
-import { 
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  sendPasswordResetEmail,
-  updateProfile,
-  onAuthStateChanged,
-  GoogleAuthProvider,
-  signInWithPopup
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+// Must be loaded AFTER firebase-config.js
 
 // Sign up with email and password
-export async function signUp(email, password, displayName) {
+async function signUp(email, password, displayName) {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
     const user = userCredential.user;
     
     // Update profile with display name
     if (displayName) {
-      await updateProfile(user, { displayName });
+      await user.updateProfile({ displayName: displayName });
     }
     
     return { success: true, user };
@@ -30,9 +20,9 @@ export async function signUp(email, password, displayName) {
 }
 
 // Sign in with email and password
-export async function signIn(email, password) {
+async function signIn(email, password) {
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await auth.signInWithEmailAndPassword(email, password);
     return { success: true, user: userCredential.user };
   } catch (error) {
     console.error("Sign in error:", error);
@@ -41,10 +31,10 @@ export async function signIn(email, password) {
 }
 
 // Sign in with Google
-export async function signInWithGoogle() {
+async function signInWithGoogle() {
   try {
-    const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth, provider);
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const result = await auth.signInWithPopup(provider);
     return { success: true, user: result.user };
   } catch (error) {
     console.error("Google sign in error:", error);
@@ -53,9 +43,9 @@ export async function signInWithGoogle() {
 }
 
 // Sign out
-export async function logOut() {
+async function logOut() {
   try {
-    await signOut(auth);
+    await auth.signOut();
     return { success: true };
   } catch (error) {
     console.error("Sign out error:", error);
@@ -64,9 +54,9 @@ export async function logOut() {
 }
 
 // Reset password
-export async function resetPassword(email) {
+async function resetPassword(email) {
   try {
-    await sendPasswordResetEmail(auth, email);
+    await auth.sendPasswordResetEmail(email);
     return { success: true };
   } catch (error) {
     console.error("Password reset error:", error);
@@ -75,16 +65,16 @@ export async function resetPassword(email) {
 }
 
 // Get current user
-export function getCurrentUser() {
+function getCurrentUser() {
   return auth.currentUser;
 }
 
 // Listen to auth state changes
-export function onAuthChange(callback) {
-  return onAuthStateChanged(auth, callback);
+function onAuthChange(callback) {
+  return auth.onAuthStateChanged(callback);
 }
 
 // Check if user is authenticated
-export function isAuthenticated() {
+function isAuthenticated() {
   return auth.currentUser !== null;
 }

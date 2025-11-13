@@ -1,25 +1,13 @@
 // Database Module - Firestore operations
-import { db } from './firebase-config.js';
-import { 
-  doc,
-  setDoc,
-  getDoc,
-  updateDoc,
-  collection,
-  query,
-  where,
-  getDocs,
-  arrayUnion,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+// Must be loaded AFTER firebase-config.js
 
 // Create or update user profile
-export async function createUserProfile(userId, data) {
+async function createUserProfile(userId, data) {
   try {
-    await setDoc(doc(db, 'users', userId), {
+    await db.collection('users').doc(userId).set({
       ...data,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp()
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
     }, { merge: true });
     return { success: true };
   } catch (error) {
@@ -29,12 +17,12 @@ export async function createUserProfile(userId, data) {
 }
 
 // Get user profile
-export async function getUserProfile(userId) {
+async function getUserProfile(userId) {
   try {
-    const docRef = doc(db, 'users', userId);
-    const docSnap = await getDoc(docRef);
+    const docRef = db.collection('users').doc(userId);
+    const docSnap = await docRef.get();
     
-    if (docSnap.exists()) {
+    if (docSnap.exists) {
       return { success: true, data: docSnap.data() };
     } else {
       return { success: false, error: "Profile not found" };
@@ -46,12 +34,12 @@ export async function getUserProfile(userId) {
 }
 
 // Enroll user in a course
-export async function enrollInCourse(userId, courseId) {
+async function enrollInCourse(userId, courseId) {
   try {
-    await setDoc(doc(db, 'enrollments', `${userId}_${courseId}`), {
+    await db.collection('enrollments').doc(`${userId}_${courseId}`).set({
       userId,
       courseId,
-      enrolledAt: serverTimestamp(),
+      enrolledAt: firebase.firestore.FieldValue.serverTimestamp(),
       progress: 0,
       completedLessons: [],
       status: 'active'
@@ -64,12 +52,12 @@ export async function enrollInCourse(userId, courseId) {
 }
 
 // Get user's course enrollment
-export async function getCourseEnrollment(userId, courseId) {
+async function getCourseEnrollment(userId, courseId) {
   try {
-    const docRef = doc(db, 'enrollments', `${userId}_${courseId}`);
-    const docSnap = await getDoc(docRef);
+    const docRef = db.collection('enrollments').doc(`${userId}_${courseId}`);
+    const docSnap = await docRef.get();
     
-    if (docSnap.exists()) {
+    if (docSnap.exists) {
       return { success: true, data: docSnap.data() };
     } else {
       return { success: false, error: "Not enrolled" };
@@ -81,13 +69,13 @@ export async function getCourseEnrollment(userId, courseId) {
 }
 
 // Mark lesson as complete
-export async function completLesson(userId, courseId, lessonId) {
+async function completLesson(userId, courseId, lessonId) {
   try {
-    const enrollmentRef = doc(db, 'enrollments', `${userId}_${courseId}`);
+    const enrollmentRef = db.collection('enrollments').doc(`${userId}_${courseId}`);
     
-    await updateDoc(enrollmentRef, {
-      completedLessons: arrayUnion(lessonId),
-      lastAccessedAt: serverTimestamp()
+    await enrollmentRef.update({
+      completedLessons: firebase.firestore.FieldValue.arrayUnion(lessonId),
+      lastAccessedAt: firebase.firestore.FieldValue.serverTimestamp()
     });
     
     return { success: true };
@@ -98,13 +86,13 @@ export async function completLesson(userId, courseId, lessonId) {
 }
 
 // Update course progress percentage
-export async function updateProgress(userId, courseId, progressPercent) {
+async function updateProgress(userId, courseId, progressPercent) {
   try {
-    const enrollmentRef = doc(db, 'enrollments', `${userId}_${courseId}`);
+    const enrollmentRef = db.collection('enrollments').doc(`${userId}_${courseId}`);
     
-    await updateDoc(enrollmentRef, {
+    await enrollmentRef.update({
       progress: progressPercent,
-      lastAccessedAt: serverTimestamp()
+      lastAccessedAt: firebase.firestore.FieldValue.serverTimestamp()
     });
     
     return { success: true };
@@ -115,10 +103,11 @@ export async function updateProgress(userId, courseId, progressPercent) {
 }
 
 // Get all user enrollments
-export async function getUserEnrollments(userId) {
+async function getUserEnrollments(userId) {
   try {
-    const q = query(collection(db, 'enrollments'), where('userId', '==', userId));
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await db.collection('enrollments')
+      .where('userId', '==', userId)
+      .get();
     
     const enrollments = [];
     querySnapshot.forEach((doc) => {
@@ -133,13 +122,13 @@ export async function getUserEnrollments(userId) {
 }
 
 // Save user's last accessed lesson
-export async function saveLastLesson(userId, courseId, lessonId) {
+async function saveLastLesson(userId, courseId, lessonId) {
   try {
-    const enrollmentRef = doc(db, 'enrollments', `${userId}_${courseId}`);
+    const enrollmentRef = db.collection('enrollments').doc(`${userId}_${courseId}`);
     
-    await updateDoc(enrollmentRef, {
+    await enrollmentRef.update({
       lastLessonId: lessonId,
-      lastAccessedAt: serverTimestamp()
+      lastAccessedAt: firebase.firestore.FieldValue.serverTimestamp()
     });
     
     return { success: true };
