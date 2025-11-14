@@ -25,16 +25,6 @@
         .rotate-90{transform:rotate(90deg)}
         .aspect-video{aspect-ratio:16/9}
         
-        /* Dark Mode Styles */
-        body.dark-mode { background-color: #111827; color: #E5E7EB; }
-        body.dark-mode .sidebar { background-color: #0F172A; }
-        body.dark-mode .lesson-link:hover { background-color: #1E293B; }
-        body.dark-mode #lessonContent { background-color: #1F2937; color: #E5E7EB; }
-        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 { color: #F3F4F6; }
-        body.dark-mode p, body.dark-mode li { color: #D1D5DB; }
-        body.dark-mode code { background-color: #374151; color: #FCD34D; }
-        body.dark-mode pre { background-color: #1F2937; border-color: #374151; }
-        
         /* Progress Bar */
         #progressBar { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #E5E7EB; z-index: 9999; }
         #progressBarFill { height: 100%; background: linear-gradient(90deg, #00BFA5 0%, #00D9A5 100%); transition: width 0.3s; box-shadow: 0 0 10px rgba(0, 191, 165, 0.5); }
@@ -85,11 +75,6 @@
             <div class="mb-4">
                 <input type="text" id="searchBox" placeholder="🔍 Search lessons..." class="w-full px-3 py-2 text-sm" onkeyup="searchLessons(this.value)">
             </div>
-            
-            <!-- Dark Mode Toggle -->
-            <button onclick="window.toggleDarkMode()" class="w-full mb-4 py-2 px-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm flex items-center justify-center gap-2 transition">
-                <i class="fas fa-moon"></i> <span id="darkModeText">Dark Mode</span>
-            </button>
             
             <h2 class="text-xl font-bold mb-4 text-gray-100 border-b border-gray-700 pb-2">Course Modules</h2>
             <nav class="space-y-2 text-sm" id="lessonNav">
@@ -148,61 +133,6 @@
                 <a href="index.html" class="text-sm font-medium text-blue-600 hover:text-accent-teal transition duration-150 ml-auto hidden sm:inline">Back to Academy</a>
             </header>
             <main class="flex-1 overflow-y-auto p-4 md:p-8">
-                <!-- Code Editor Toggle Button -->
-                <button onclick="window.toggleCodeEditor()" class="fixed bottom-24 right-20 z-50 bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-full shadow-lg transition flex items-center gap-2">
-                    <i class="fas fa-code"></i> <span id="editorToggleText">Open Editor</span>
-                </button>
-                
-                <!-- Code Editor Panel -->
-                <div id="codeEditorPanel" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="window.closeCodeEditorIfClickOutside(event)">
-                    <div class="absolute right-0 top-0 h-full w-full md:w-3/4 lg:w-2/3 bg-white shadow-2xl" onclick="event.stopPropagation()">
-                        <div class="flex flex-col h-full">
-                            <!-- Editor Header -->
-                            <div class="flex items-center justify-between bg-gray-800 text-white p-4">
-                                <div class="flex items-center gap-4">
-                                    <h3 class="text-lg font-bold"><i class="fas fa-code mr-2"></i> Code Playground</h3>
-                                    <select id="languageSelect" onchange="window.changeLanguage()" class="bg-gray-700 text-white px-3 py-1 rounded border border-gray-600 text-sm">
-                                        <option value="javascript">JavaScript</option>
-                                        <option value="python">Python</option>
-                                        <option value="html">HTML</option>
-                                        <option value="css">CSS</option>
-                                        <option value="json">JSON</option>
-                                        <option value="markdown">Markdown</option>
-                                    </select>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <button onclick="window.runCode()" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded transition flex items-center gap-2">
-                                        <i class="fas fa-play"></i> Run
-                                    </button>
-                                    <button onclick="window.clearEditor()" class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded transition">
-                                        <i class="fas fa-trash"></i> Clear
-                                    </button>
-                                    <button onclick="window.toggleCodeEditor()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition">
-                                        <i class="fas fa-times"></i> Close
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <!-- Editor Container -->
-                            <div class="flex-1 flex flex-col md:flex-row">
-                                <!-- Monaco Editor -->
-                                <div class="flex-1 relative">
-                                    <div id="codeEditor" class="h-full"></div>
-                                </div>
-                                
-                                <!-- Output Panel -->
-                                <div class="w-full md:w-1/3 bg-gray-900 text-green-400 p-4 overflow-y-auto font-mono text-sm">
-                                    <div class="flex items-center justify-between mb-2 pb-2 border-b border-gray-700">
-                                        <span class="font-bold text-white">Output:</span>
-                                        <button onclick="window.clearOutput()" class="text-xs text-gray-400 hover:text-white">Clear</button>
-                                    </div>
-                                    <div id="codeOutput"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
                 <div id="welcome-message" class="text-center bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-8 rounded-lg"><i class="fas fa-check-circle mr-2"></i> Congratulations! You are officially enrolled in the FREE Genius Academy Flagship Course.</div>
                 <h2 id="lesson-title" class="text-3xl font-extrabold text-gray-900 mb-6">Lesson 1.1: What is Generative AI & the Prompt Engineering Paradigm</h2>
                 <div class="aspect-video bg-gray-300 rounded-xl overflow-hidden shadow-2xl mb-8 flex items-center justify-center text-gray-700 text-xl font-semibold">
@@ -4530,33 +4460,10 @@ Emily Rodriguez,Sales,88000,2</code></pre>
         }
 
         // ========================================
-        // NEW FEATURES: Dark Mode, Progress Bar, Search, Timer, Copy Code
+        // NEW FEATURES: Progress Bar, Search, Timer, Copy Code
         // ========================================
 
-        // 1. DARK MODE TOGGLE
-        window.toggleDarkMode = function() {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
-            const darkModeText = document.getElementById('darkModeText');
-            const icon = document.querySelector('button[onclick="window.toggleDarkMode()"] i');
-            
-            if (darkModeText) {
-                darkModeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-            }
-            if (icon) {
-                icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-            }
-            localStorage.setItem('darkMode', isDark);
-        }
-
-        // Load dark mode preference on page load
-        window.addEventListener('DOMContentLoaded', function() {
-            if (localStorage.getItem('darkMode') === 'true') {
-                window.toggleDarkMode();
-            }
-        });
-
-        // 2. PROGRESS BAR
+        // 1. PROGRESS BAR
         function updateProgressBar() {
             firebase.auth().onAuthStateChanged(async (user) => {
                 if (!user) return;
@@ -4721,266 +4628,14 @@ Emily Rodriguez,Sales,88000,2</code></pre>
                 e.preventDefault();
                 document.getElementById('searchBox').focus();
             }
-            
-            // Ctrl/Cmd + D: Toggle dark mode
-            if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
-                e.preventDefault();
-                window.toggleDarkMode();
-            }
-            
-            // Ctrl/Cmd + E: Toggle code editor
-            if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
-                e.preventDefault();
-                window.toggleCodeEditor();
-            }
         });
 
         // ========================================
-        // CODE EDITOR FEATURE
+        // END OF FEATURES
         // ========================================
 
-        let monacoEditor = null;
-        let currentLanguage = 'javascript';
-
-        // Initialize Monaco Editor
-        function initMonacoEditor() {
-            require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' }});
-            
-            require(['vs/editor/editor.main'], function() {
-                monacoEditor = monaco.editor.create(document.getElementById('codeEditor'), {
-                    value: getStarterCode('javascript'),
-                    language: 'javascript',
-                    theme: 'vs-dark',
-                    automaticLayout: true,
-                    fontSize: 14,
-                    minimap: { enabled: true },
-                    scrollBeyondLastLine: false,
-                    wordWrap: 'on',
-                    lineNumbers: 'on',
-                    roundedSelection: true,
-                    readOnly: false,
-                    cursorStyle: 'line',
-                    formatOnPaste: true,
-                    formatOnType: true
-                });
-
-                console.log('✅ Monaco Editor initialized');
-            });
-        }
-
-        // Toggle Code Editor - Make globally accessible for inline onclick attributes
-        window.toggleCodeEditor = function() {
-            const panel = document.getElementById('codeEditorPanel');
-            const toggleText = document.getElementById('editorToggleText');
-            
-            if (panel.classList.contains('hidden')) {
-                panel.classList.remove('hidden');
-                toggleText.textContent = 'Close Editor';
-                
-                // Initialize editor on first open
-                if (!monacoEditor) {
-                    initMonacoEditor();
-                }
-            } else {
-                panel.classList.add('hidden');
-                toggleText.textContent = 'Open Editor';
-            }
-        }
-
-        // Close if clicking outside - Make globally accessible for inline onclick attributes
-        window.closeCodeEditorIfClickOutside = function(event) {
-            if (event.target.id === 'codeEditorPanel') {
-                window.toggleCodeEditor();
-            }
-        }
-
-        // Change programming language - Make globally accessible for inline onchange attributes
-        window.changeLanguage = function() {
-            const select = document.getElementById('languageSelect');
-            currentLanguage = select.value;
-            
-            if (monacoEditor) {
-                const currentCode = monacoEditor.getValue();
-                // Only change if editor is empty or has starter code
-                if (currentCode.trim() === '' || currentCode.includes('// Welcome')) {
-                    monacoEditor.setValue(getStarterCode(currentLanguage));
-                }
-                monaco.editor.setModelLanguage(monacoEditor.getModel(), currentLanguage);
-            }
-        }
-
-        // Get starter code for each language
-        function getStarterCode(lang) {
-            const starters = {
-                javascript: `// Welcome to the JavaScript Playground!
-// Write your code here and click "Run"
-
-console.log("Hello from Genius Academy!");
-
-// Try some examples:
-function greet(name) {
-    return \`Hello, \${name}!\`;
-}
-
-console.log(greet("Learner"));`,
-
-                python: `# Welcome to the Python Playground!
-# Write your code here and click "Run"
-
-print("Hello from Genius Academy!")
-
-# Try some examples:
-def greet(name):
-    return f"Hello, {name}!"
-
-print(greet("Learner"))`,
-
-                html: `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        h1 { color: #00BFA5; }
-    </style>
-</head>
-<body>
-    <h1>Hello from Genius Academy!</h1>
-    <p>Edit this HTML and click "Run" to see the preview!</p>
-</body>
-</html>`,
-
-                css: `/* Welcome to the CSS Playground! */
-
-body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #0A3D62 0%, #176B87 100%);
-    color: white;
-    padding: 40px;
-    text-align: center;
-}
-
-h1 {
-    color: #00BFA5;
-    font-size: 3em;
-}`,
-
-                json: `{
-  "course": "Genius Academy",
-  "lesson": "Code Playground",
-  "features": [
-    "Syntax highlighting",
-    "Multiple languages",
-    "Live preview",
-    "Auto-save"
-  ],
-  "awesome": true
-}`,
-
-                markdown: `# Welcome to Genius Academy!
-
-## Code Playground Features
-
-- ✅ **Syntax Highlighting**
-- ✅ **Multiple Languages**
-- ✅ **Live Preview**
-- ✅ **Auto-save**
-
-### Try editing this markdown!
-
-\`\`\`javascript
-console.log("Hello World!");
-\`\`\`
-
-**Happy coding!**`
-            };
-            
-            return starters[lang] || '// Start coding...';
-        }
-
-        // Run code - Make globally accessible for inline onclick attributes
-        window.runCode = function() {
-            if (!monacoEditor) return;
-            
-            const code = monacoEditor.getValue();
-            const output = document.getElementById('codeOutput');
-            const lang = currentLanguage;
-            
-            // Clear previous output
-            output.innerHTML = '';
-            
-            if (lang === 'javascript') {
-                // Capture console.log
-                const logs = [];
-                const originalLog = console.log;
-                console.log = function(...args) {
-                    logs.push(args.map(arg => 
-                        typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
-                    ).join(' '));
-                    originalLog.apply(console, args);
-                };
-                
-                try {
-                    eval(code);
-                    output.innerHTML = logs.length > 0 
-                        ? logs.map(log => `<div class="mb-2">${escapeHtml(log)}</div>`).join('')
-                        : '<div class="text-gray-400">No output</div>';
-                } catch (error) {
-                    output.innerHTML = `<div class="text-red-400">Error: ${escapeHtml(error.message)}</div>`;
-                } finally {
-                    console.log = originalLog;
-                }
-            } else if (lang === 'html') {
-                // Show HTML preview in iframe
-                output.innerHTML = `<iframe srcdoc="${escapeHtml(code)}" class="w-full h-96 bg-white border-2 border-gray-700 rounded"></iframe>`;
-            } else if (lang === 'python') {
-                output.innerHTML = '<div class="text-yellow-400">Python execution requires a backend server. Try JavaScript for live code execution!</div>';
-            } else {
-                output.innerHTML = `<pre class="whitespace-pre-wrap">${escapeHtml(code)}</pre>`;
-            }
-        }
-
-        // Clear editor - Make globally accessible for inline onclick attributes
-        window.clearEditor = function() {
-            if (monacoEditor && confirm('Clear all code?')) {
-                monacoEditor.setValue(getStarterCode(currentLanguage));
-                window.clearOutput();
-            }
-        }
-
-        // Clear output - Make globally accessible for inline onclick attributes
-        window.clearOutput = function() {
-            document.getElementById('codeOutput').innerHTML = '';
-        }
-
-        // Escape HTML
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // Save code to localStorage
-        setInterval(() => {
-            if (monacoEditor) {
-                localStorage.setItem('savedCode_' + currentLanguage, monacoEditor.getValue());
-            }
-        }, 5000);
-
-        // Load saved code
-        function loadSavedCode() {
-            if (monacoEditor) {
-                const saved = localStorage.getItem('savedCode_' + currentLanguage);
-                if (saved) {
-                    monacoEditor.setValue(saved);
-                }
-            }
-        }
-
-        console.log('✨ New features loaded: Dark Mode, Progress Bar, Search, Timer, Copy Code, Code Editor');
-        console.log('💡 Keyboard shortcuts: Ctrl+K (search), Ctrl+D (dark mode), Ctrl+E (code editor)');
+        console.log('✨ New features loaded: Progress Bar, Search, Timer, Copy Code');
+        console.log('💡 Keyboard shortcuts: Ctrl+K (search)');
     </script>
 </body>
 </html>

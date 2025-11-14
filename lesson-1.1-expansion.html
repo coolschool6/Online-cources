@@ -1,0 +1,235 @@
+<!-- LESSON 1.1 EXPANSION CONTENT -->
+<!-- Insert this content into access.html at line 562, right after the "Golden Rule" div and before the closing backtick -->
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">🎯 Hands-On Exercises</h3>
+                    
+                    <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                        <h5 class="text-lg font-semibold mb-3 text-blue-800">Exercise 1: Bad Prompt vs. Good Prompt</h5>
+                        <p class="text-gray-700 mb-4">Compare these two prompts and their likely outputs:</p>
+                        
+                        <div class="mb-4">
+                            <p class="font-semibold text-red-600 mb-2">❌ Bad Prompt:</p>
+                            <div class="bg-white p-4 rounded border border-red-200 mb-3">
+                                <code class="text-sm">"Write about marketing"</code>
+                            </div>
+                            <p class="text-gray-600 italic text-sm">Problem: Too vague. The AI doesn't know what aspect of marketing, what format, what length, or what audience.</p>
+                        </div>
+                        
+                        <div>
+                            <p class="font-semibold text-green-600 mb-2">✅ Good Prompt:</p>
+                            <div class="bg-white p-4 rounded border border-green-200 mb-3">
+                                <code class="text-sm">"You are a digital marketing consultant with 10 years of experience in e-commerce. Write a 250-word blog post introducing email segmentation to small business owners who have never used marketing automation. Use simple language, include one concrete example, and end with 3 actionable steps they can implement today."</code>
+                            </div>
+                            <p class="text-gray-600 text-sm"><span class="font-semibold">Why it works:</span> Specific role, clear audience, defined length, concrete requirements, output structure.</p>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded mt-4 border-l-4 border-yellow-400">
+                            <p class="text-sm font-semibold mb-2">💡 Your Turn:</p>
+                            <p class="text-sm text-gray-700">Take this bad prompt: <span class="italic">"Write code"</span><br>Rewrite it using the principles you've learned. Include role, context, constraints, and format.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 p-6 rounded-lg mb-6">
+                        <h5 class="text-lg font-semibold mb-3 text-green-800">Exercise 2: Identifying the Five Elements</h5>
+                        <p class="text-gray-700 mb-4">Read this effective prompt and identify its five key components:</p>
+                        
+                        <div class="bg-white p-4 rounded border mb-4">
+                            <code class="text-sm">"You are a financial advisor specializing in retirement planning. Create a beginner-friendly explanation of compound interest for a 25-year-old starting their first job. Use a real-world example with specific numbers showing growth over 40 years. Keep it under 200 words. Format as a friendly email. Tone: encouraging but realistic."</code>
+                        </div>
+                        
+                        <details class="bg-white p-4 rounded">
+                            <summary class="cursor-pointer font-semibold text-blue-700">Click to reveal the breakdown</summary>
+                            <ul class="list-disc pl-5 mt-3 space-y-2 text-gray-700 text-sm">
+                                <li><span class="font-semibold">Role/Context:</span> "You are a financial advisor specializing in retirement planning"</li>
+                                <li><span class="font-semibold">Task:</span> "Create a beginner-friendly explanation of compound interest"</li>
+                                <li><span class="font-semibold">Audience:</span> "for a 25-year-old starting their first job"</li>
+                                <li><span class="font-semibold">Constraints:</span> "Use real-world example with numbers" + "under 200 words"</li>
+                                <li><span class="font-semibold">Format/Tone:</span> "Format as friendly email" + "Tone: encouraging but realistic"</li>
+                            </ul>
+                        </details>
+                    </div>
+
+                    <div class="bg-purple-50 p-6 rounded-lg mb-6">
+                        <h5 class="text-lg font-semibold mb-3 text-purple-800">Exercise 3: Context Window Challenge</h5>
+                        <p class="text-gray-700 mb-4">Understanding token limits is crucial. Let's explore:</p>
+                        
+                        <div class="bg-white p-4 rounded border mb-4">
+                            <p class="text-sm mb-3"><span class="font-semibold">Scenario:</span> You need to analyze a 50-page legal document (approximately 25,000 words = ~32,500 tokens).</p>
+                            <p class="text-sm mb-3"><span class="font-semibold">Your model has:</span> 8K context window (~6,000 tokens available after system prompts)</p>
+                            <p class="text-sm font-semibold text-red-600">Problem: The document won't fit!</p>
+                        </div>
+                        
+                        <p class="text-gray-700 mb-3 font-semibold">What strategies would work? (Select all that apply)</p>
+                        <div class="space-y-2 text-sm">
+                            <label class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-2">
+                                <span class="text-gray-700">A) Break the document into 5-6 sections and analyze each separately</span>
+                            </label>
+                            <label class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-2">
+                                <span class="text-gray-700">B) Upgrade to a model with 128K context window (like GPT-4 Turbo or Claude 3)</span>
+                            </label>
+                            <label class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-2">
+                                <span class="text-gray-700">C) Use retrieval-augmented generation (RAG) to query specific sections</span>
+                            </label>
+                            <label class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-2">
+                                <span class="text-gray-700">D) Ask the AI to memorize the document for future conversations</span>
+                            </label>
+                        </div>
+                        
+                        <details class="bg-white p-4 rounded mt-4">
+                            <summary class="cursor-pointer font-semibold text-purple-700">Click to see the answer</summary>
+                            <p class="text-sm mt-3 text-gray-700"><span class="font-semibold text-green-600">Correct: A, B, and C</span><br>D is incorrect because AI models don't "memorize" between conversations (they're stateless). Each conversation starts fresh.</p>
+                        </details>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">🌍 Real-World Applications</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-blue-500">
+                            <h5 class="text-lg font-semibold mb-2 text-blue-800">📊 Business & Marketing</h5>
+                            <p class="text-sm text-gray-700 mb-3"><span class="font-semibold">Use Case:</span> A small bakery owner wants to create social media content but has no marketing experience.</p>
+                            <p class="text-sm text-gray-700 mb-3"><span class="font-semibold">Before AI:</span> Hire a $2,000/month marketing agency or spend hours learning Canva, copywriting, and social media strategy.</p>
+                            <p class="text-sm text-gray-700 mb-3"><span class="font-semibold">With AI:</span> Uses prompt engineering to generate 30 days of Instagram captions, email newsletters, and promotional ideas in 2 hours.</p>
+                            <p class="text-sm font-semibold text-blue-700">ROI: 95% time savings, $24,000/year cost savings</p>
+                        </div>
+
+                        <div class="bg-green-50 p-5 rounded-lg border-l-4 border-green-500">
+                            <h5 class="text-lg font-semibold mb-2 text-green-800">💻 Software Development</h5>
+                            <p class="text-sm text-gray-700 mb-3"><span class="font-semibold">Use Case:</span> A junior developer needs to add user authentication to a web app but has never done it before.</p>
+                            <p class="text-sm text-gray-700 mb-3"><span class="font-semibold">Before AI:</span> Read 200+ pages of documentation, watch 5 hours of tutorials, debug for days.</p>
+                            <p class="text-sm text-gray-700 mb-3"><span class="font-semibold">With AI:</span> Crafts a detailed prompt describing the tech stack (Node.js, MongoDB, JWT), security requirements, and integration points. Gets working code in 30 minutes.</p>
+                            <p class="text-sm font-semibold text-green-700">ROI: 90% faster implementation, fewer security mistakes</p>
+                        </div>
+
+                        <div class="bg-purple-50 p-5 rounded-lg border-l-4 border-purple-500">
+                            <h5 class="text-lg font-semibold mb-2 text-purple-800">🎓 Education & Research</h5>
+                            <p class="text-sm text-gray-700 mb-3"><span class="font-semibold">Use Case:</span> A graduate student needs to analyze 50 research papers to find common themes for a literature review.</p>
+                            <p class="text-sm text-gray-700 mb-3"><span class="font-semibold">Before AI:</span> Manually read and annotate each paper, create spreadsheets, spend 3 weeks identifying patterns.</p>
+                            <p class="text-sm text-gray-700 mb-3"><span class="font-semibold">With AI:</span> Uploads papers, uses prompts to extract methodologies, findings, and themes. Creates comparison matrices in 2 days.</p>
+                            <p class="text-sm font-semibold text-purple-700">ROI: 10x speed increase, more comprehensive analysis</p>
+                        </div>
+
+                        <div class="bg-yellow-50 p-5 rounded-lg border-l-4 border-yellow-500">
+                            <h5 class="text-lg font-semibold mb-2 text-yellow-800">⚖️ Legal & Compliance</h5>
+                            <p class="text-sm text-gray-700 mb-3"><span class="font-semibold">Use Case:</span> A startup needs to draft privacy policies, terms of service, and GDPR compliance documents.</p>
+                            <p class="text-sm text-gray-700 mb-3"><span class="font-semibold">Before AI:</span> Pay a law firm $5,000-$15,000 for basic templates, wait 2-3 weeks for delivery.</p>
+                            <p class="text-sm text-gray-700 mb-3"><span class="font-semibold">With AI:</span> Uses detailed prompts specifying jurisdiction, business model, and data collection practices. Generates customized first drafts that lawyers can review and finalize.</p>
+                            <p class="text-sm font-semibold text-yellow-700">ROI: 70% cost reduction, 85% faster initial drafting</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">🚫 Common Misconceptions</h3>
+                    
+                    <div class="overflow-x-auto mb-6">
+                        <table class="min-w-full text-sm border border-gray-200">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="text-left px-4 py-3 border-b">❌ Myth</th>
+                                    <th class="text-left px-4 py-3 border-b">✅ Reality</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr>
+                                    <td class="px-4 py-3 border-b">"The AI knows everything"</td>
+                                    <td class="px-4 py-3 border-b">The AI only knows patterns from its training data (usually cut off months/years ago). It can't browse the web unless specifically enabled.</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="px-4 py-3 border-b">"Shorter prompts are better"</td>
+                                    <td class="px-4 py-3 border-b">Detailed prompts with context, constraints, and examples consistently outperform vague one-liners. Think instructions, not keywords.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 border-b">"The AI understands like humans do"</td>
+                                    <td class="px-4 py-3 border-b">The AI predicts tokens statistically. It doesn't "understand" concepts—it recognizes patterns. This is why it can seem brilliant and confused in the same conversation.</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="px-4 py-3 border-b">"If it's wrong, the AI is bad"</td>
+                                    <td class="px-4 py-3 border-b">90% of errors come from ambiguous prompts. Before blaming the model, ask: "Did I give enough context? Was I specific about format? Did I set constraints?"</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 border-b">"AI will replace all jobs"</td>
+                                    <td class="px-4 py-3 border-b">AI augments human work. It handles repetitive tasks, first drafts, and data processing. Humans provide judgment, creativity, ethics, and final decisions.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">📌 Key Takeaways</h3>
+                    
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-blue-600 font-bold mr-3 text-lg">1.</span>
+                                <span class="text-gray-800"><span class="font-semibold">Generative AI creates, not classifies.</span> It's fundamentally different from previous AI systems that merely sorted or predicted.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 font-bold mr-3 text-lg">2.</span>
+                                <span class="text-gray-800"><span class="font-semibold">Prompts are the new programming language.</span> Natural language instruction is how you "code" AI systems—and it requires precision.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 font-bold mr-3 text-lg">3.</span>
+                                <span class="text-gray-800"><span class="font-semibold">Models predict tokens, not truth.</span> Understanding the next-token prediction mechanism helps you craft better prompts.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 font-bold mr-3 text-lg">4.</span>
+                                <span class="text-gray-800"><span class="font-semibold">Context is everything.</span> More specific context = more relevant outputs. Vague prompts = generic results.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 font-bold mr-3 text-lg">5.</span>
+                                <span class="text-gray-800"><span class="font-semibold">The paradigm shift is real.</span> We've moved from commanding computers to conversing with them—this changes every industry.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 font-bold mr-3 text-lg">6.</span>
+                                <span class="text-gray-800"><span class="font-semibold">Training is expensive, usage is cheap.</span> Models cost millions to train but pennies per conversation—making AI democratically accessible.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h3 class="text-2xl font-bold mb-4 mt-8 border-b pb-2">✅ Action Items</h3>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-6 mb-6">
+                        <p class="text-gray-800 mb-4 font-semibold">Complete these tasks before moving to Lesson 1.2:</p>
+                        <div class="space-y-3">
+                            <label class="flex items-start cursor-pointer hover:bg-white p-2 rounded transition">
+                                <input type="checkbox" class="mt-1 mr-3">
+                                <span class="text-gray-700">Open ChatGPT, Claude, or Gemini and test three "bad" prompts (vague, short, no context). Observe the generic outputs.</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer hover:bg-white p-2 rounded transition">
+                                <input type="checkbox" class="mt-1 mr-3">
+                                <span class="text-gray-700">Rewrite those same three prompts using the principles from this lesson (role, context, constraints, format). Compare the improved outputs.</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer hover:bg-white p-2 rounded transition">
+                                <input type="checkbox" class="mt-1 mr-3">
+                                <span class="text-gray-700">Identify one task from your daily work or life that takes 30+ minutes. Brainstorm how an AI assistant could help if given the right prompt.</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer hover:bg-white p-2 rounded transition">
+                                <input type="checkbox" class="mt-1 mr-3">
+                                <span class="text-gray-700">Watch a 5-minute video on "transformer architecture" or "attention mechanism" (the tech behind LLMs) to deepen your understanding.</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer hover:bg-white p-2 rounded transition">
+                                <input type="checkbox" class="mt-1 mr-3">
+                                <span class="text-gray-700">Join one AI community (Reddit's r/ChatGPT, Discord servers, or LinkedIn groups) to see real-world prompt examples.</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer hover:bg-white p-2 rounded transition">
+                                <input type="checkbox" class="mt-1 mr-3">
+                                <span class="text-gray-700">Create a "Prompt Journal" document where you'll save effective prompts you discover throughout this course.</span>
+                            </label>
+                            <label class="flex items-start cursor-pointer hover:bg-white p-2 rounded transition">
+                                <input type="checkbox" class="mt-1 mr-3">
+                                <span class="text-gray-700">Experiment with asking an AI to explain the same concept (like "blockchain") to three different audiences: a 5-year-old, a CEO, and a developer. Notice how context changes output.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-lg border border-purple-200">
+                        <h4 class="text-lg font-bold mb-3 text-purple-800">💡 Pro Tips from Expert Prompt Engineers</h4>
+                        <div class="space-y-3 text-sm text-gray-700">
+                            <p><span class="font-semibold text-purple-700">→</span> <span class="font-semibold">Always test your prompts twice.</span> AI has inherent randomness (temperature settings). Run the same prompt twice to see consistency—this reveals weak spots in your instructions.</p>
+                            <p><span class="font-semibold text-purple-700">→</span> <span class="font-semibold">Save your best prompts in templates.</span> Build a personal library organized by task type (writing, coding, analysis, brainstorming). This saves hours in future work.</p>
+                            <p><span class="font-semibold text-purple-700">→</span> <span class="font-semibold">Think in systems, not tasks.</span> Instead of "write an email," think "create an email system that I can reuse for client onboarding, follow-ups, and feedback requests."</p>
+                            <p><span class="font-semibold text-purple-700">→</span> <span class="font-semibold">Use delimiters.</span> When your prompt has multiple sections (context, examples, task), use markers like "---" or "###" to help the AI parse structure clearly.</p>
+                            <p><span class="font-semibold text-purple-700">→</span> <span class="font-semibold">The 80/20 rule applies.</span> 80% of quality comes from these 20% of elements: role clarity, specific constraints, output format, and one good example. Master these first.</p>
+                        </div>
+                    </div>
