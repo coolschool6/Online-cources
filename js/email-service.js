@@ -261,6 +261,15 @@ async function checkAndSendProgressReminders(userId) {
   }
 }
 
+// Expose functions globally
+window.initEmailService = initEmailService;
+window.sendWelcomeEmail = sendWelcomeEmail;
+window.sendEnrollmentEmail = sendEnrollmentEmail;
+window.sendProgressReminderEmail = sendProgressReminderEmail;
+window.sendCertificateEmail = sendCertificateEmail;
+window.sendContactFormEmail = sendContactFormEmail;
+window.checkAndSendProgressReminders = checkAndSendProgressReminders;
+
 // Initialize on page load
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initEmailService);

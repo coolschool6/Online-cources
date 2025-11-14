@@ -78,3 +78,13 @@ function onAuthChange(callback) {
 function isAuthenticated() {
   return auth.currentUser !== null;
 }
+
+// Expose functions globally
+window.signUp = signUp;
+window.signIn = signIn;
+window.signInWithGoogle = signInWithGoogle;
+window.logOut = logOut;
+window.resetPassword = resetPassword;
+window.getCurrentUser = getCurrentUser;
+window.onAuthChange = onAuthChange;
+window.isAuthenticated = isAuthenticated;

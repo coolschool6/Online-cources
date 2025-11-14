@@ -4398,12 +4398,30 @@ Emily Rodriguez,Sales,88000,2</code></pre>
             }
 
             // Load user's enrollment and progress
-            const enrollment = await getCourseEnrollment(user.uid, courseId);
+            let enrollment = await getCourseEnrollment(user.uid, courseId);
+            
+            // If not enrolled, create enrollment and reload data
+            if (!enrollment.success) {
+                console.log('User not enrolled, creating enrollment...');
+                const enrollResult = await enrollInCourse(user.uid, courseId);
+                
+                if (enrollResult.success) {
+                    // Wait a moment for Firestore to sync, then reload enrollment
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    enrollment = await getCourseEnrollment(user.uid, courseId);
+                    console.log('Enrollment created successfully');
+                } else {
+                    console.error('Failed to create enrollment:', enrollResult.error);
+                }
+            }
+            
+            // Process enrollment data if available
             if (enrollment.success) {
                 currentEnrollment = enrollment.data;
+                console.log('Enrollment loaded:', currentEnrollment);
                 
                 // Mark completed lessons
-                if (currentEnrollment.completedLessons) {
+                if (currentEnrollment.completedLessons && currentEnrollment.completedLessons.length > 0) {
                     currentEnrollment.completedLessons.forEach(lessonId => {
                         const lessonLinks = document.querySelectorAll('.lesson-link');
                         lessonLinks.forEach(link => {
@@ -4423,8 +4441,7 @@ Emily Rodriguez,Sales,88000,2</code></pre>
                     }
                 }
             } else {
-                // Not enrolled, create enrollment
-                await enrollInCourse(user.uid, courseId);
+                console.error('Could not load or create enrollment');
             }
         });
 
@@ -4438,23 +4455,34 @@ Emily Rodriguez,Sales,88000,2</code></pre>
                 // Save last accessed lesson
                 await saveLastLesson(user.uid, courseId, lessonKey);
                 
+                // Update local enrollment state
+                currentEnrollment.lastLessonId = lessonKey;
+                
                 // Mark lesson as complete after 30 seconds
                 setTimeout(async () => {
                     if (!currentEnrollment.completedLessons.includes(lessonKey)) {
-                        await completLesson(user.uid, courseId, lessonKey);
+                        const result = await completLesson(user.uid, courseId, lessonKey);
                         
-                        // Update progress percentage
-                        const totalLessons = 21; // Updated to reflect 21 lessons across 5 modules
-                        const completedCount = currentEnrollment.completedLessons.length + 1;
-                        const progressPercent = Math.round((completedCount / totalLessons) * 100);
-                        await updateProgress(user.uid, courseId, progressPercent);
-                        
-                        // Add checkmark to completed lesson
-                        event.target.innerHTML = '<i class="fas fa-check-circle text-green-400 mr-2"></i>' + event.target.textContent;
-
-                        // Check if course is 100% complete
-                        if (progressPercent === 100) {
-                            await handleCourseCompletion(user, courseId);
+                        if (result.success) {
+                            // Update local enrollment state
+                            currentEnrollment.completedLessons.push(lessonKey);
+                            
+                            // Update progress percentage
+                            const totalLessons = 21; // Updated to reflect 21 lessons across 5 modules
+                            const completedCount = currentEnrollment.completedLessons.length;
+                            const progressPercent = Math.round((completedCount / totalLessons) * 100);
+                            await updateProgress(user.uid, courseId, progressPercent);
+                            currentEnrollment.progress = progressPercent;
+                            
+                            // Add checkmark to completed lesson
+                            event.target.innerHTML = '<i class="fas fa-check-circle text-green-400 mr-2"></i>' + event.target.textContent;
+                            
+                            console.log(`Lesson ${lessonKey} completed. Progress: ${progressPercent}%`);
+                            
+                            // Check if course is 100% complete
+                            if (progressPercent === 100) {
+                                await handleCourseCompletion(user, courseId);
+                            }
                         }
                     }
                 }, 30000); // 30 seconds

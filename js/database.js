@@ -137,3 +137,13 @@ async function saveLastLesson(userId, courseId, lessonId) {
     return { success: false, error: error.message };
   }
 }
+
+// Expose functions globally
+window.createUserProfile = createUserProfile;
+window.getUserProfile = getUserProfile;
+window.enrollInCourse = enrollInCourse;
+window.getCourseEnrollment = getCourseEnrollment;
+window.completLesson = completLesson;
+window.updateProgress = updateProgress;
+window.getUserEnrollments = getUserEnrollments;
+window.saveLastLesson = saveLastLesson;
