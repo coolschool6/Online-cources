@@ -141,7 +141,8 @@
   </footer>
 
   <script>
-    function togglePanel(btn){
+    // Accordion toggle (global for inline onclick)
+    window.togglePanel = function(btn){
       const wrap = btn.parentElement;
       const panel = wrap.querySelector('.accordion-panel');
       const open = wrap.classList.toggle('accordion-open');

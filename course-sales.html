@@ -228,12 +228,12 @@
   </footer>
 
   <script>
-    // Accordion toggle
-    function togglePanel(btn){
+    // Accordion toggle (global for inline onclick)
+    window.togglePanel = function(btn){
       const wrapper = btn.parentElement;
       const panel = wrapper.querySelector('.accordion-panel');
       const open = wrapper.classList.toggle('accordion-open');
-      if(open){ panel.style.display='block'; } else { panel.style.display='none'; }
+      panel.style.display = open ? 'block' : 'none';
     }
   </script>
 </body>

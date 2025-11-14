@@ -551,20 +551,20 @@
         const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
         const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
-        function openMobileMenu() {
+        window.openMobileMenu = function() {
             mobileMenuOverlay.style.display = 'block';
             setTimeout(() => mobileMenuOverlay.classList.remove('opacity-0'), 10);
             document.body.style.overflow = 'hidden';
         }
 
-        function closeMobileMenu() {
+        window.closeMobileMenu = function() {
             mobileMenuOverlay.classList.add('opacity-0');
             setTimeout(() => mobileMenuOverlay.style.display = 'none', 300);
             document.body.style.overflow = 'auto';
         }
 
-        mobileMenuBtn.addEventListener('click', openMobileMenu);
-        closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+    mobileMenuBtn.addEventListener('click', window.openMobileMenu);
+    closeMobileMenuBtn.addEventListener('click', window.closeMobileMenu);
 
         // --- Carousel / Horizontal Scroll Logic ---
         const courseList = document.getElementById('course-list');

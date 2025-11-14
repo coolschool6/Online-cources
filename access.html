@@ -87,56 +87,56 @@
             </div>
             
             <!-- Dark Mode Toggle -->
-            <button onclick="toggleDarkMode()" class="w-full mb-4 py-2 px-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm flex items-center justify-center gap-2 transition">
+            <button onclick="window.toggleDarkMode()" class="w-full mb-4 py-2 px-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm flex items-center justify-center gap-2 transition">
                 <i class="fas fa-moon"></i> <span id="darkModeText">Dark Mode</span>
             </button>
             
             <h2 class="text-xl font-bold mb-4 text-gray-100 border-b border-gray-700 pb-2">Course Modules</h2>
             <nav class="space-y-2 text-sm" id="lessonNav">
                 <div>
-                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="toggleLessons(this, 'module1')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 1: AI Foundation</button>
+                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="window.toggleLessons(this, 'module1')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 1: AI Foundation</button>
                     <div id="module1" class="pl-4 space-y-1 mt-1 hidden">
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg active" onclick="loadLesson(event, 'Lesson 1.1')">1.1 What is Generative AI?</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 1.2')">1.2 Model Limitations & Strengths</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 1.3')">1.3 Anatomy of a Basic Prompt</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 1.4')">1.4 Tools & Interface Setup</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg active" onclick="window.loadLesson(event, 'Lesson 1.1')">1.1 What is Generative AI?</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 1.2')">1.2 Model Limitations & Strengths</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 1.3')">1.3 Anatomy of a Basic Prompt</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 1.4')">1.4 Tools & Interface Setup</a>
                     </div>
                 </div>
                 <div>
-                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="toggleLessons(this, 'module2')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 2: Effective Prompts</button>
+                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="window.toggleLessons(this, 'module2')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 2: Effective Prompts</button>
                     <div id="module2" class="pl-4 space-y-1 mt-1 hidden">
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 2.1')">2.1 The 'Role-Playing' Technique</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 2.2')">2.2 Constraints & Requirements</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 2.3')">2.3 Providing High-Quality Data</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 2.4')">2.4 Iterative Prompt Refinement</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 2.5')">2.5 Key Model Parameters</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 2.1')">2.1 The 'Role-Playing' Technique</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 2.2')">2.2 Constraints & Requirements</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 2.3')">2.3 Providing High-Quality Data</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 2.4')">2.4 Iterative Prompt Refinement</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 2.5')">2.5 Key Model Parameters</a>
                     </div>
                 </div>
                 <div>
-                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="toggleLessons(this, 'module3')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 3: Advanced Techniques</button>
+                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="window.toggleLessons(this, 'module3')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 3: Advanced Techniques</button>
                     <div id="module3" class="pl-4 space-y-1 mt-1 hidden">
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 3.1')">3.1 Chain-of-Thought (CoT)</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 3.2')">3.2 Self-Correction & Verification</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 3.3')">3.3 Tree-of-Thought (ToT)</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 3.4')">3.4 Utilizing Code Blocks</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 3.5')">3.5 Multimodal Prompting</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 3.1')">3.1 Chain-of-Thought (CoT)</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 3.2')">3.2 Self-Correction & Verification</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 3.3')">3.3 Tree-of-Thought (ToT)</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 3.4')">3.4 Utilizing Code Blocks</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 3.5')">3.5 Multimodal Prompting</a>
                     </div>
                 </div>
                 <div>
-                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="toggleLessons(this, 'module4')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 4: Applications</button>
+                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="window.toggleLessons(this, 'module4')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 4: Applications</button>
                     <div id="module4" class="pl-4 space-y-1 mt-1 hidden">
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 4.1')">4.1 Automating Marketing Copy</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 4.2')">4.2 Generating Documentation</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 4.3')">4.3 AI for Ideation & Brainstorming</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 4.4')">4.4 Crafting Custom AI Assistants</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 4.1')">4.1 Automating Marketing Copy</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 4.2')">4.2 Generating Documentation</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 4.3')">4.3 AI for Ideation & Brainstorming</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 4.4')">4.4 Crafting Custom AI Assistants</a>
                     </div>
                 </div>
                 <div>
-                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="toggleLessons(this, 'module5')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 5: Next Steps</button>
+                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="window.toggleLessons(this, 'module5')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 5: Next Steps</button>
                     <div id="module5" class="pl-4 space-y-1 mt-1 hidden">
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 5.1')">5.1 Ethical AI & Attribution</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 5.2')">5.2 Monitoring Model Updates</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 5.3')">5.3 Final Project & Certification</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 5.1')">5.1 Ethical AI & Attribution</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 5.2')">5.2 Monitoring Model Updates</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 5.3')">5.3 Final Project & Certification</a>
                     </div>
                 </div>
             </nav>
@@ -149,19 +149,19 @@
             </header>
             <main class="flex-1 overflow-y-auto p-4 md:p-8">
                 <!-- Code Editor Toggle Button -->
-                <button onclick="toggleCodeEditor()" class="fixed bottom-24 right-20 z-50 bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-full shadow-lg transition flex items-center gap-2">
+                <button onclick="window.toggleCodeEditor()" class="fixed bottom-24 right-20 z-50 bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-full shadow-lg transition flex items-center gap-2">
                     <i class="fas fa-code"></i> <span id="editorToggleText">Open Editor</span>
                 </button>
                 
                 <!-- Code Editor Panel -->
-                <div id="codeEditorPanel" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="closeCodeEditorIfClickOutside(event)">
+                <div id="codeEditorPanel" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" onclick="window.closeCodeEditorIfClickOutside(event)">
                     <div class="absolute right-0 top-0 h-full w-full md:w-3/4 lg:w-2/3 bg-white shadow-2xl" onclick="event.stopPropagation()">
                         <div class="flex flex-col h-full">
                             <!-- Editor Header -->
                             <div class="flex items-center justify-between bg-gray-800 text-white p-4">
                                 <div class="flex items-center gap-4">
                                     <h3 class="text-lg font-bold"><i class="fas fa-code mr-2"></i> Code Playground</h3>
-                                    <select id="languageSelect" onchange="changeLanguage()" class="bg-gray-700 text-white px-3 py-1 rounded border border-gray-600 text-sm">
+                                    <select id="languageSelect" onchange="window.changeLanguage()" class="bg-gray-700 text-white px-3 py-1 rounded border border-gray-600 text-sm">
                                         <option value="javascript">JavaScript</option>
                                         <option value="python">Python</option>
                                         <option value="html">HTML</option>
@@ -171,13 +171,13 @@
                                     </select>
                                 </div>
                                 <div class="flex items-center gap-2">
-                                    <button onclick="runCode()" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded transition flex items-center gap-2">
+                                    <button onclick="window.runCode()" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded transition flex items-center gap-2">
                                         <i class="fas fa-play"></i> Run
                                     </button>
-                                    <button onclick="clearEditor()" class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded transition">
+                                    <button onclick="window.clearEditor()" class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded transition">
                                         <i class="fas fa-trash"></i> Clear
                                     </button>
-                                    <button onclick="toggleCodeEditor()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition">
+                                    <button onclick="window.toggleCodeEditor()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition">
                                         <i class="fas fa-times"></i> Close
                                     </button>
                                 </div>
@@ -194,7 +194,7 @@
                                 <div class="w-full md:w-1/3 bg-gray-900 text-green-400 p-4 overflow-y-auto font-mono text-sm">
                                     <div class="flex items-center justify-between mb-2 pb-2 border-b border-gray-700">
                                         <span class="font-bold text-white">Output:</span>
-                                        <button onclick="clearOutput()" class="text-xs text-gray-400 hover:text-white">Clear</button>
+                                        <button onclick="window.clearOutput()" class="text-xs text-gray-400 hover:text-white">Clear</button>
                                     </div>
                                     <div id="codeOutput"></div>
                                 </div>
@@ -323,53 +323,53 @@
             <h2 class="text-xl font-bold mb-4 text-gray-100 border-b border-gray-700 pb-2">Course Modules</h2>
             <nav class="space-y-2 text-sm" id="mobile-nav-content">
                 <div>
-                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="toggleLessons(this, 'module1_mobile')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 1: AI Foundation</button>
+                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="window.toggleLessons(this, 'module1_mobile')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 1: AI Foundation</button>
                     <div id="module1_mobile" class="pl-4 space-y-1 mt-1 hidden">
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg active" onclick="loadLesson(event, 'Lesson 1.1'); closeMobileSidebar()">1.1 What is Generative AI?</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 1.2'); closeMobileSidebar()">1.2 Model Limitations & Strengths</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 1.3'); closeMobileSidebar()">1.3 Anatomy of a Basic Prompt</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 1.4'); closeMobileSidebar()">1.4 Tools & Interface Setup</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg active" onclick="window.loadLesson(event, 'Lesson 1.1'); window.closeMobileSidebar()">1.1 What is Generative AI?</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 1.2'); window.closeMobileSidebar()">1.2 Model Limitations & Strengths</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 1.3'); window.closeMobileSidebar()">1.3 Anatomy of a Basic Prompt</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 1.4'); window.closeMobileSidebar()">1.4 Tools & Interface Setup</a>
                     </div>
                 </div>
                 <div>
-                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="toggleLessons(this, 'module2_mobile')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 2: Effective Prompts</button>
+                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="window.toggleLessons(this, 'module2_mobile')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 2: Effective Prompts</button>
                     <div id="module2_mobile" class="pl-4 space-y-1 mt-1 hidden">
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 2.1'); closeMobileSidebar()">2.1 The 'Role-Playing' Technique</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 2.2'); closeMobileSidebar()">2.2 Constraints & Requirements</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 2.3'); closeMobileSidebar()">2.3 Providing High-Quality Data</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 2.4'); closeMobileSidebar()">2.4 Iterative Prompt Refinement</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 2.5'); closeMobileSidebar()">2.5 Key Model Parameters</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 2.1'); window.closeMobileSidebar()">2.1 The 'Role-Playing' Technique</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 2.2'); window.closeMobileSidebar()">2.2 Constraints & Requirements</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 2.3'); window.closeMobileSidebar()">2.3 Providing High-Quality Data</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 2.4'); window.closeMobileSidebar()">2.4 Iterative Prompt Refinement</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 2.5'); window.closeMobileSidebar()">2.5 Key Model Parameters</a>
                     </div>
                 </div>
                 <div>
-                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="toggleLessons(this, 'module3_mobile')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 3: Advanced Techniques</button>
+                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="window.toggleLessons(this, 'module3_mobile')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 3: Advanced Techniques</button>
                     <div id="module3_mobile" class="pl-4 space-y-1 mt-1 hidden">
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 3.1'); closeMobileSidebar()">3.1 Chain-of-Thought (CoT)</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 3.2'); closeMobileSidebar()">3.2 Self-Correction & Verification</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 3.3'); closeMobileSidebar()">3.3 Tree-of-Thought (ToT)</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 3.4'); closeMobileSidebar()">3.4 Utilizing Code Blocks</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 3.5'); closeMobileSidebar()">3.5 Multimodal Prompting</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 3.1'); window.closeMobileSidebar()">3.1 Chain-of-Thought (CoT)</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 3.2'); window.closeMobileSidebar()">3.2 Self-Correction & Verification</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 3.3'); window.closeMobileSidebar()">3.3 Tree-of-Thought (ToT)</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 3.4'); window.closeMobileSidebar()">3.4 Utilizing Code Blocks</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 3.5'); window.closeMobileSidebar()">3.5 Multimodal Prompting</a>
                     </div>
                 </div>
                 <div>
-                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="toggleLessons(this, 'module4_mobile')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 4: Applications</button>
+                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="window.toggleLessons(this, 'module4_mobile')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 4: Applications</button>
                     <div id="module4_mobile" class="pl-4 space-y-1 mt-1 hidden">
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 4.1'); closeMobileSidebar()">4.1 Automating Marketing Copy</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 4.2'); closeMobileSidebar()">4.2 Generating Documentation</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 4.3'); closeMobileSidebar()">4.3 AI for Ideation & Brainstorming</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 4.4'); closeMobileSidebar()">4.4 Crafting Custom AI Assistants</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 4.1'); window.closeMobileSidebar()">4.1 Automating Marketing Copy</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 4.2'); window.closeMobileSidebar()">4.2 Generating Documentation</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 4.3'); window.closeMobileSidebar()">4.3 AI for Ideation & Brainstorming</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 4.4'); window.closeMobileSidebar()">4.4 Crafting Custom AI Assistants</a>
                     </div>
                 </div>
                 <div>
-                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="toggleLessons(this, 'module5_mobile')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 5: Next Steps</button>
+                    <button class="w-full text-left py-2 px-3 text-lg font-semibold text-gray-200 hover:text-white" onclick="window.toggleLessons(this, 'module5_mobile')"><i class="fas fa-chevron-right mr-2 transition-transform duration-300"></i> Module 5: Next Steps</button>
                     <div id="module5_mobile" class="pl-4 space-y-1 mt-1 hidden">
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 5.1'); closeMobileSidebar()">5.1 Ethical AI & Attribution</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 5.2'); closeMobileSidebar()">5.2 Monitoring Model Updates</a>
-                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="loadLesson(event, 'Lesson 5.3'); closeMobileSidebar()">5.3 Final Project & Certification</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 5.1'); window.closeMobileSidebar()">5.1 Ethical AI & Attribution</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 5.2'); window.closeMobileSidebar()">5.2 Monitoring Model Updates</a>
+                        <a href="#" class="lesson-link block py-2 px-3 rounded-lg" onclick="window.loadLesson(event, 'Lesson 5.3'); window.closeMobileSidebar()">5.3 Final Project & Certification</a>
                     </div>
                 </div>
             </nav>
-            <button onclick="closeMobileSidebar()" class="absolute top-6 right-6 text-white text-xl hover:text-gray-300"><i class="fas fa-times"></i></button>
+            <button onclick="window.closeMobileSidebar()" class="absolute top-6 right-6 text-white text-xl hover:text-gray-300"><i class="fas fa-times"></i></button>
         </aside>
     </div>
     <script>
@@ -4510,7 +4510,7 @@ Emily Rodriguez,Sales,88000,2</code></pre>
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
             const darkModeText = document.getElementById('darkModeText');
-            const icon = document.querySelector('button[onclick="toggleDarkMode()"] i');
+            const icon = document.querySelector('button[onclick="window.toggleDarkMode()"] i');
             
             if (darkModeText) {
                 darkModeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
@@ -4703,7 +4703,7 @@ Emily Rodriguez,Sales,88000,2</code></pre>
             // Ctrl/Cmd + E: Toggle code editor
             if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
                 e.preventDefault();
-                toggleCodeEditor();
+                window.toggleCodeEditor();
             }
         });
 
